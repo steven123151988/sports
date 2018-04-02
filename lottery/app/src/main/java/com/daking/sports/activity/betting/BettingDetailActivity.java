@@ -56,6 +56,7 @@ import okhttp3.Response;
  */
 
 public class BettingDetailActivity extends BaseActivity implements View.OnClickListener {
+    
     private ExpandableListView lv_expandableListView;
     private MyExpandableListAdapter myExpandableListAdapter;
     private LinearLayout ll_title_basketball, ll_title_football;
