@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/steven/mmmle/lottery/F:\\workspace\\lottery\\PushSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\upush_notification.xml",
+        "source": "/Users/steven/mmmle/lottery/F:\\workspace\\lottery\\PushSDK\\build\\intermediates\\bundles\\debug\\res\\layout\\upush_notification.xml"
+    },
+    {
+        "merged": "/Users/steven/mmmle/lottery/PushSDK/build/intermediates/res/merged/androidTest/debug/layout/upush_notification.xml",
+        "source": "/Users/steven/mmmle/lottery/PushSDK/build/intermediates/bundles/debug/res/layout/upush_notification.xml"
+    },
+    {
+        "merged": "/Users/steven/sports/lottery/PushSDK/build/intermediates/res/merged/androidTest/debug/layout/upush_notification.xml",
+        "source": "/Users/steven/sports/lottery/PushSDK/build/intermediates/bundles/debug/res/layout/upush_notification.xml"
+    }
+]

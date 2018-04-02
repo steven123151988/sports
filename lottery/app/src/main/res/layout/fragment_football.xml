@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_ffffff"
+    android:orientation="vertical">
+
+    <!--<com.yalantis.phoenix.PullToRefreshView-->
+    <!--android:visibility="gone"-->
+    <!--android:id="@+id/pull_to_refresh"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+    <!--</com.yalantis.phoenix.PullToRefreshView>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/red_84201e"
+        android:orientation="vertical" />
+
+    <ListView
+        android:id="@+id/lv_betting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="@color/red_84201e"
+        android:dividerHeight="1dp" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_redline"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:background="@color/red_84201e"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dimen_1"/>
+
+    <ImageView
+        android:id="@+id/iv_system_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+
+</LinearLayout>

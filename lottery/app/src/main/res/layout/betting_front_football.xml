@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Android="http://schemas.android.com/tools"
+    android:id="@+id/ll_title_football"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:layout_marginTop="@dimen/dimen_20"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="主队 "
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            android:visibility="invisible"
+            Android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/football_msg1"
+            android:src="@mipmap/football_msg1"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/football_msg2"
+            android:src="@mipmap/football_msg2"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/football_msg3"
+            android:text=""
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="总分"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="主队"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_mb_A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_mb_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_mb_C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_mb_D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:layout_weight="1"
+            android:text="-"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_14"
+            Android:gravity="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="客队"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_14"
+                Android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_tg_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_14"
+                Android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_tg_B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_14"
+                Android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_tg_C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_14"
+                Android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_tg_D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen_10"
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_14"
+                Android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

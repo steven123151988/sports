@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_image_text_text" />
+
+    <LinearLayout
+        android:id="@+id/ll_ball"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/football_bg"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_30">
+
+            <ImageView
+                android:id="@+id/iv_betting_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red_84201e"
+                    android:textSize="@dimen/sp_30" />
+
+                <TextView
+                    android:id="@+id/tv_score_A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/red_84201e"
+                    android:textSize="@dimen/sp_40" />
+
+                <TextView
+                    android:id="@+id/tv_score_B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/red_84201e"
+                    android:textSize="@dimen/sp_40" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/red_84201e"
+                    android:textSize="@dimen/sp_30" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <include
+            layout="@layout/betting_front_football"
+            android:visibility="gone" />
+
+        <include
+            layout="@layout/betting_front_basketball"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ExpandableListView
+        android:childDivider="@color/red_84201e"
+        android:id="@+id/lv_expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="@null" />
+</LinearLayout>
