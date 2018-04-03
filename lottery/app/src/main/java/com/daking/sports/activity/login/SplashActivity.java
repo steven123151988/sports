@@ -21,6 +21,7 @@ import com.daking.sports.util.AppUtils;
 import com.daking.sports.util.NetUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
+import com.daking.sports.util.SystemUtil;
 import com.daking.sports.view.UploadApkDialog;
 
 
@@ -90,7 +91,8 @@ public class SplashActivity extends BaseActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    initConfigIndex();
+                    //检查是否需要升级
+                    getAppGrade();
                 }
             }, 1500);
         } else {
@@ -98,29 +100,7 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 请求全局变量
-     */
-    private void initConfigIndex() {
-        HttpRequest.getInstance().getConfig(SplashActivity.this, new HttpCallback<ConfigRsp>() {
-            @Override
-            public void onSuccess(ConfigRsp configRsp) {
-                if (null != configRsp.getIfo().getBase_url() && !configRsp.getIfo().getBase_url().equals("")) {
-                    SportsAPI.BASE_URL = configRsp.getIfo().getBase_url();
-                    //检查是否需要升级
-                    getAppGrade();
 
-                } else {
-                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.sorry), configRsp.getMsg());
-                }
-            }
-
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
-                initLogType();
-            }
-        });
-    }
 
     /**
      * 检查APP是否需要升级
@@ -181,7 +161,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                ShowDialogUtil.showFailDialog(mContext, getString(R.string.sorry), errorMsg);
+                initLogType();
             }
         });
     }

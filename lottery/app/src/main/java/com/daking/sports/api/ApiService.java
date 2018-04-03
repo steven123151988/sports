@@ -8,6 +8,7 @@ import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.ConfigRsp;
 import com.daking.sports.json.LoginRsp;
+import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
 
@@ -15,15 +16,12 @@ import okhttp3.RequestBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
 
-    /**
-     * 请求全局变量
-     */
-    @POST(SportsAPI.CONFIG_INDEX)
-    Call<ConfigRsp> getConfig(@Body RequestBody body);
+
 
     /**
      * 检查用户名
@@ -46,8 +44,8 @@ public interface ApiService {
     /**
      * 登陆
      */
-    @POST(SportsAPI.LOGIN)
-    Call<LoginRsp> login(@Body RequestBody body);
+    @POST("service")
+    Call<LoginRsps> login(@Body RequestBody body);
 
     /**
      * 获取左侧menu信息

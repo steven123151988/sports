@@ -9,6 +9,7 @@ import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.ConfigRsp;
 import com.daking.sports.json.LoginRsp;
+import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.util.JsonUtil;
@@ -92,17 +93,6 @@ public class HttpRequest {
         }
     }
 
-
-    public void getConfig(Object tag, HttpCallback<ConfigRsp> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(SportsKey.FNNAME, SportsKey.CONFIG)
-                .addParam(SportsKey.HOST, "le5")
-                .build();
-        Call<ConfigRsp> call = mService.getConfig(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
-
     /**
      * 检查用户名是否已经被占用
      *
@@ -180,14 +170,13 @@ public class HttpRequest {
      * @param tag
      * @param callback
      */
-    public void login(Object tag, String account, String psw, HttpCallback<LoginRsp> callback) {
+    public void login(Object tag, String account, String psw, HttpCallback<LoginRsps> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.USER_NAME, account)
                 .addParam(SportsKey.PASSWORD, psw)
-                .addParam(SportsKey.FNNAME, SportsKey.LOGIN)
-                .addParam(SportsKey.LANGUAGE, SportsKey.ZH_CN)
+                .addParam(SportsKey.ACTION, SportsKey.LOGIN)
                 .build();
-        Call<LoginRsp> call = mService.login(body);
+        Call<LoginRsps> call = mService.login(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

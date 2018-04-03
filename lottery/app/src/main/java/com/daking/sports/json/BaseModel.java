@@ -41,4 +41,23 @@ public class BaseModel implements Serializable {
     public String getErrorCodeInfo() {
         return SportsAPI.getErrorCodeInfo(msg);
     }
+
+    private int errno;
+    private Object error;
+
+    public int getErrno() {
+        return errno;
+    }
+
+    public void setErrno(int errno) {
+        this.errno = errno;
+    }
+
+    public Object getError() {
+        return error;
+    }
+
+    public void setError(Object error) {
+        this.error = error;
+    }
 }

@@ -5,6 +5,12 @@ package com.daking.sports.base;
  */
 
 public class SportsKey {
+    public static final String USER_NAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String ACTION = "action";
+    public static final String TOKEN = "token";
+
+
     public static final int TYPE_ZERO = 0;
     public static final int TYPE_ONE = 1;
     public static final int TYPE_TWO = 2;
@@ -23,8 +29,7 @@ public class SportsKey {
     public static final int TYPE_1001 = 1001;
     public static final int TYPE_1002 = 1002;
     public static final String HOST = "host";
-    public static final String USER_NAME = "username";
-    public static final String PASSWORD = "password";
+
     public static final String LANGUAGE = "langx";
     public static final String WEBVIEW_TITLE = "webviewTitle";
     public static final String WEBVIEW_URL = "webviewUrl";
@@ -45,7 +50,6 @@ public class SportsKey {
     public static final String MONEY = "money";
     public static final String PARA = "para";
     public static final String ORDER = "order";
-    public static final String TOKEN = "token";
     public static final String CHECK_ORDER = "chk_order";
     public static final String PAGE = "page";
     public static final String OLD_PWD = "oldpwd";

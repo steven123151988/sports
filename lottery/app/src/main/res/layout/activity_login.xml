@@ -17,13 +17,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/title_image_text_text" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dimen_40"
+            android:layout_marginTop="@dimen/dimen_80"
             android:src="@mipmap/login_photo" />
 
         <LinearLayout
