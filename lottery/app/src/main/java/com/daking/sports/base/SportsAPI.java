@@ -3,10 +3,16 @@ package com.daking.sports.base;
 
 public class SportsAPI {
     public static String BASE_URL = "http://192.168.254.4:8082/";
-    public static final String CONFIG_INDEX = "/config/index";//请求全局变量
+    public static final String LOGIN = "login";//登陆
+
+
+
+
+
+
+
     public static final String REGIST = "/member/register/check_reg";//注册
     public static final String CHECK_USER = "/member/register/chk_user";//检查用户名称
-    public static final String LOGIN = "login";//登陆
     public static final String LOGIN_OUT = "/login/loginout";//登出
     public static final String HOME_INDEX = "/home/index"; //主页数据
     public static final String HOME_MENU = "/home/main_menu"; //主页菜单数据

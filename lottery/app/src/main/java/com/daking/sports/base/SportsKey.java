@@ -45,7 +45,7 @@ public class SportsKey {
     public static final String MID = "mid";
     public static final String BALL_TEAM = "ballteam";
     public static final String LOGIN_OUT = "lgout";
-    public static final String LOGIN = "lg";
+    public static final String LOGIN = "login";
     public static final String ZH_CN = "zh-cn";
     public static final String MONEY = "money";
     public static final String PARA = "para";

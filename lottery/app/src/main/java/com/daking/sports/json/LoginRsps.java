@@ -12,8 +12,6 @@ public class LoginRsps extends BaseModel{
 
 
     private DataBean data;
-    private String sign;
-
 
     public DataBean getData() {
         return data;
@@ -21,14 +19,6 @@ public class LoginRsps extends BaseModel{
 
     public void setData(DataBean data) {
         this.data = data;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
     }
 
     public static class DataBean {

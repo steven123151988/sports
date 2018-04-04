@@ -124,7 +124,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             HttpRequest.getInstance().login(LoginActivity.this, account, psw, new HttpCallback<LoginRsps>() {
                 @Override
                 public void onSuccess(LoginRsps data) {
-                    SharePreferencesUtil.addString(mContext, SportsKey.TOKEN,data.getData().getToken());
+                    if (null!=data&&null!=data.getData().getToken()){
+                        SharePreferencesUtil.addString(mContext, SportsKey.TOKEN,data.getData().getToken());
+                    }
                     SharePreferencesUtil.addString(mContext, SportsKey.USER_NAME, account);
                     //展示成功的对话框
                     ShowDialogUtil.showSuccessDialog(mContext, getString(R.string.loginsuccss),"登陆成功。");

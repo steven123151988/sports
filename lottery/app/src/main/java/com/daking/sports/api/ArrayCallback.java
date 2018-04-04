@@ -44,7 +44,7 @@ public abstract class ArrayCallback<T> implements Callback<JsonElement> {
             }
             if (element.isJsonObject()) {
                 BaseModel model = JsonUtil.fromJson(element, BaseModel.class);
-                if (!TextUtils.isEmpty(model.getMsg())) {
+                if (!TextUtils.isEmpty( model.getErrnum()+"")&&Integer.valueOf(model.getErrnum())!=0) {
                     onApiFailure(model);
                 }
             } else if (element.isJsonArray()) {

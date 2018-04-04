@@ -21,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
+    private String msgCode,errormsg;
 
     @Override
     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -29,13 +30,13 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         }
         if (response.isSuccessful()) {
             T model = response.body();
-            if (model == null) {
+            if (null==model) {
                 return;
             }
             /**
-             *  接口code=0表示成功, code=1表示失败
+             *  接口getErrnum=0表示成功
              */
-            if (model.getCode() == 0) {
+            if (model.getErrnum() == 0) {
                 onSuccess(model);
             } else {
                 onApiFailure(model);
@@ -46,8 +47,15 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
     }
 
     private void onApiFailure(T model) {
-        String msgCode = model.getMsg();
-        onFailure(msgCode, SportsAPI.getErrorCodeInfo(msgCode));
+        if (null!=model.getMsg()){
+             msgCode = String.valueOf(model.getMsg()) ;
+        }
+
+        if (null!=model.getError()){
+             errormsg =String.valueOf(model.getError()) ;
+        }
+
+        onFailure(msgCode,errormsg);
     }
 
     @Override

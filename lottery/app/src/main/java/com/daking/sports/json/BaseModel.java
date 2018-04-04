@@ -4,9 +4,6 @@ import com.daking.sports.base.SportsAPI;
 
 import java.io.Serializable;
 
-/**
- * Created by SUNNY18 on 2018/3/5.
- */
 
 public class BaseModel implements Serializable {
 
@@ -42,15 +39,16 @@ public class BaseModel implements Serializable {
         return SportsAPI.getErrorCodeInfo(msg);
     }
 
-    private int errno;
+    private int errnum;
     private Object error;
+    private String sign;
 
-    public int getErrno() {
-        return errno;
+    public int getErrnum() {
+        return errnum;
     }
 
-    public void setErrno(int errno) {
-        this.errno = errno;
+    public void setErrnum(int errnum) {
+        this.errnum = errnum;
     }
 
     public Object getError() {
@@ -59,5 +57,13 @@ public class BaseModel implements Serializable {
 
     public void setError(Object error) {
         this.error = error;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }

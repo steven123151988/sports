@@ -2,6 +2,7 @@ package com.daking.sports.api;
 
 import android.support.v4.util.ArrayMap;
 
+import com.daking.sports.base.SportsAPI;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
@@ -174,7 +175,7 @@ public class HttpRequest {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.USER_NAME, account)
                 .addParam(SportsKey.PASSWORD, psw)
-                .addParam(SportsKey.ACTION, SportsKey.LOGIN)
+                .addParam(SportsKey.ACTION, SportsAPI.LOGIN)
                 .build();
         Call<LoginRsps> call = mService.login(body);
         putCall(tag, call);
