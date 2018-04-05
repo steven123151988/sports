@@ -64,6 +64,24 @@ public class SystemUtil {
                 window.setAttributes(attributes);
             }
         }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            int flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+//            int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                Window window =activity. getWindow();
+//                WindowManager.LayoutParams attributes = window.getAttributes();
+//                attributes.flags |= flagTranslucentNavigation;
+//                window.setAttributes(attributes);
+//                activity. getWindow().setStatusBarColor(Color.TRANSPARENT);
+//            } else {
+//                Window window =activity. getWindow();
+//                WindowManager.LayoutParams attributes = window.getAttributes();
+//                attributes.flags |= flagTranslucentStatus | flagTranslucentNavigation;
+//                window.setAttributes(attributes);
+//            }
+//        }
+
+
     }
 
 }

@@ -40,6 +40,7 @@ import com.daking.sports.json.MainMenuRsp;
 import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
+import com.daking.sports.util.SystemUtil;
 import com.daking.sports.util.ToastUtil;
 import com.google.gson.Gson;
 import com.umeng.analytics.MobclickAgent;
@@ -80,6 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initTitlebar();
         initView();
     }

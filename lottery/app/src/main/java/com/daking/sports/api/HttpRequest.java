@@ -13,6 +13,7 @@ import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.JsonUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 
@@ -94,6 +95,59 @@ public class HttpRequest {
         }
     }
 
+
+
+    /**
+     * 登陆
+     *
+     * @param tag
+     * @param callback
+     */
+    public void login(Object tag, String account, String psw, HttpCallback<LoginRsps> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.USER_NAME, account)
+                .addParam(SportsKey.PASSWORD, psw)
+                .addParam(SportsKey.ACTION, SportsAPI.LOGIN)
+                .build();
+        Call<LoginRsps> call = mService.login(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 获取首页赛事信息
+     * @param tag
+     * @param callback
+     */
+    public void getGameData(Object tag, HttpCallback<getGameDataRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .build();
+        Call<getGameDataRsp> call = mService.getGameDate(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 检查用户名是否已经被占用
      *
@@ -165,22 +219,6 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-    /**
-     * 登陆
-     *
-     * @param tag
-     * @param callback
-     */
-    public void login(Object tag, String account, String psw, HttpCallback<LoginRsps> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(SportsKey.USER_NAME, account)
-                .addParam(SportsKey.PASSWORD, psw)
-                .addParam(SportsKey.ACTION, SportsAPI.LOGIN)
-                .build();
-        Call<LoginRsps> call = mService.login(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
 
     /**
      * 获取左侧菜单的menu数据

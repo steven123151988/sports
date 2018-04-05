@@ -11,6 +11,7 @@ import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.getGameDataRsp;
 
 import okhttp3.RequestBody;
 
@@ -20,6 +21,30 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
+    /**
+     * 登陆
+     */
+    @POST("service")
+    Call<LoginRsps> login(@Body RequestBody body);
+
+
+    /**
+     * 获取赛事信息
+     */
+    @POST("service?action=GetGameData&terminal_id=1")
+    Call<getGameDataRsp> getGameDate(@Body RequestBody body);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,12 +65,6 @@ public interface ApiService {
      */
     @POST(SportsAPI.GET_VERSION_ANDROID)
     Call<LotteryVersion> appUpGrade(@Body RequestBody body);
-
-    /**
-     * 登陆
-     */
-    @POST("service")
-    Call<LoginRsps> login(@Body RequestBody body);
 
     /**
      * 获取左侧menu信息

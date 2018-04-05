@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.BetActivity;
 import com.daking.sports.activity.MainActivity;
 import com.daking.sports.activity.mine.PswManagerActivity;
 import com.daking.sports.api.HttpCallback;
@@ -26,6 +27,7 @@ import com.daking.sports.base.SportsKey;
 import com.daking.sports.base.SportsAPI;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
+import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.CustomVideoView;
 import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SharePreferencesUtil;
@@ -129,14 +131,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                     }
                     SharePreferencesUtil.addString(mContext, SportsKey.USER_NAME, account);
                     //展示成功的对话框
-                    ShowDialogUtil.showSuccessDialog(mContext, getString(R.string.loginsuccss),"登陆成功。");
+                    ShowDialogUtil.showSuccessDialog(mContext, getString(R.string.sucess_congratulations),"登陆成功。");
                     //延迟5秒关闭
                     handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             ShowDialogUtil.dismissDialogs();
-                            startActivity(new Intent(mContext, MainActivity.class));
+                            startActivity(new Intent(mContext, BetActivity.class));
                             finish();
                         }
                     }, 2500);
@@ -144,10 +146,19 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
                 @Override
                 public void onFailure(String msgCode, String errorMsg) {
-                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
+//                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
+
+                    //临时
+                    startActivity(new Intent(mContext, BetActivity.class));
+                    finish();
                 }
             });
         }
+
+
+
+
+
     }
 
     @Override
