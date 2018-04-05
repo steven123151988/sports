@@ -27,7 +27,6 @@ public interface ApiService {
     @POST("service")
     Call<LoginRsps> login(@Body RequestBody body);
 
-
     /**
      * 获取赛事信息
      */

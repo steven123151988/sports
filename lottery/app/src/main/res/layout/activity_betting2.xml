@@ -7,11 +7,10 @@
     android:orientation="vertical">
 
 
-    <ExpandableListView
+    <com.daking.sports.view.ExpandableListAnimation.DockingExpandableListView
         android:childDivider="@color/red_84201e"
         android:id="@+id/lv_expandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:divider="@null" />
 </LinearLayout>

@@ -1,56 +1,43 @@
-package com.daking.sports.adapter;
+package com.daking.sports.view.ExpandableListAnimation;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.getGameDataRsp;
 
-import java.util.List;
-
-
 /**
- * Created by 18 on 2017/5/14. 体育投注面页（扩展性的listview）
+ *  expandlistview 的适配器
  */
-
-public class MyExpandableListAdapter2 implements ExpandableListAdapter {
-    private LayoutInflater mInflater;
+public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter implements IDockingController {
     private Context mContext;
-    private getGameDataRsp gameDataRsp;
+    private ExpandableListView mListView;
+    private getGameDataRsp mData;
+    private LayoutInflater mInflater;
 
-
-    public MyExpandableListAdapter2(Context context, getGameDataRsp bettingDetailRsp) {
+    public DockingExpandableListViewAdapter(Context context, ExpandableListView listView, getGameDataRsp data) {
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
-        this.gameDataRsp = bettingDetailRsp;
+        mListView = listView;
+        mData = data;
     }
 
-    @Override
-    public void registerDataSetObserver(DataSetObserver observer) {
 
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver observer) {
-
-    }
 
     @Override
     public int getGroupCount() {
-        return null == gameDataRsp.getData() ? 0 : gameDataRsp.getData().size();
+        return null==mData?0:mData.getData().size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return null == gameDataRsp.getData().get(groupPosition).getData() ? 0 : gameDataRsp.getData().get(groupPosition).getData().size();
-
+        return null == mData.getData().get(groupPosition).getData() ? 0 : mData.getData().get(groupPosition).getData().size();
     }
 
     @Override
@@ -70,12 +57,12 @@ public class MyExpandableListAdapter2 implements ExpandableListAdapter {
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
+        return 0;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override
@@ -90,8 +77,9 @@ public class MyExpandableListAdapter2 implements ExpandableListAdapter {
         } else {
             viewHolder = (TitleViewHolder) view.getTag();
         }
-//        betmsg = bettingDetailRsp.getIfo().getBetmsg();
-        viewHolder.tv_title.setText(gameDataRsp.getData().get(groupPosition).getL_cn());
+        if (null!=mData){
+            viewHolder.tv_title.setText(mData.getData().get(groupPosition).getL_cn()+"*"+mData.getData().get(groupPosition).getNum());
+        }
         if (isExpanded) {
             viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_up);
         } else {
@@ -119,44 +107,28 @@ public class MyExpandableListAdapter2 implements ExpandableListAdapter {
 //        viewHolder.tv_2.setText(dataBeen.get(childPosition).getMid());
 //        viewHolder.tv_3.setText(dataBeen.get(childPosition).getRate());
         return view;
+
     }
 
-    /**
-     * ExpandableListView 如果子条目需要响应click事件,必需返回true
-     */
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
 
     @Override
-    public boolean areAllItemsEnabled() {
-        return false;
-    }
+    public int getDockingState(int firstVisibleGroup, int firstVisibleChild) {
+        // No need to draw header view if this group does not contain any child & also not expanded.
+        if (firstVisibleChild == -1 && !mListView.isGroupExpanded(firstVisibleGroup)) {
+            return DOCKING_HEADER_HIDDEN;
+        }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
+        // Reaching current group's last child, preparing for docking next group header.
+        if (firstVisibleChild == getChildrenCount(firstVisibleGroup) - 1) {
+            return IDockingController.DOCKING_HEADER_DOCKING;
+        }
 
-    @Override
-    public void onGroupExpanded(int groupPosition) {
-
-    }
-
-    @Override
-    public void onGroupCollapsed(int groupPosition) {
-
-    }
-
-    @Override
-    public long getCombinedChildId(long groupId, long childId) {
-        return 0;
-    }
-
-    @Override
-    public long getCombinedGroupId(long groupId) {
-        return 0;
+        // Scrolling inside current group, header view is docked.
+        return IDockingController.DOCKING_HEADER_DOCKED;
     }
 
     private class TitleViewHolder {

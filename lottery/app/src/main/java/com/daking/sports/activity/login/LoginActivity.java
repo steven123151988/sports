@@ -1,48 +1,29 @@
 package com.daking.sports.activity.login;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daking.sports.R;
 import com.daking.sports.activity.BetActivity;
-import com.daking.sports.activity.MainActivity;
 import com.daking.sports.activity.mine.PswManagerActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
-import com.daking.sports.base.SportsAPI;
-import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
-import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.CustomVideoView;
-import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.util.SystemUtil;
-import com.google.gson.Gson;
-
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  *    登陆页
