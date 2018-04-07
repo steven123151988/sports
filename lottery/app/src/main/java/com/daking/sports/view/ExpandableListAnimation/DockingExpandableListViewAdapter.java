@@ -12,14 +12,17 @@ import android.widget.TextView;
 import com.daking.sports.R;
 import com.daking.sports.json.getGameDataRsp;
 
+
 /**
- *  expandlistview 的适配器
+ * expandlistview 的适配器
  */
 public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter implements IDockingController {
     private Context mContext;
     private ExpandableListView mListView;
     private getGameDataRsp mData;
     private LayoutInflater mInflater;
+    private getGameDataRsp.DataBeanX.DataBean dataBean;
+
 
     public DockingExpandableListViewAdapter(Context context, ExpandableListView listView, getGameDataRsp data) {
         mContext = context;
@@ -29,10 +32,9 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
     }
 
 
-
     @Override
     public int getGroupCount() {
-        return null==mData?0:mData.getData().size();
+        return null == mData ? 0 : mData.getData().size();
     }
 
     @Override
@@ -77,8 +79,8 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         } else {
             viewHolder = (TitleViewHolder) view.getTag();
         }
-        if (null!=mData){
-            viewHolder.tv_title.setText(mData.getData().get(groupPosition).getL_cn()+"*"+mData.getData().get(groupPosition).getNum());
+        if (null != mData) {
+            viewHolder.tv_title.setText(mData.getData().get(groupPosition).getL_cn() + "*" + mData.getData().get(groupPosition).getNum());
         }
         if (isExpanded) {
             viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_up);
@@ -93,19 +95,34 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         ViewHolder viewHolder = null;
         if (view == null) {
             viewHolder = new ViewHolder();
-            view = mInflater.inflate(R.layout.adapter_betting_detail, null);
-            viewHolder.tv_1 = (TextView) view.findViewById(R.id.tv_1);
-            viewHolder.tv_2 = (TextView) view.findViewById(R.id.tv_2);
-            viewHolder.tv_3 = (TextView) view.findViewById(R.id.tv_3);
+            view = mInflater.inflate(R.layout.adapter_gamedata, null);
+            viewHolder.tv_time_1 = (TextView) view.findViewById(R.id.tv_time_1);
+            viewHolder.tv_time_2 = (TextView) view.findViewById(R.id.tv_time_2);
+            viewHolder.tv_teamname_1 = (TextView) view.findViewById(R.id.tv_teamname_1);
+            viewHolder.tv_teamname_2 = (TextView) view.findViewById(R.id.tv_teamname_2);
+            viewHolder.tv_rate_1 = (TextView) view.findViewById(R.id.tv_rate_1);
+            viewHolder.tv_rate_2 = (TextView) view.findViewById(R.id.tv_rate_2);
+            viewHolder.tv_rate_3 = (TextView) view.findViewById(R.id.tv_rate_3);
+            viewHolder.tv_rate_4 = (TextView) view.findViewById(R.id.tv_rate_4);
+            viewHolder.tv_rate_5 = (TextView) view.findViewById(R.id.tv_rate_5);
+            viewHolder.tv_rate_6 = (TextView) view.findViewById(R.id.tv_rate_6);
 
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-//        dataBeen= bettingDetailRsp.getIfo().getBetmsg().get(groupPosition).getData();
-//        viewHolder.tv_1.setText(dataBeen.get(childPosition).getTeam());
-//        viewHolder.tv_2.setText(dataBeen.get(childPosition).getMid());
-//        viewHolder.tv_3.setText(dataBeen.get(childPosition).getRate());
+        dataBean = mData.getData().get(groupPosition).getData().get(childPosition);
+        viewHolder.tv_time_1.setText(dataBean.getDate());
+        viewHolder.tv_time_2.setText(dataBean.getTime());
+        viewHolder.tv_teamname_1.setText(dataBean.getH_cn());
+        viewHolder.tv_teamname_2.setText(dataBean.getA_cn());
+//        viewHolder.tv_rate_1.setText(dataBean.get);
+//        viewHolder.tv_rate_2.setText();
+//        viewHolder.tv_rate_3.setText();
+//        viewHolder.tv_rate_4.setText();
+//        viewHolder.tv_rate_5.setText();
+//        viewHolder.tv_rate_6.setText();
+
         return view;
 
     }
@@ -137,8 +154,15 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
     }
 
     private class ViewHolder {
-        TextView tv_1;
-        TextView tv_2;
-        TextView tv_3;
+        TextView tv_time_1;
+        TextView tv_time_2;
+        TextView tv_teamname_1;
+        TextView tv_teamname_2;
+        TextView tv_rate_1;
+        TextView tv_rate_2;
+        TextView tv_rate_3;
+        TextView tv_rate_4;
+        TextView tv_rate_5;
+        TextView tv_rate_6;
     }
 }

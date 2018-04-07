@@ -101,7 +101,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.daking.sports.activity.BetActivity"
+            android:name="com.daking.sports.activity.BetMainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

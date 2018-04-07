@@ -126,21 +126,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void initView() {
         mIvHome = (ImageView) findViewById(R.id.iv_home);
         mIvBetting = (ImageView) findViewById(R.id.iv_betting);
-        mIvScore = (ImageView) findViewById(R.id.iv_score);
         mIvMine = (ImageView) findViewById(R.id.iv_mine);
-        mIvPrize = (ImageView) findViewById(R.id.iv_prize);
 
         mTvHome = (TextView) findViewById(R.id.tv_home);
         mTvBetting = (TextView) findViewById(R.id.tv_betting);
-        mTvScore = (TextView) findViewById(R.id.tv_score);
-        mTvPrize = (TextView) findViewById(R.id.tv_prize);
         mTvMime = (TextView) findViewById(R.id.tv_mine);
 
         findViewById(R.id.ll_home).setOnClickListener(this);
         findViewById(R.id.ll_betting).setOnClickListener(this);
         findViewById(R.id.ll_mine).setOnClickListener(this);
-        findViewById(R.id.ll_score).setOnClickListener(this);
-        findViewById(R.id.ll_prize).setOnClickListener(this);
 
         getFistView();
     }
@@ -247,18 +241,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 goBetting(SportsKey.FOOTBALL, "");
                 showFragmentViews(SportsKey.TYPE_TWO, bettingFragment);
                 break;
-            case R.id.ll_score:
-                if (null == scoreFragment) {
-                    scoreFragment = new ScoreFragment();
-                }
-                showFragmentViews(SportsKey.TYPE_THREE, scoreFragment);
-                break;
-            case R.id.ll_prize:
-                if (null == prizeFragment) {
-                    prizeFragment = new PrizeFragment();
-                }
-                showFragmentViews(SportsKey.TYPE_FOUR, prizeFragment);
-                break;
+     
             case R.id.ll_mine:
                 setAnimation();
                 if (null == mineFragment) {

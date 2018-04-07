@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.activity.BetActivity;
+import com.daking.sports.activity.BetMainActivity;
 import com.daking.sports.activity.mine.PswManagerActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
@@ -119,7 +119,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                         @Override
                         public void run() {
                             ShowDialogUtil.dismissDialogs();
-                            startActivity(new Intent(mContext, BetActivity.class));
+                            startActivity(new Intent(mContext, BetMainActivity.class));
                             finish();
                         }
                     }, 2500);
@@ -130,7 +130,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
 
                     //临时
-                    startActivity(new Intent(mContext, BetActivity.class));
+                    startActivity(new Intent(mContext, BetMainActivity.class));
                     finish();
                 }
             });

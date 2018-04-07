@@ -1,6 +1,5 @@
-package com.daking.sports.activity;
+package com.daking.sports.fragment.betting;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -8,28 +7,35 @@ import android.widget.TextView;
 import com.daking.sports.R;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
-import com.daking.sports.base.BaseActivity;
+import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.view.ExpandableListAnimation.DockingExpandableListView;
 import com.daking.sports.view.ExpandableListAnimation.DockingExpandableListViewAdapter;
 import com.daking.sports.view.ExpandableListAnimation.IDockingHeaderUpdateListener;
 
-public class BetActivity  extends BaseActivity {
+/**
+ * Description:
+ * Data：2018/4/6-15:28
+ * steven
+ */
+public class AllGameFragment extends NewBaseFragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_betting2);
+    protected int getLayoutId() {
+        return  R.layout.activity_betting2;
+    }
 
-        HttpRequest.getInstance().getGameData(BetActivity.this, new HttpCallback<getGameDataRsp>() {
+    @Override
+    protected void initData() {
+        HttpRequest.getInstance().getGameData(mActivity, new HttpCallback<getGameDataRsp>() {
             @Override
             public void onSuccess(final getGameDataRsp data) {
-                DockingExpandableListView listView = (DockingExpandableListView) findViewById(R.id.lv_expandableListView);
+                DockingExpandableListView listView = (DockingExpandableListView) mActivity.findViewById(R.id.lv_expandableListView);
                 listView.setGroupIndicator(null);
                 listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-                listView.setAdapter(new DockingExpandableListViewAdapter(BetActivity.this, listView, data));
+                listView.setAdapter(new DockingExpandableListViewAdapter(mActivity, listView, data));
                 //让2级菜单全部展开
                 int size = data.getData().size();
                 for (int i = 0; i < size; i++) {
@@ -48,7 +54,7 @@ public class BetActivity  extends BaseActivity {
                     }
                 });
 
-                View headerView = getLayoutInflater().inflate(R.layout.adapter_betting_title, listView, false);
+                View headerView = mActivity.getLayoutInflater().inflate(R.layout.adapter_betting_title, listView, false);
 
                 listView.setDockingHeader(headerView, new IDockingHeaderUpdateListener() {
                     @Override
@@ -63,10 +69,8 @@ public class BetActivity  extends BaseActivity {
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                ShowDialogUtil.showFailDialog(mContext, getString(R.string.sorry), errorMsg);
+                ShowDialogUtil.showFailDialog(mActivity, getString(R.string.sorry), errorMsg);
             }
         });
     }
-
-
 }

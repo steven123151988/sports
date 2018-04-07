@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_08090b"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_refresh"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/dimen_5"
+                android:src="@mipmap/refresh" />
+
+            <TextView
+                android:id="@+id/tv_home1"
+                style="@style/main_button_text"
+                android:text="@string/refresh" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="@dimen/dimen_5"
+                android:src="@mipmap/menu" />
+
+            <TextView
+                android:id="@+id/tv_home"
+                style="@style/main_button_text"
+                android:text="@string/menu" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_weijiesuan"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_betting"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/weijiesuan" />
+
+            <TextView
+
+                android:id="@+id/tv_betting"
+                style="@style/main_button_text"
+                android:text="@string/weijiesun" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_yijiesuan"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_mine"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@mipmap/yijiesuan" />
+
+            <TextView
+                android:id="@+id/tv_mine"
+                style="@style/main_button_text"
+                android:text="@string/yijiesuan" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

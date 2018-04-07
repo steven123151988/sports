@@ -13,15 +13,12 @@ import com.daking.sports.activity.MainActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.BaseActivity;
-import com.daking.sports.base.SportsAPI;
 import com.daking.sports.base.SportsKey;
-import com.daking.sports.json.ConfigRsp;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.util.AppUtils;
 import com.daking.sports.util.NetUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
-import com.daking.sports.util.SystemUtil;
 import com.daking.sports.view.UploadApkDialog;
 
 
