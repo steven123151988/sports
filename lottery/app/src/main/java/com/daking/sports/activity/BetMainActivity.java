@@ -2,10 +2,10 @@ package com.daking.sports.activity;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +21,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +32,15 @@ import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
 import com.daking.sports.util.SharePreferencesUtil;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * 体育数据首页
  */
 public class BetMainActivity extends BaseActivity implements View.OnClickListener {
+    @BindView(R.id.tv_center)
+    TextView tvCenter;
     private FragmentManager mFragmentManager;  // Fragment管理器
     private FragmentTransaction mFragmentTransaction;    // fragment事物
     private DrawerLayout mDrawerLayout;//侧边菜单视图
@@ -48,14 +52,14 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     private MenuItem mPreMenuItem;
     private GamedataFragment gamedataFragment;
     private ImageView iv_refresh;
+    TextView tv_center;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_bet);
-
         ButterKnife.bind(this);
-
         initTitlebar();
         initview();
     }
@@ -64,7 +68,9 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
      * 初始化界面
      */
     private void initview() {
-        iv_refresh= (ImageView) findViewById(R.id.iv_refresh);
+        tvCenter.setText("Z7投注区");
+
+        iv_refresh = (ImageView) findViewById(R.id.iv_refresh);
         findViewById(R.id.ll_refresh).setOnClickListener(this);
         findViewById(R.id.ll_menu).setOnClickListener(this);
         findViewById(R.id.ll_weijiesuan).setOnClickListener(this);
@@ -74,7 +80,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             gamedataFragment = new GamedataFragment();
 
         mFragmentManager = getSupportFragmentManager();
-        ;
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.view_fragment, gamedataFragment);
         mFragmentTransaction.commitAllowingStateLoss();
@@ -94,7 +99,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
         }
         tv_username = (TextView) navigation_header.findViewById(R.id.tv_username);
         tv_username.setText(SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
-        mToolbar.setTitle(getString(R.string.app_name));
+        mToolbar.setTitle("");
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
         setSupportActionBar(mToolbar);
         setNavigationViewItemClickListener();
@@ -113,16 +118,16 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                 Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.version_image_rotate);
                 LinearInterpolator lin = new LinearInterpolator();
                 operatingAnim.setInterpolator(lin);
-                if(operatingAnim!=null){
+                if (operatingAnim != null) {
                     iv_refresh.startAnimation(operatingAnim);
                 }
-                Handler handler=new Handler();
+                Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         stopRotate();
                     }
-                },1000);
+                }, 1000);
 
                 break;
             case R.id.ll_menu:
@@ -143,7 +148,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     /**
      * 关闭动画
      */
-    public void stopRotate(){
+    public void stopRotate() {
         iv_refresh.clearAnimation();
     }
 
@@ -159,7 +164,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                 }
                 switch (item.getItemId()) {
                     case R.id.navigation_item_home:
-                        mToolbar.setTitle(getString(R.string.app_name));
+                        mToolbar.setTitle("");
                         break;
                     case R.id.navigation_football_dan:
 

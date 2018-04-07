@@ -11,8 +11,6 @@ import com.daking.sports.view.CustomProgressDialog;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
 
-import butterknife.ButterKnife;
-
 public class BaseActivity extends AppCompatActivity {
     public Context mContext;
     private CustomProgressDialog dialog;
@@ -22,7 +20,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         PushAgent.getInstance(mContext).onAppStart();
-        ButterKnife.bind(this);
     }
 
     @Override

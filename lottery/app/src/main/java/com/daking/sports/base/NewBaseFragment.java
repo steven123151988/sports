@@ -100,23 +100,6 @@ public abstract class NewBaseFragment extends Fragment{
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        if (useEventBus() && EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
-//        NetRepository.get().cancel(this);
-        dismissLoadingDialog();
-        mUnBinder.unbind();
-        super.onDestroyView();
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
     protected   void initView() {
         //子类按需实现
     }
@@ -128,4 +111,22 @@ public abstract class NewBaseFragment extends Fragment{
     protected abstract int getLayoutId();
 
     protected abstract void initData();
+
+    @Override
+    public void onDestroyView() {
+        if (useEventBus() && EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+//        NetRepository.get().cancel(this);
+        dismissLoadingDialog();
+        mUnBinder.unbind();
+        super.onDestroyView();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+
+
 }

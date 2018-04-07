@@ -83,9 +83,9 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
             viewHolder.tv_title.setText(mData.getData().get(groupPosition).getL_cn() + "*" + mData.getData().get(groupPosition).getNum());
         }
         if (isExpanded) {
-            viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_up);
-        } else {
             viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_down);
+        } else {
+            viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_right);
         }
         return view;
     }

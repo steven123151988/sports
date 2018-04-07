@@ -9,6 +9,7 @@ import com.daking.sports.R;
 import com.daking.sports.adapter.FragmentAdapter;
 import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.util.KeyBoardUtils;
+import com.daking.sports.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,14 +64,11 @@ public class GamedataFragment extends NewBaseFragment {
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getChildFragmentManager(), mFragments);
         mViewPager= (ViewPager) getActivity().findViewById(R.id.view_pager);
         mViewPager.setAdapter(fragmentAdapter);
-
         mViewPager.setCurrentItem(position);
         mRadioGroup= (RadioGroup) getActivity().findViewById(R.id.radioGroup);
-//        mRadioGroup.check(mRadioGroup.getChildAt(position).getId());
-
+        mRadioGroup.check(mRadioGroup.getChildAt(position).getId());
         //注册监听
         initListener();
-
     }
 
     private void initListener() {

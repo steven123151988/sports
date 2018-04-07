@@ -21,7 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textSize="12sp" />
+                android:textColor="@color/gray_cccccc"
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
 
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/sp_15" />
         </LinearLayout>
 
 
@@ -51,7 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:textSize="14sp" />
+                android:textColor="@color/gray_cccccc"
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
 
@@ -60,7 +62,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_5"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_10"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -74,7 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:textSize="14sp" />
+                android:textColor="@color/blue_00ffff"
+                android:textSize="@dimen/sp_15" />
 
 
         </RelativeLayout>
@@ -91,8 +95,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:text="vs"
-                android:textSize="16sp" />
+                android:text="VS"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_18" />
         </LinearLayout>
 
 
@@ -107,7 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:textSize="14sp" />
+                android:textColor="@color/blue_00ffff"
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
 
@@ -115,12 +121,12 @@
 
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_5"
         android:layout_marginTop="@dimen/dimen_5"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="match_parent"

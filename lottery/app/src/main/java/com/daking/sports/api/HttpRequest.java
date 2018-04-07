@@ -9,6 +9,7 @@ import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.ConfigRsp;
+import com.daking.sports.json.HotGamedata;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
@@ -116,7 +117,21 @@ public class HttpRequest {
 
 
     /**
-     * 获取首页赛事信息
+     * 获取首页热门赛事信息
+     * @param tag
+     * @param callback
+     */
+    public void getHotGameData(Object tag, HttpCallback<HotGamedata> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .build();
+        Call<HotGamedata> call = mService.getHotGameDate(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 获取首页全部赛事信息
      * @param tag
      * @param callback
      */

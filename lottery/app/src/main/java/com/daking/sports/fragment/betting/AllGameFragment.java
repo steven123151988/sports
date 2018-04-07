@@ -28,7 +28,7 @@ public class AllGameFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
-        HttpRequest.getInstance().getGameData(mActivity, new HttpCallback<getGameDataRsp>() {
+        HttpRequest.getInstance().getGameData(mActivity+"all", new HttpCallback<getGameDataRsp>() {
             @Override
             public void onSuccess(final getGameDataRsp data) {
                 DockingExpandableListView listView = (DockingExpandableListView) mActivity.findViewById(R.id.lv_expandableListView);
