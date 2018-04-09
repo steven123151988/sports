@@ -405,42 +405,42 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     mPreMenuItem.setChecked(false);
                 }
                 switch (item.getItemId()) {
-                    case R.id.navigation_item_home:
-                        mToolbar.setTitle(getString(R.string.app_name));
-                        getFistView();
-                        break;
-                    case R.id.navigation_football_dan:
-                        if (null == mainMenuRsp) {
-                            mToolbar.setTitle(getString(R.string.football_dan));
-                        } else {
-                            mToolbar.setTitle(getString(R.string.football_dan) + "(" + mainMenuRsp.getIfo().getFt_ds_nums() + ")");
-                        }
-                        goBetting(SportsKey.FOOTBALL, SportsKey.JRSS);
-                        break;
-                    case R.id.navigation_football_gun:
-                        if (null == mainMenuRsp) {
-                            mToolbar.setTitle(getString(R.string.football_gun));
-                        } else {
-                            mToolbar.setTitle(getString(R.string.football_gun) + "(" + mainMenuRsp.getIfo().getFt_gq_nums() + ")");
-                        }
-                        goBetting(SportsKey.FOOTBALL, SportsKey.GQ);
-                        break;
-                    case R.id.navigation_basketball_dan:
-                        if (null == mainMenuRsp) {
-                            mToolbar.setTitle(getString(R.string.basketball_dan));
-                        } else {
-                            mToolbar.setTitle(getString(R.string.basketball_dan) + "(" + mainMenuRsp.getIfo().getBk_ds_nums() + ")");
-                        }
-                        goBetting(SportsKey.BASKETBALL, SportsKey.JRSS);
-                        break;
-                    case R.id.navigation_basketball_gun:
-                        if (null == mainMenuRsp) {
-                            mToolbar.setTitle(getString(R.string.basketball_gun));
-                        } else {
-                            mToolbar.setTitle(getString(R.string.basketball_gun) + "(" + mainMenuRsp.getIfo().getBk_gq_nums() + ")");
-                        }
-                        goBetting(SportsKey.BASKETBALL, SportsKey.GQ);
-                        break;
+//                    case R.id.navigation_item_home:
+//                        mToolbar.setTitle(getString(R.string.app_name));
+//                        getFistView();
+//                        break;
+//                    case R.id.navigation_football_dan:
+//                        if (null == mainMenuRsp) {
+//                            mToolbar.setTitle(getString(R.string.football_dan));
+//                        } else {
+//                            mToolbar.setTitle(getString(R.string.football_dan) + "(" + mainMenuRsp.getIfo().getFt_ds_nums() + ")");
+//                        }
+//                        goBetting(SportsKey.FOOTBALL, SportsKey.JRSS);
+//                        break;
+//                    case R.id.navigation_football_gun:
+//                        if (null == mainMenuRsp) {
+//                            mToolbar.setTitle(getString(R.string.football_gun));
+//                        } else {
+//                            mToolbar.setTitle(getString(R.string.football_gun) + "(" + mainMenuRsp.getIfo().getFt_gq_nums() + ")");
+//                        }
+//                        goBetting(SportsKey.FOOTBALL, SportsKey.GQ);
+//                        break;
+//                    case R.id.navigation_basketball_dan:
+//                        if (null == mainMenuRsp) {
+//                            mToolbar.setTitle(getString(R.string.basketball_dan));
+//                        } else {
+//                            mToolbar.setTitle(getString(R.string.basketball_dan) + "(" + mainMenuRsp.getIfo().getBk_ds_nums() + ")");
+//                        }
+//                        goBetting(SportsKey.BASKETBALL, SportsKey.JRSS);
+//                        break;
+//                    case R.id.navigation_basketball_gun:
+//                        if (null == mainMenuRsp) {
+//                            mToolbar.setTitle(getString(R.string.basketball_gun));
+//                        } else {
+//                            mToolbar.setTitle(getString(R.string.basketball_gun) + "(" + mainMenuRsp.getIfo().getBk_gq_nums() + ")");
+//                        }
+//                        goBetting(SportsKey.BASKETBALL, SportsKey.GQ);
+//                        break;
                     default:
                         break;
                 }

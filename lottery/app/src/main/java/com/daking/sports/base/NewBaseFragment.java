@@ -56,9 +56,9 @@ public abstract class NewBaseFragment extends Fragment{
     }
 
     public void showLoadingDialog() {
-//        if (mActivity == null) {
-//            return;
-//        }
+        if (mActivity == null) {
+            return;
+        }
 //        mActivity.runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {

@@ -6,41 +6,53 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/navigation_item_home"
-            android:icon="@drawable/home_left"
-            android:title="首页" />
+            android:id="@+id/navigation_item_getinmoney"
+            android:icon="@mipmap/main_get_in_money"
+            android:title="@string/get_in_money" />
         <item
-            android:id="@+id/navigation_football_dan"
+            android:id="@+id/navigation_take_out_money"
             android:checked="true"
-            android:icon="@drawable/football_left"
-            android:title="@string/football_dan" />
+            android:icon="@mipmap/main_take_out_money"
+            android:title="@string/take_out_money2" />
         <item
-            android:id="@+id/navigation_football_gun"
-            android:icon="@drawable/football_left"
-            android:title="@string/football_gun" />
+            android:id="@+id/navigation_trade_record"
+            android:icon="@mipmap/main_trade_record"
+            android:title="@string/trade_record" />
         <item
-            android:id="@+id/navigation_basketball_dan"
-            android:icon="@drawable/basketball_left"
-            android:title="@string/basketball_dan" />
+            android:id="@+id/navigation_weijiesuan_zhudan"
+            android:icon="@mipmap/main_weijiesuan"
+            android:title="@string/weijiesuan_zhudan" />
         <item
-            android:id="@+id/navigation_basketball_gun"
-            android:icon="@drawable/basketball_left"
-            android:title="@string/basketball_gun" />
+            android:id="@+id/navigation_yijiesuan_zhudan"
+            android:icon="@mipmap/main_yijiesuan"
+            android:title="@string/yijiesuan_zhudan" />
+
+        <item
+            android:id="@+id/navigation_gage_notice"
+            android:icon="@mipmap/main_game_notice"
+            android:title="@string/gage_notice" />
+
+        <item
+            android:id="@+id/navigation_personal_set"
+            android:icon="@mipmap/person_set"
+            android:title="@string/personal_set" />
+
+
 
         <!--<item android:title="其他">-->
-            <!--<menu>-->
-                <!--<item-->
-                    <!--android:id="@+id/navigation_ag"-->
-                    <!--android:checkable="true"-->
-                    <!--android:icon="@drawable/ag_left"-->
-                    <!--android:title="@string/ag" />-->
+        <!--<menu>-->
+        <!--<item-->
+        <!--android:id="@+id/navigation_ag"-->
+        <!--android:checkable="true"-->
+        <!--android:icon="@drawable/ag_left"-->
+        <!--android:title="@string/ag" />-->
 
-                <!--<item-->
-                    <!--android:id="@+id/navigation_lottery"-->
-                    <!--android:checkable="true"-->
-                    <!--android:icon="@drawable/lottery_left"-->
-                    <!--android:title="@string/lottery" />-->
-            <!--</menu>-->
+        <!--<item-->
+        <!--android:id="@+id/navigation_lottery"-->
+        <!--android:checkable="true"-->
+        <!--android:icon="@drawable/lottery_left"-->
+        <!--android:title="@string/lottery" />-->
+        <!--</menu>-->
         <!--</item>-->
     </group>
 

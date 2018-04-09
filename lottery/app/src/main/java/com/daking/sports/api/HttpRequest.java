@@ -8,15 +8,13 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
-import com.daking.sports.json.ConfigRsp;
-import com.daking.sports.json.HotGamedata;
+import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.JsonUtil;
-import com.daking.sports.util.SharePreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -121,10 +119,10 @@ public class HttpRequest {
      * @param tag
      * @param callback
      */
-    public void getHotGameData(Object tag, HttpCallback<HotGamedata> callback) {
+    public void getHotGameData(Object tag, HttpCallback<HotgameRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .build();
-        Call<HotGamedata> call = mService.getHotGameDate(body);
+        Call<HotgameRsp> call = mService.getHotGameDate(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

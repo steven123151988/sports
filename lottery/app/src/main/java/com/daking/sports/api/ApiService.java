@@ -6,8 +6,7 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
-import com.daking.sports.json.ConfigRsp;
-import com.daking.sports.json.HotGamedata;
+import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
@@ -18,7 +17,6 @@ import okhttp3.RequestBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -31,8 +29,8 @@ public interface ApiService {
     /**
      * 获取热门赛事信息
      */
-    @POST("/service?action=GetHotGames&terminal_id=1")
-    Call<HotGamedata> getHotGameDate(@Body RequestBody body);
+    @POST("service?action=GetHotGames&terminal_id=1")
+    Call<HotgameRsp> getHotGameDate(@Body RequestBody body);
 
     /**
      * 获取全部赛事信息

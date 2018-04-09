@@ -23,11 +23,8 @@ import butterknife.BindView;
  */
 public class GamedataFragment extends NewBaseFragment {
 
-    @BindView(R.id.radioGroup)
-    RadioGroup mRadioGroup;
-
-    @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    @BindView(R.id.radioGroup) RadioGroup mRadioGroup;
+    @BindView(R.id.view_pager) ViewPager mViewPager;
 
 
     private List<Fragment> mFragments = new ArrayList<>();

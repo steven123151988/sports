@@ -15,7 +15,7 @@ import com.daking.sports.view.ExpandableListAnimation.DockingExpandableListViewA
 import com.daking.sports.view.ExpandableListAnimation.IDockingHeaderUpdateListener;
 
 /**
- * Description:
+ * Description: 全部赛事的数据
  * Data：2018/4/6-15:28
  * steven
  */
@@ -23,7 +23,7 @@ public class AllGameFragment extends NewBaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return  R.layout.activity_betting2;
+        return  R.layout.fragment_allgame;
     }
 
     @Override

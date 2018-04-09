@@ -4,11 +4,10 @@ import java.util.List;
 
 /**
  * Description:
- * Data：2018/4/7-17:45
+ * Data：2018/4/9-11:14
  * steven
  */
-public class HotGamedata  extends BaseModel {
-
+public class HotgameRsp extends BaseModel{
 
     private List<DataBean> data;
 
@@ -25,7 +24,7 @@ public class HotGamedata  extends BaseModel {
          * lid : 20180407YX003
          * date : 04-07
          * time : 13:00
-         * sale_start_at : 2018-04-07 09:00:00
+         * sale_start_at : 2018-04-09 09:00:00
          * sale_stop_at : 2018-04-07 12:55:00
          * status : 1
          * h_cn : 仁川联

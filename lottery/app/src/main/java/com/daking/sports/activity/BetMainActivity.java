@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.daking.sports.R;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
+import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 
 import butterknife.BindView;
@@ -52,7 +54,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     private MenuItem mPreMenuItem;
     private GamedataFragment gamedataFragment;
     private ImageView iv_refresh;
-    TextView tv_center;
 
 
     @Override
@@ -163,21 +164,27 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                     mPreMenuItem.setChecked(false);
                 }
                 switch (item.getItemId()) {
-                    case R.id.navigation_item_home:
-                        mToolbar.setTitle("");
+                    case R.id.navigation_item_getinmoney:
                         break;
-                    case R.id.navigation_football_dan:
+                    case R.id.navigation_take_out_money:
 
                         break;
-                    case R.id.navigation_football_gun:
+                    case R.id.navigation_trade_record:
 
                         break;
-                    case R.id.navigation_basketball_dan:
+                    case R.id.navigation_weijiesuan_zhudan:
 
                         break;
-                    case R.id.navigation_basketball_gun:
+                    case R.id.navigation_yijiesuan_zhudan:
 
                         break;
+                    case R.id.navigation_gage_notice:
+
+                        break;
+                    case R.id.navigation_personal_set:
+
+                        break;
+
                 }
                 item.setChecked(true);
                 mDrawerLayout.closeDrawer(Gravity.LEFT);

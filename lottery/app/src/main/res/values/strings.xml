@@ -6,6 +6,15 @@
     <string name="yijiesuan">已结算</string>
     <string name="hot_game">热门</string>
     <string name="all_game">全部</string>
+    <string name="get_in_money">存款</string>
+    <string name="take_out_money2">提款</string>
+    <string name="trade_record">交易记录</string>
+    <string name="weijiesuan_zhudan">未结算的注单</string>
+    <string name="yijiesuan_zhudan">已结算的注单</string>
+    <string name="gage_notice">赛事公告</string>
+    <string name="about">关于</string>
+    <string name="personal_set">个人设置</string>
+
 
 
 
