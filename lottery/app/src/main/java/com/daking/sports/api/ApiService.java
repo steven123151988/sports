@@ -6,6 +6,7 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
@@ -42,7 +43,7 @@ public interface ApiService {
      * 赛事玩法明细
      */
     @POST("service?action=GetGameLottery&terminal_id=1")
-    Call<getGameDataRsp> getPlayWays(@Body RequestBody body);
+    Call<GamePlaywaysRsp> getPlayWays(@Body RequestBody body);
 
 
 

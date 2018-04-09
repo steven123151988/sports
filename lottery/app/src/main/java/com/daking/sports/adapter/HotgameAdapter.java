@@ -33,7 +33,6 @@ public class HotgameAdapter extends BaseAdapter {
         hotdata = data;
     }
 
-
     @Override
     public int getCount() {
         return null == hotdata ? 0 : hotdata.size();
@@ -77,7 +76,6 @@ public class HotgameAdapter extends BaseAdapter {
                     intent.putExtra(SportsKey.LID,hotdata.get(position).getLid());
                     mcontext.startActivity(intent);
                 }
-
             }
         });
         return view;

@@ -8,6 +8,7 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
@@ -146,11 +147,11 @@ public class HttpRequest {
      * @param tag
      * @param callback
      */
-    public void getPlayWays(Object tag,String lid, HttpCallback<getGameDataRsp> callback) {
+    public void getPlayWays(Object tag, String lid, HttpCallback<GamePlaywaysRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.LID, lid)
                 .build();
-        Call<getGameDataRsp> call = mService.getPlayWays(body);
+        Call<GamePlaywaysRsp> call = mService.getPlayWays(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

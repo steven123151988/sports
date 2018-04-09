@@ -16,6 +16,7 @@ import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.ChuanguanFragment;
 import com.daking.sports.fragment.betting.DanguanFragment;
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.util.SystemUtil;
@@ -55,17 +56,17 @@ public class BetDetailActivity extends BaseActivity {
         SystemUtil.setfullScreen(this);
         lid=getIntent().getStringExtra(SportsKey.LID);
 
-        if (null==danguanFragment)
-            danguanFragment= new DanguanFragment();
-        if (null==chuanguanFragment)
-            chuanguanFragment= new ChuanguanFragment();
-
-        mFragments.clear();
-        mFragments.add(danguanFragment);
-        mFragments.add(chuanguanFragment);
-        HttpRequest.getInstance().getPlayWays( "DanguanFragment",lid, new HttpCallback<getGameDataRsp>() {
+//        if (null==danguanFragment)
+//            danguanFragment= new DanguanFragment();
+//        if (null==chuanguanFragment)
+//            chuanguanFragment= new ChuanguanFragment();
+//
+//        mFragments.clear();
+//        mFragments.add(danguanFragment);
+//        mFragments.add(chuanguanFragment);
+        HttpRequest.getInstance().getPlayWays( "DanguanFragment",lid, new HttpCallback<GamePlaywaysRsp>() {
             @Override
-            public void onSuccess(final getGameDataRsp data) {
+            public void onSuccess(final GamePlaywaysRsp data) {
 
             }
 

@@ -6,6 +6,7 @@ import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.BaseFragment;
 import com.daking.sports.base.NewBaseFragment;
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.ShowDialogUtil;
@@ -23,9 +24,9 @@ public class DanguanFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
-        HttpRequest.getInstance().getPlayWays(mActivity + "DanguanFragment","", new HttpCallback<getGameDataRsp>() {
+        HttpRequest.getInstance().getPlayWays(mActivity + "DanguanFragment","", new HttpCallback<GamePlaywaysRsp>() {
             @Override
-            public void onSuccess(final getGameDataRsp data) {
+            public void onSuccess(final GamePlaywaysRsp data) {
 
             }
 
