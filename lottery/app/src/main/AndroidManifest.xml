@@ -45,7 +45,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name="com.daking.sports.activity.BetMainActivity"
+            android:name="com.daking.sports.activity.login.SplashActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -59,15 +59,19 @@
 
 
 
+        <!--<activity-->
+            <!--android:name="com.daking.sports.activity.login.SplashActivity"-->
+            <!--android:launchMode="singleTask"-->
+            <!--android:screenOrientation="portrait" />-->
         <activity
-            android:name="com.daking.sports.activity.login.SplashActivity"
+            android:name="com.daking.sports.activity.betting.BetDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <!--<activity-->
-            <!--android:name="com.daking.sports.activity.BetMainActivity"-->
-            <!--android:launchMode="singleTask"-->
-            <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.daking.sports.activity.BetMainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 

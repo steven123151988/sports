@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_all"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -205,11 +206,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dimen_10"
                 android:textSize="12sp" />
-
-
         </RelativeLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>

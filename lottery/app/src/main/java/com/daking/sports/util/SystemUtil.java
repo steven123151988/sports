@@ -39,7 +39,7 @@ public class SystemUtil {
      *   全屏幕展示
      * @param activity
      */
-    public static void getfullScreen(Activity activity){
+    public static void setfullScreen(Activity activity){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

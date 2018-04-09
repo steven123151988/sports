@@ -1,13 +1,18 @@
 package com.daking.sports.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.BetMainActivity;
+import com.daking.sports.activity.betting.BetDetailActivity;
+import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.HotgameRsp;
 
 import java.util.List;
@@ -45,7 +50,7 @@ public class HotgameAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         ViewHolder viewHolder;
         if (view == null) {
             viewHolder = new ViewHolder();
@@ -54,13 +59,7 @@ public class HotgameAdapter extends BaseAdapter {
             viewHolder.tv_time_2 = (TextView) view.findViewById(R.id.tv_time_2);
             viewHolder.tv_teamname_1 = (TextView) view.findViewById(R.id.tv_teamname_1);
             viewHolder.tv_teamname_2 = (TextView) view.findViewById(R.id.tv_teamname_2);
-            viewHolder.tv_rate_1 = (TextView) view.findViewById(R.id.tv_rate_1);
-            viewHolder.tv_rate_2 = (TextView) view.findViewById(R.id.tv_rate_2);
-            viewHolder.tv_rate_3 = (TextView) view.findViewById(R.id.tv_rate_3);
-            viewHolder.tv_rate_4 = (TextView) view.findViewById(R.id.tv_rate_4);
-            viewHolder.tv_rate_5 = (TextView) view.findViewById(R.id.tv_rate_5);
-            viewHolder.tv_rate_6 = (TextView) view.findViewById(R.id.tv_rate_6);
-
+            viewHolder.ll_all = (LinearLayout) view.findViewById(R.id.ll_all);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -70,7 +69,17 @@ public class HotgameAdapter extends BaseAdapter {
         viewHolder.tv_time_2.setText(hotdata.get(position).getTime());
         viewHolder.tv_teamname_1.setText(hotdata.get(position).getH_cn());
         viewHolder.tv_teamname_2.setText(hotdata.get(position).getA_cn());
+        viewHolder.ll_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null!=hotdata.get(position).getLid()){
+                    Intent intent=new Intent(mcontext, BetDetailActivity.class);
+                    intent.putExtra(SportsKey.LID,hotdata.get(position).getLid());
+                    mcontext.startActivity(intent);
+                }
 
+            }
+        });
         return view;
     }
 
@@ -79,11 +88,6 @@ public class HotgameAdapter extends BaseAdapter {
         TextView tv_time_2;
         TextView tv_teamname_1;
         TextView tv_teamname_2;
-        TextView tv_rate_1;
-        TextView tv_rate_2;
-        TextView tv_rate_3;
-        TextView tv_rate_4;
-        TextView tv_rate_5;
-        TextView tv_rate_6;
+        LinearLayout ll_all;
     }
 }

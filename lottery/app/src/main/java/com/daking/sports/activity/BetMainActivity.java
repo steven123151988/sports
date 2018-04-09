@@ -55,7 +55,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     private GamedataFragment gamedataFragment;
     private ImageView iv_refresh;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

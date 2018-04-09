@@ -1,15 +1,19 @@
 package com.daking.sports.view.ExpandableListAnimation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.betting.BetDetailActivity;
+import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.getGameDataRsp;
 
 
@@ -100,12 +104,7 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
             viewHolder.tv_time_2 = (TextView) view.findViewById(R.id.tv_time_2);
             viewHolder.tv_teamname_1 = (TextView) view.findViewById(R.id.tv_teamname_1);
             viewHolder.tv_teamname_2 = (TextView) view.findViewById(R.id.tv_teamname_2);
-            viewHolder.tv_rate_1 = (TextView) view.findViewById(R.id.tv_rate_1);
-            viewHolder.tv_rate_2 = (TextView) view.findViewById(R.id.tv_rate_2);
-            viewHolder.tv_rate_3 = (TextView) view.findViewById(R.id.tv_rate_3);
-            viewHolder.tv_rate_4 = (TextView) view.findViewById(R.id.tv_rate_4);
-            viewHolder.tv_rate_5 = (TextView) view.findViewById(R.id.tv_rate_5);
-            viewHolder.tv_rate_6 = (TextView) view.findViewById(R.id.tv_rate_6);
+            viewHolder.ll_all = (LinearLayout) view.findViewById(R.id.ll_all);
 
             view.setTag(viewHolder);
         } else {
@@ -116,13 +115,16 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         viewHolder.tv_time_2.setText(dataBean.getTime());
         viewHolder.tv_teamname_1.setText(dataBean.getH_cn());
         viewHolder.tv_teamname_2.setText(dataBean.getA_cn());
-//        viewHolder.tv_rate_1.setText(dataBean.get);
-//        viewHolder.tv_rate_2.setText();
-//        viewHolder.tv_rate_3.setText();
-//        viewHolder.tv_rate_4.setText();
-//        viewHolder.tv_rate_5.setText();
-//        viewHolder.tv_rate_6.setText();
-
+        viewHolder.ll_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null!=dataBean.getLid()){
+                    Intent intent=new Intent(mContext, BetDetailActivity.class);
+                    intent.putExtra(SportsKey.LID,dataBean.getLid());
+                    mContext.startActivity(intent);
+                }
+            }
+        });
         return view;
 
     }
@@ -154,6 +156,7 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
     }
 
     private class ViewHolder {
+        LinearLayout ll_all;
         TextView tv_time_1;
         TextView tv_time_2;
         TextView tv_teamname_1;

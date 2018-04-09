@@ -38,6 +38,11 @@ public interface ApiService {
     @POST("service?action=GetGameData&terminal_id=1")
     Call<getGameDataRsp> getGameDate(@Body RequestBody body);
 
+    /**
+     * 赛事玩法明细
+     */
+    @POST("service?action=GetGameLottery&terminal_id=1")
+    Call<getGameDataRsp> getPlayWays(@Body RequestBody body);
 
 
 

@@ -141,7 +141,19 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
-
+    /**
+     * 赛事玩法明细
+     * @param tag
+     * @param callback
+     */
+    public void getPlayWays(Object tag,String lid, HttpCallback<getGameDataRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.LID, lid)
+                .build();
+        Call<getGameDataRsp> call = mService.getPlayWays(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     private void initView() {
-        SystemUtil.getfullScreen(this);
+        SystemUtil.setfullScreen(this);
 
         et_account = (EditText) findViewById(R.id.et_account);
         et_psw = (EditText) findViewById(R.id.et_psw);
@@ -135,9 +135,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 }
             });
         }
-
-
-
 
 
     }

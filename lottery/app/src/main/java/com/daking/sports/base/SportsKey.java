@@ -9,6 +9,7 @@ public class SportsKey {
     public static final String PASSWORD = "password";
     public static final String ACTION = "action";
     public static final String TOKEN = "token";
+    public static final String LID = "lid";
 
 
     public static final int TYPE_ZERO = 0;
