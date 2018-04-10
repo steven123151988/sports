@@ -73,7 +73,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-
+        <activity
+            android:name="com.daking.sports.activity.money.IncomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 

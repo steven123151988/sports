@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <ListView
-        android:id="@+id/lv_hotgame"
+    <ExpandableListView
+        android:id="@+id/lv_bet_expandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/dimen_5"
         android:childDivider="@color/red_84201e"
         android:divider="@null" />
+
+
 </LinearLayout>

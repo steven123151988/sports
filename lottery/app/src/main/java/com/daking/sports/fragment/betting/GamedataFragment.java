@@ -9,7 +9,6 @@ import com.daking.sports.R;
 import com.daking.sports.adapter.FragmentAdapter;
 import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.util.KeyBoardUtils;
-import com.daking.sports.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

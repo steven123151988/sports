@@ -21,9 +21,14 @@ import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.util.CustomVideoView;
+import com.daking.sports.util.LogUtil;
+import com.daking.sports.util.Md5Util;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.util.SystemUtil;
+
+import static org.greenrobot.essentials.StringUtils.md5;
+
 
 /**
  *    登陆页
@@ -104,12 +109,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw)) {
             ShowDialogUtil.showFailDialog(mContext, getString(R.string.sorry), getString(R.string.accountisempty));
         } else {
+            psw =  Md5Util.HEXAndMd5( Md5Util.HEXAndMd5( Md5Util.HEXAndMd5(account.toLowerCase()+psw)));
+            LogUtil.e("==psw===="+psw);
             HttpRequest.getInstance().login(LoginActivity.this, account, psw, new HttpCallback<LoginRsps>() {
                 @Override
                 public void onSuccess(LoginRsps data) {
                     if (null!=data&&null!=data.getData().getToken()){
                         SharePreferencesUtil.addString(mContext, SportsKey.TOKEN,data.getData().getToken());
                     }
+
                     SharePreferencesUtil.addString(mContext, SportsKey.USER_NAME, account);
                     //展示成功的对话框
                     ShowDialogUtil.showSuccessDialog(mContext, getString(R.string.sucess_congratulations),"登陆成功。");
@@ -127,11 +135,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
                 @Override
                 public void onFailure(String msgCode, String errorMsg) {
-//                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
+                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
 
-                    //临时
-                    startActivity(new Intent(mContext, BetMainActivity.class));
-                    finish();
+//                    //临时
+//                    startActivity(new Intent(mContext, BetMainActivity.class));
+//                    finish();
                 }
             });
         }

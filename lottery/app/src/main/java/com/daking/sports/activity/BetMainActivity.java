@@ -2,6 +2,7 @@ package com.daking.sports.activity;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.money.IncomeActivity;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
@@ -164,6 +166,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                 }
                 switch (item.getItemId()) {
                     case R.id.navigation_item_getinmoney:
+                        startActivity(new Intent(BetMainActivity.this, IncomeActivity.class));
                         break;
                     case R.id.navigation_take_out_money:
 

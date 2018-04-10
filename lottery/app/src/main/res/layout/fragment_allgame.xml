@@ -11,7 +11,9 @@
         android:id="@+id/lv_expandableListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="5dp"
+        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginRight="@dimen/dimen_10"
         android:childDivider="@color/red_84201e"
-        android:divider="@null" />
+        android:divider="@null"
+        android:dividerHeight="5dp" />
 </LinearLayout>

@@ -1,15 +1,24 @@
 package com.daking.sports.fragment.betting;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+
 import com.daking.sports.R;
-import com.daking.sports.adapter.HotgameAdapter;
+import com.daking.sports.activity.betting.BetDetailActivity;
+import com.daking.sports.adapter.DanguanExpandableListAdapter;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
-import com.daking.sports.base.BaseFragment;
 import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.json.GamePlaywaysRsp;
-import com.daking.sports.json.HotgameRsp;
-import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.util.ShowDialogUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Description:
@@ -17,6 +26,12 @@ import com.daking.sports.util.ShowDialogUtil;
  * steven
  */
 public class DanguanFragment extends NewBaseFragment {
+    @BindView(R.id.lv_bet_expandableListView)
+    ExpandableListView lvBetExpandableListView;
+    Unbinder unbinder;
+    private DanguanExpandableListAdapter expandableListAdapter;
+    private String lid;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_danguan;
@@ -24,18 +39,46 @@ public class DanguanFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
-        HttpRequest.getInstance().getPlayWays(mActivity + "DanguanFragment","", new HttpCallback<GamePlaywaysRsp>() {
+        HttpRequest.getInstance().getPlayWays(DanguanFragment.this, lid, new HttpCallback<GamePlaywaysRsp>() {
             @Override
             public void onSuccess(final GamePlaywaysRsp data) {
-
+//                lvBetExpandableListView.setAdapter(new DanguanExpandableListAdapter(getActivity(),data));
+//                lvBetExpandableListView.setGroupIndicator(null);
+//                lvBetExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+//                    @Override
+//                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+//
+//                        return true;
+//                    }
+//                });
             }
 
             @Override
             public void onFailure(String msgCode, String errorMsg) {
-                ShowDialogUtil.showFailDialog(mActivity, getString(R.string.sorry), errorMsg);
+                ShowDialogUtil.showFailDialog(getActivity(), getString(R.string.sorry), errorMsg);
             }
         });
+
     }
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        lid = ((BetDetailActivity) context).getLid();
+    }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // TODO: inflate a fragment view
+//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+//        unbinder = ButterKnife.bind(this, rootView);
+//        return rootView;
+//    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        unbinder.unbind();
+//    }
 }

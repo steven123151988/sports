@@ -20,7 +20,8 @@ import butterknife.Unbinder;
  */
 public class HotGameFragment extends NewBaseFragment {
 
-    @BindView(R.id.lv_hotgame) ListView lvHotgame;
+    @BindView(R.id.lv_hotgame)
+    ListView lvHotgame;
 
     @Override
     protected int getLayoutId() {

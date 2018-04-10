@@ -71,9 +71,9 @@ public class HotgameAdapter extends BaseAdapter {
         viewHolder.ll_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null!=hotdata.get(position).getLid()){
-                    Intent intent=new Intent(mcontext, BetDetailActivity.class);
-                    intent.putExtra(SportsKey.LID,hotdata.get(position).getLid());
+                if (null != hotdata.get(position).getLid()) {
+                    Intent intent = new Intent(mcontext, BetDetailActivity.class);
+                    intent.putExtra(SportsKey.LID, hotdata.get(position).getLid());
                     mcontext.startActivity(intent);
                 }
             }

@@ -6,6 +6,7 @@ import com.daking.sports.base.SportsAPI;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
+import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
@@ -108,6 +109,7 @@ public class HttpRequest {
                 .addParam(SportsKey.USER_NAME, account)
                 .addParam(SportsKey.PASSWORD, psw)
                 .addParam(SportsKey.ACTION, SportsAPI.LOGIN)
+                .addParam("terminal_id", "1")
                 .build();
         Call<LoginRsps> call = mService.login(body);
         putCall(tag, call);
@@ -156,6 +158,20 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 获取银行卡列表
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getBankcardList(Object tag, String token, HttpCallback<BankcardList> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .build();
+        Call<BankcardList> call = mService.getBankcardlist(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
 

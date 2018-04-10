@@ -4,6 +4,7 @@ package com.daking.sports.api;
 import com.daking.sports.base.SportsAPI;
 import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.BallGQRsp;
+import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
@@ -44,6 +45,13 @@ public interface ApiService {
      */
     @POST("service?action=GetGameLottery&terminal_id=1")
     Call<GamePlaywaysRsp> getPlayWays(@Body RequestBody body);
+
+    /**
+     *  银行卡列表
+     */
+    @POST("service?action=GetBankList&terminal_id=1")
+    Call<BankcardList> getBankcardlist(@Body RequestBody body);
+
 
 
 
