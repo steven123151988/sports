@@ -23,7 +23,6 @@
 
 
         <EditText
-            android:textColor="@color/white_ffffff"
             android:id="@+id/ed_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +33,9 @@
             android:minEms="5"
             android:numeric="integer"
             android:padding="@dimen/dimen_10"
-            android:textColorHint="@color/white_ffffff" />
+            android:textColor="@color/white_ffffff"
+            android:textColorHint="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,8 +129,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10"
+            android:alpha="0.7"
             android:background="@color/black_212121"
             android:orientation="horizontal"
+            android:padding="@dimen/dimen_5"
             android:paddingLeft="@dimen/dimen_10">
 
             <ImageView
@@ -137,17 +140,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10"
                 android:src="@mipmap/ic_launcher" />
 
 
             <TextView
+                android:id="@+id/tv_bankname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dimen_20"
                 android:layout_toRightOf="@+id/iv_bank"
-                android:text="123"
-                android:textColor="@color/white_ffffff" />
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_16" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -159,5 +164,16 @@
 
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_payok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_30"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:background="@drawable/bet_button"
+            android:text="@string/pay_ok"
+            android:textColor="@color/blue_00ffff"
+            android:textSize="@dimen/sp_16" />
     </LinearLayout>
 </LinearLayout>

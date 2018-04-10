@@ -3,6 +3,8 @@ package com.daking.sports.activity.money;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -10,28 +12,24 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.adapter.HotgameAdapter;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.base.SportsKey;
-import com.daking.sports.json.GamePlaywaysRsp;
-import com.daking.sports.json.HotgameRsp;
+import com.daking.sports.json.BankcardList;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.SharePreferencesUtil;
-import com.daking.sports.util.ShowDialogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * Description:
+ * Description: 入款面页
  * Data：2018/4/10-13:30
  * steven
  */
 public class IncomeActivity extends NewBaseActivity {
-
-
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_center)
@@ -52,6 +50,10 @@ public class IncomeActivity extends NewBaseActivity {
     RadioGroup radioGroup;
     @BindView(R.id.iv_bank)
     ImageView ivBank;
+    @BindView(R.id.btn_payok)
+    Button btnPayok;
+    @BindView(R.id.tv_bankname)
+    TextView tvBankname;
 
 
     @Override
@@ -62,9 +64,12 @@ public class IncomeActivity extends NewBaseActivity {
     @Override
     protected void initData() {
         String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
-        HttpRequest.getInstance().getBankcardList(IncomeActivity.this, token, new HttpCallback<GamePlaywaysRsp>() {
+        HttpRequest.getInstance().getBankcardList(IncomeActivity.this, token, new HttpCallback<BankcardList>() {
             @Override
-            public void onSuccess(final GamePlaywaysRsp data) {
+            public void onSuccess(final BankcardList data) {
+                ivBank.setImageResource(R.mipmap.abc);
+                tvBankname.setText(data.getData().get(0).getName());
+
             }
 
             @Override
@@ -104,5 +109,25 @@ public class IncomeActivity extends NewBaseActivity {
         });
     }
 
+    @OnClick({R.id.iv_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.btn_payok:
 
+                break;
+
+
+        }
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }
