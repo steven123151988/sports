@@ -47,10 +47,16 @@ public interface ApiService {
     Call<GamePlaywaysRsp> getPlayWays(@Body RequestBody body);
 
     /**
-     *  银行卡列表
+     *  银行列表
      */
     @POST("service?action=GetBankList&terminal_id=1")
-    Call<BankcardList> getBankcardlist(@Body RequestBody body);
+    Call<BankcardList> GetBankList(@Body RequestBody body);
+
+    /**
+     * 获取绑定的银行卡
+     */
+    @POST("service?action=GetBankCardList&terminal_id=1")
+    Call<BankcardList> getBankCardList(@Body RequestBody body);
 
 
 

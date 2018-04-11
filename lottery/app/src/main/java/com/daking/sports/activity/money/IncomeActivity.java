@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
@@ -19,9 +20,16 @@ import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.SharePreferencesUtil;
+import com.daking.sports.util.ShowDialogUtil;
+import com.mingle.entity.MenuEntity;
+import com.mingle.sweetpick.BlurEffect;
+import com.mingle.sweetpick.RecyclerViewDelegate;
+import com.mingle.sweetpick.SweetSheet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -54,7 +62,21 @@ public class IncomeActivity extends NewBaseActivity {
     Button btnPayok;
     @BindView(R.id.tv_bankname)
     TextView tvBankname;
+    @BindView(R.id.rl_select_bank)
+    RelativeLayout rlSelectBank;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
 
+    //屏幕高度
+    private int screenHeight = 0;
+    //软件盘弹起后所占高度阀值
+    private int keyHeight = 0;
+    private boolean ifopen = false;
+    private List list_name;
+    private MenuEntity menuEntity;
+    private SweetSheet mSweetSheet;
+    private int choose_position = 9999;
+    private BankcardList bankcardList;
 
     @Override
     protected int getLayoutId() {
@@ -64,11 +86,12 @@ public class IncomeActivity extends NewBaseActivity {
     @Override
     protected void initData() {
         String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
-        HttpRequest.getInstance().getBankcardList(IncomeActivity.this, token, new HttpCallback<BankcardList>() {
+        HttpRequest.getInstance().getBankList(IncomeActivity.this, token, new HttpCallback<BankcardList>() {
             @Override
             public void onSuccess(final BankcardList data) {
                 ivBank.setImageResource(R.mipmap.abc);
                 tvBankname.setText(data.getData().get(0).getName());
+                bankcardList = data;
 
             }
 
@@ -81,7 +104,7 @@ public class IncomeActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-
+        tvCenter.setText(getString(R.string.get_in_money));
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -109,7 +132,7 @@ public class IncomeActivity extends NewBaseActivity {
         });
     }
 
-    @OnClick({R.id.iv_back})
+    @OnClick({R.id.iv_back, R.id.rl_select_bank})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -118,16 +141,63 @@ public class IncomeActivity extends NewBaseActivity {
             case R.id.btn_payok:
 
                 break;
+            case R.id.rl_select_bank://选择银行卡
+                selectBank();
+                break;
 
 
         }
     }
 
+    private void selectBank() {
+        list_name = new ArrayList<>();
+        int banksize = bankcardList.getData().size();
+        if (null == bankcardList || banksize == 0) {
+            ShowDialogUtil.showSuccessDialog(IncomeActivity.this, getString(R.string.sorry), getString(R.string.do_not_have_type));
+            return;
+        }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        for (int i = 0; i < banksize; i++) {
+            list_name.add(bankcardList.getData().get(i).getName());
+        }
+        final ArrayList<MenuEntity> list = new ArrayList<>();
+        for (int i = 0; i < banksize; i++) {
+            menuEntity = new MenuEntity();
+            menuEntity.iconId = R.mipmap.company_income;
+            menuEntity.titleColor = 0xff000000;
+            menuEntity.title = (CharSequence) list_name.get(i);
+            list.add(menuEntity);
+        }
+        // SweetSheet 控件,根据 rl 确认位置
+        mSweetSheet = new SweetSheet(rl);
+        //设置数据源 (数据源支持设置 list 数组,也支持从菜单中获取)
+        mSweetSheet.setMenuList(list);
+        //根据设置不同的 Delegate 来显示不同的风格.
+        mSweetSheet.setDelegate(new RecyclerViewDelegate(true));
+        //根据设置不同Effect 来显示背景效果BlurEffect:模糊效果.DimEffect 变暗效果
+        mSweetSheet.setBackgroundEffect(new BlurEffect(8));
+        //设置点击事件
+        mSweetSheet.setOnMenuItemClickListener(new SweetSheet.OnMenuItemClickListener() {
+            @Override
+            public boolean onItemClick(int position, MenuEntity menuEntity) {
+                choose_position = position;
+                if (choose_position != 9999) {
+                    //即时改变当前项的颜色
+                    list.get(position).titleColor = 0xff00ffff;
+                    ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
+                    tvBankname.setText(bankcardList.getData().get(choose_position).getName());
+                    ivBank.setImageResource(R.mipmap.abc);
+                }
+
+                //根据返回值, true 会关闭 SweetSheet ,false 则不会.
+                return true;
+            }
+        });
+
+        if (!mSweetSheet.isShow()) {
+            mSweetSheet.toggle();
+        }
     }
+
+
 }

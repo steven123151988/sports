@@ -97,7 +97,6 @@ public class HttpRequest {
     }
 
 
-
     /**
      * 登陆
      *
@@ -119,6 +118,7 @@ public class HttpRequest {
 
     /**
      * 获取首页热门赛事信息
+     *
      * @param tag
      * @param callback
      */
@@ -133,6 +133,7 @@ public class HttpRequest {
 
     /**
      * 获取首页全部赛事信息
+     *
      * @param tag
      * @param callback
      */
@@ -146,6 +147,7 @@ public class HttpRequest {
 
     /**
      * 赛事玩法明细
+     *
      * @param tag
      * @param callback
      */
@@ -160,18 +162,38 @@ public class HttpRequest {
 
     /**
      * 获取银行卡列表
+     *
      * @param tag
      * @param token
      * @param callback
      */
-    public void getBankcardList(Object tag, String token, HttpCallback<BankcardList> callback) {
+    public void getBankList(Object tag, String token, HttpCallback<BankcardList> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .build();
-        Call<BankcardList> call = mService.getBankcardlist(body);
+        Call<BankcardList> call = mService.GetBankList(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     * 获取已经绑定的银行卡
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getBankCardList(Object tag, String token, HttpCallback<BankcardList> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .build();
+        Call<BankcardList> call = mService.getBankCardList(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
 
 
 
@@ -360,14 +382,15 @@ public class HttpRequest {
     }
 
     /**
-     *   获取赛事详情
+     * 获取赛事详情
+     *
      * @param tag
      * @param uid
      * @param ball
      * @param page
      * @param callback
      */
-    public void betBetting(Object tag, String uid,  String ball, int page, HttpCallback<BettingRecordRsp> callback) {
+    public void betBetting(Object tag, String uid, String ball, int page, HttpCallback<BettingRecordRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.UID, uid)
                 .addParam(SportsKey.FNNAME, "betlist")
@@ -380,12 +403,13 @@ public class HttpRequest {
     }
 
     /**
-     *  在线提款
+     * 在线提款
+     *
      * @param tag
      * @param uid
      * @param callback
      */
-    public void memOnline(Object tag, String uid,  HttpCallback<MemOnlineRsp> callback) {
+    public void memOnline(Object tag, String uid, HttpCallback<MemOnlineRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.UID, uid)
                 .addParam(SportsKey.FNNAME, "withdrawals")
@@ -396,15 +420,16 @@ public class HttpRequest {
     }
 
     /**
-     *  登出
+     * 登出
+     *
      * @param tag
      * @param uid
      * @param callback
      */
-    public void loginOut(Object tag, String uid,  HttpCallback<LoginRsp> callback) {
+    public void loginOut(Object tag, String uid, HttpCallback<LoginRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.UID, uid)
-                .addParam(SportsKey.FNNAME,  SportsKey.LOGIN_OUT)
+                .addParam(SportsKey.FNNAME, SportsKey.LOGIN_OUT)
                 .build();
         Call<LoginRsp> call = mService.loginOut(body);
         putCall(tag, call);

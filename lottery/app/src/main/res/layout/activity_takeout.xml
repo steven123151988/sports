@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_15">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/take_out_yuan"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="456"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/ed_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/income_money_notice"
+        android:maxLength="7"
+        android:minEms="5"
+        android:numeric="integer"
+        android:padding="@dimen/dimen_15"
+        android:textColor="@color/white_ffffff"
+        android:textColorHint="@color/white_ffffff"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_15"
+        android:text="@string/select_takeout_bankcard"
+        android:textColor="@color/white_ffffff"
+        android:textSize="@dimen/sp_16" />
+
+    <ListView
+        android:id="@+id/lv_select_takeout_bankcard"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+
+    <Button
+        android:id="@+id/btn_takeout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_30"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:background="@drawable/bet_button"
+        android:text="@string/take_out"
+        android:textColor="@color/blue_00ffff"
+        android:textSize="@dimen/sp_16" />
+
+</LinearLayout>

@@ -29,7 +29,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.mine.PersonalCenterActivity;
 import com.daking.sports.activity.money.IncomeActivity;
+import com.daking.sports.activity.money.TakeoutMoneyActivity;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
@@ -169,7 +171,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                         startActivity(new Intent(BetMainActivity.this, IncomeActivity.class));
                         break;
                     case R.id.navigation_take_out_money:
-
+                        startActivity(new Intent(BetMainActivity.this, TakeoutMoneyActivity.class));
                         break;
                     case R.id.navigation_trade_record:
 
@@ -185,6 +187,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                         break;
                     case R.id.navigation_personal_set:
 
+                        startActivity(new Intent(BetMainActivity.this, PersonalCenterActivity.class));
                         break;
 
                 }

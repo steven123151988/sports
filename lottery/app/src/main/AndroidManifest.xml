@@ -56,13 +56,10 @@
         </activity>
 
 
-
-
-
         <!--<activity-->
-            <!--android:name="com.daking.sports.activity.login.SplashActivity"-->
-            <!--android:launchMode="singleTask"-->
-            <!--android:screenOrientation="portrait" />-->
+        <!--android:name="com.daking.sports.activity.login.SplashActivity"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:screenOrientation="portrait" />-->
         <activity
             android:name="com.daking.sports.activity.betting.BetDetailActivity"
             android:launchMode="singleTask"
@@ -77,6 +74,18 @@
             android:name="com.daking.sports.activity.money.IncomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.daking.sports.activity.money.TakeoutMoneyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.daking.sports.activity.mine.PersonalCenterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+
+
 
 
 

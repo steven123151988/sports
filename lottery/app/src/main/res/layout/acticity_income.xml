@@ -1,179 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include layout="@layout/main_title" />
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/bg"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10"
-            android:padding="@dimen/dimen_10"
-            android:text="@string/income_money"
-            android:textColor="@color/white_ffffff"
-            android:textSize="@dimen/sp_16" />
+        <include layout="@layout/main_title" />
 
-
-        <EditText
-            android:id="@+id/ed_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10"
-            android:background="@null"
-            android:hint="@string/income_money_notice"
-            android:maxLength="7"
-            android:minEms="5"
-            android:numeric="integer"
-            android:padding="@dimen/dimen_10"
-            android:textColor="@color/white_ffffff"
-            android:textColorHint="@color/white_ffffff"
-            android:textSize="@dimen/sp_16" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10"
-            android:padding="@dimen/dimen_10"
-            android:text="@string/income_money_notice_2"
-            android:textColor="@color/blue_00ffff"
-            android:textSize="@dimen/sp_15" />
-
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_50"
-            android:alpha="0.6"
-            android:background="@color/black_212121"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_position_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="102"
-                android:textColor="@color/selector_rb_text"
-                android:textSize="@dimen/sp_15" />
-
-
-            <RadioButton
-                android:id="@+id/rb_position_2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_marginLeft="@dimen/dimen_1"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="503"
-                android:textColor="@color/selector_rb_text"
-                android:textSize="@dimen/sp_15" />
-
-            <RadioButton
-                android:id="@+id/rb_position_3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="1004"
-                android:textColor="@color/selector_rb_text"
-                android:textSize="@dimen/sp_15" />
-
-
-            <RadioButton
-                android:id="@+id/rb_position_4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="2007"
-                android:textColor="@color/selector_rb_text"
-                android:textSize="@dimen/sp_15" />
-
-            <RadioButton
-                android:id="@+id/rb_position_5"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="4998"
-                android:textColor="@color/selector_rb_text"
-                android:textSize="@dimen/sp_15" />
-
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10"
-            android:padding="@dimen/dimen_10"
-            android:text="选择银行"
-            android:textColor="@color/white_ffffff"
-            android:textSize="@dimen/sp_15" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:alpha="0.7"
-            android:background="@color/black_212121"
-            android:orientation="horizontal"
-            android:padding="@dimen/dimen_5"
-            android:paddingLeft="@dimen/dimen_10">
-
-            <ImageView
-                android:id="@+id/iv_bank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:src="@mipmap/ic_launcher" />
-
+            android:background="@mipmap/bg"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_bankname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dimen_20"
-                android:layout_toRightOf="@+id/iv_bank"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:padding="@dimen/dimen_10"
+                android:text="@string/income_money"
                 android:textColor="@color/white_ffffff"
                 android:textSize="@dimen/sp_16" />
 
-            <ImageView
+
+            <EditText
+                android:id="@+id/ed_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dimen_20"
-                android:src="@mipmap/arrow_right" />
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:background="@null"
+                android:hint="@string/income_money_notice"
+                android:maxLength="7"
+                android:minEms="5"
+                android:numeric="integer"
+                android:padding="@dimen/dimen_10"
+                android:textColor="@color/white_ffffff"
+                android:textColorHint="@color/white_ffffff"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:padding="@dimen/dimen_10"
+                android:text="@string/income_money_notice_2"
+                android:textColor="@color/blue_00ffff"
+                android:textSize="@dimen/sp_15" />
 
 
-        </RelativeLayout>
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50"
+                android:alpha="0.6"
+                android:background="@color/black_212121"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_payok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_30"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:background="@drawable/bet_button"
-            android:text="@string/pay_ok"
-            android:textColor="@color/blue_00ffff"
-            android:textSize="@dimen/sp_16" />
+                <RadioButton
+                    android:id="@+id/rb_position_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="102"
+                    android:textColor="@color/selector_rb_text"
+                    android:textSize="@dimen/sp_15" />
+
+
+                <RadioButton
+                    android:id="@+id/rb_position_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_marginLeft="@dimen/dimen_1"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="503"
+                    android:textColor="@color/selector_rb_text"
+                    android:textSize="@dimen/sp_15" />
+
+                <RadioButton
+                    android:id="@+id/rb_position_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="1004"
+                    android:textColor="@color/selector_rb_text"
+                    android:textSize="@dimen/sp_15" />
+
+
+                <RadioButton
+                    android:id="@+id/rb_position_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="2007"
+                    android:textColor="@color/selector_rb_text"
+                    android:textSize="@dimen/sp_15" />
+
+                <RadioButton
+                    android:id="@+id/rb_position_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="4998"
+                    android:textColor="@color/selector_rb_text"
+                    android:textSize="@dimen/sp_15" />
+
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:padding="@dimen/dimen_10"
+                android:text="选择银行"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_15" />
+
+            <RelativeLayout
+                android:id="@+id/rl_select_bank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:alpha="0.7"
+                android:background="@color/black_212121"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_5"
+                android:paddingLeft="@dimen/dimen_10">
+
+                <ImageView
+                    android:id="@+id/iv_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:padding="@dimen/dimen_5"
+                    android:src="@mipmap/abc" />
+
+
+                <TextView
+                    android:id="@+id/tv_bankname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:layout_toRightOf="@+id/iv_bank"
+                    android:textColor="@color/white_ffffff"
+                    android:textSize="@dimen/sp_16" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dimen_20"
+                    android:src="@mipmap/arrow_right" />
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_payok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_30"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="@drawable/bet_button"
+                android:text="@string/pay_ok"
+                android:textColor="@color/blue_00ffff"
+                android:textSize="@dimen/sp_16" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

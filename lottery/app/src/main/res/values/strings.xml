@@ -20,6 +20,26 @@
     <string name="income_money_notice">请输入充值金额！最小10，最大5000</string>
     <string name="income_money_notice_2">(存款金额个位和十位不能同时为0，如101.00)</string>
     <string name="pay_ok">立即存款</string>
+    <string name="take_out">立即提现</string>
+    <string name="select_takeout_bankcard">选择提款账号</string>
+    <string name="take_out_yuan">提款金额(元)</string>
+    <string name="personal_realname">真实姓名：</string>
+    <string name="personal_bindphone">绑定手机</string>
+    <string name="personal_bindemail">绑定邮箱</string>
+    <string name="personal_bindbankcard">银行卡管理</string>
+    <string name="personal_changemoney">修改密码</string>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <string name="mainpage">首页</string>
     <string name="betting">投注</string>
