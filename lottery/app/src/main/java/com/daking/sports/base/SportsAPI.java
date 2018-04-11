@@ -10,7 +10,6 @@ public class SportsAPI {
 
 
 
-
     public static final String REGIST = "/member/register/check_reg";//注册
     public static final String CHECK_USER = "/member/register/chk_user";//检查用户名称
     public static final String LOGIN_OUT = "/login/loginout";//登出

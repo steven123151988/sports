@@ -5,11 +5,17 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import com.daking.sports.R;
@@ -17,49 +23,66 @@ import com.daking.sports.activity.BetMainActivity;
 import com.daking.sports.activity.mine.PswManagerActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
-import com.daking.sports.base.BaseActivity;
+import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.util.CustomVideoView;
-import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.Md5Util;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.util.SystemUtil;
 
-import static org.greenrobot.essentials.StringUtils.md5;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
- *    登陆页
+ * 登陆页
  */
-public class LoginActivity extends BaseActivity implements OnClickListener {
+public class LoginActivity extends NewBaseActivity implements OnClickListener {
+    @BindView(R.id.videoview)
+    CustomVideoView videoview;
+    @BindView(R.id.iv_iphone)
+    ImageView ivIphone;
+    @BindView(R.id.et_account)
+    EditText etAccount;
+    @BindView(R.id.iv_money_psw1)
+    ImageView ivMoneyPsw1;
+    @BindView(R.id.et_psw)
+    EditText etPsw;
+    @BindView(R.id.tv_error_hint)
+    TextView tvErrorHint;
+    @BindView(R.id.checkbox)
+    CheckBox checkbox;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
+    @BindView(R.id.btn_register)
+    Button btnRegister;
+    @BindView(R.id.btn_forgetPsw)
+    Button btnForgetPsw;
     private EditText et_account, et_psw;
     private String account, psw;
     private Handler handler;
-    private CustomVideoView videoview;  //创建播放视频的控件对象
+    private boolean isChecked = false;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        //初始化其他view
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
-    private void initView() {
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         SystemUtil.setfullScreen(this);
 
-        et_account = (EditText) findViewById(R.id.et_account);
-        et_psw = (EditText) findViewById(R.id.et_psw);
         //不让用户按回车键
-        et_account.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        etAccount.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
             }
         });
-        et_psw.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        etPsw.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
@@ -68,6 +91,35 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         findViewById(R.id.btn_forgetPsw).setOnClickListener(this);
         findViewById(R.id.btn_register).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
+
+
+
+        /*
+         *  选择是否记住密码
+         */
+        isChecked = SharePreferencesUtil.getBoolean(getApplicationContext(), SportsKey.IF_REMEMBER_PSW, true);
+        CheckBox cbx = (CheckBox) findViewById(R.id.checkbox);
+        cbx.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean checked) {
+                isChecked = checked;
+                if (checked) {
+                    SharePreferencesUtil.addBoolean(getApplicationContext(),  SportsKey.IF_REMEMBER_PSW, true);
+                } else {
+                    SharePreferencesUtil.addBoolean(getApplicationContext(),  SportsKey.IF_REMEMBER_PSW, false);
+                }
+            }
+        });
+        cbx.setChecked(isChecked);
+        etAccount.setText(SharePreferencesUtil.getString(getApplicationContext(), SportsKey.LOGIN_ACCOUNT, ""));
+        if (isChecked) {
+            etPsw.setText(SharePreferencesUtil.getString(getApplicationContext(), SportsKey.LOGIN_PSW, ""));
+        } else {
+            etPsw.setText("");
+        }
+
+
+
     }
 
 
@@ -91,55 +143,56 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_register:
-                startActivity(new Intent(mContext, RegistActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegistActivity.class));
                 break;
             case R.id.btn_login:
                 login();
                 break;
             case R.id.btn_forgetPsw:
-                startActivity(new Intent(mContext, PswManagerActivity.class));
+                startActivity(new Intent(LoginActivity.this, PswManagerActivity.class));
                 break;
+
+
         }
     }
 
 
     private void login() {
-        account = et_account.getText().toString().replace(" ", "");
-        psw = et_psw.getText().toString().replace(" ", "");
+        account = etAccount.getText().toString().replace(" ", "");
+        SharePreferencesUtil.addString(LoginActivity.this, SportsKey.LOGIN_ACCOUNT, account);
+        psw = etPsw.getText().toString().replace(" ", "");
+        SharePreferencesUtil.addString(LoginActivity.this, SportsKey.LOGIN_PSW, psw);
         if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw)) {
-            ShowDialogUtil.showFailDialog(mContext, getString(R.string.sorry), getString(R.string.accountisempty));
+            ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.sorry), getString(R.string.accountisempty));
         } else {
-            psw =  Md5Util.HEXAndMd5( Md5Util.HEXAndMd5( Md5Util.HEXAndMd5(account.toLowerCase()+psw)));
-            LogUtil.e("==psw===="+psw);
+            psw = Md5Util.HEXAndMd5(Md5Util.HEXAndMd5(Md5Util.HEXAndMd5(account.toLowerCase() + psw)));
             HttpRequest.getInstance().login(LoginActivity.this, account, psw, new HttpCallback<LoginRsps>() {
                 @Override
                 public void onSuccess(LoginRsps data) {
-                    if (null!=data&&null!=data.getData().getToken()){
-                        SharePreferencesUtil.addString(mContext, SportsKey.TOKEN,data.getData().getToken());
+                    if (null != data && null != data.getData().getToken()) {
+                        SharePreferencesUtil.addString(LoginActivity.this, SportsKey.TOKEN, data.getData().getToken());
                     }
 
-                    SharePreferencesUtil.addString(mContext, SportsKey.USER_NAME, account);
-                    //展示成功的对话框
-                    ShowDialogUtil.showSuccessDialog(mContext, getString(R.string.sucess_congratulations),"登陆成功。");
-                    //延迟5秒关闭
-                    handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            ShowDialogUtil.dismissDialogs();
-                            startActivity(new Intent(mContext, BetMainActivity.class));
-                            finish();
-                        }
-                    }, 2500);
+                    SharePreferencesUtil.addString(LoginActivity.this, SportsKey.USER_NAME, account);
+//                    //展示成功的对话框
+//                    ShowDialogUtil.showSuccessDialog(LoginActivity.this, getString(R.string.sucess_congratulations), "登陆成功。");
+//                    //延迟5秒关闭
+//                    handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ShowDialogUtil.dismissDialogs();
+//                            startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
+//                            finish();
+//                        }
+//                    }, 2500);
+                    startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
+                    finish();
                 }
 
                 @Override
                 public void onFailure(String msgCode, String errorMsg) {
-                    ShowDialogUtil.showFailDialog(mContext, getString(R.string.loginerr), errorMsg);
-
-//                    //临时
-//                    startActivity(new Intent(mContext, BetMainActivity.class));
-//                    finish();
+                    ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.loginerr), errorMsg);
                 }
             });
         }
@@ -156,7 +209,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onBackPressed() {
-        if (!SharePreferencesUtil.getString(mContext, SportsKey.UID, "0").equals("0")) {
+        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
             super.onBackPressed();
         }
     }
@@ -172,5 +225,19 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         if (null != handler) {
             handler.removeCallbacksAndMessages(null);
         }
+    }
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

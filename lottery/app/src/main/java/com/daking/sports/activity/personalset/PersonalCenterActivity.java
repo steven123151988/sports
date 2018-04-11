@@ -1,5 +1,6 @@
-package com.daking.sports.activity.mine;
+package com.daking.sports.activity.personalset;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -50,13 +51,14 @@ public class PersonalCenterActivity extends NewBaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_person,R.id.rl_bindphone,R.id.rl_bindemail,R.id.rl_bindbankcard,R.id.rl_changepsw})
+    @OnClick({R.id.iv_back, R.id.rl_person, R.id.rl_bindphone, R.id.rl_bindemail, R.id.rl_bindbankcard, R.id.rl_changepsw})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.rl_person:
+                startActivity(new Intent(PersonalCenterActivity.this, PersonActivity.class));
 
                 break;
             case R.id.rl_bindphone:
@@ -69,7 +71,7 @@ public class PersonalCenterActivity extends NewBaseActivity {
 
                 break;
             case R.id.rl_changepsw:
-
+                startActivity(new Intent(PersonalCenterActivity.this, ChangePswActivtiy.class));
                 break;
 
 

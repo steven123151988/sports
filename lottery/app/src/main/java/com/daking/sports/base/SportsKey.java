@@ -10,6 +10,10 @@ public class SportsKey {
     public static final String ACTION = "action";
     public static final String TOKEN = "token";
     public static final String LID = "lid";
+    public static final String LOGIN_ACCOUNT = "login_account";
+    public static final String LOGIN_PSW = "login_psw";
+    public static final String IF_REMEMBER_PSW = "ifrememberpsw";
+
 
 
     public static final int TYPE_ZERO = 0;

@@ -80,10 +80,17 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.daking.sports.activity.mine.PersonalCenterActivity"
+            android:name="com.daking.sports.activity.personalset.PersonalCenterActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.daking.sports.activity.personalset.PersonActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.daking.sports.activity.personalset.ChangePswActivtiy"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 
