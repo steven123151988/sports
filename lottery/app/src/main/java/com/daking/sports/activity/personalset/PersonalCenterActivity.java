@@ -59,16 +59,15 @@ public class PersonalCenterActivity extends NewBaseActivity {
                 break;
             case R.id.rl_person:
                 startActivity(new Intent(PersonalCenterActivity.this, PersonActivity.class));
-
                 break;
             case R.id.rl_bindphone:
-
+                startActivity(new Intent(PersonalCenterActivity.this, BindPhoneActivtiy.class));
                 break;
             case R.id.rl_bindemail:
-
+                startActivity(new Intent(PersonalCenterActivity.this, BindEmailActivtiy.class));
                 break;
             case R.id.rl_bindbankcard:
-
+                startActivity(new Intent(PersonalCenterActivity.this, BankcardsControlActivity.class));
                 break;
             case R.id.rl_changepsw:
                 startActivity(new Intent(PersonalCenterActivity.this, ChangePswActivtiy.class));
@@ -79,10 +78,4 @@ public class PersonalCenterActivity extends NewBaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

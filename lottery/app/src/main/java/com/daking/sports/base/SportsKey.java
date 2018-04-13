@@ -13,6 +13,13 @@ public class SportsKey {
     public static final String LOGIN_ACCOUNT = "login_account";
     public static final String LOGIN_PSW = "login_psw";
     public static final String IF_REMEMBER_PSW = "ifrememberpsw";
+    public static final String TYPE = "type";
+    public static final String PHONE = "phone";
+    public static final String MOBILE = "mobile";
+    public static final String CAPTCHA = "captcha";
+    public static final String CURRENT_PASSWORD = "current_password";
+    public static final String NEW_PASSWORD = "new_password";
+
 
 
 
@@ -42,7 +49,7 @@ public class SportsKey {
     public static final String FNNAME = "fnName";
     public static final String PAY_TIME = "paytime";
     public static final String BALL = "ball";
-    public static final String TYPE = "type";
+
     public static final String FOOTBALL = "football";
     public static final String BASKETBALL = "basketball";
     public static final String JRSS = "jrss";

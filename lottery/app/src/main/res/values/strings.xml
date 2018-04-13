@@ -41,9 +41,19 @@
     <string name="which_bank">开户行：</string>
     <string name="plz_select_bank">请选择银行</string>
     <string name="bankcard_control">银行卡管理</string>
-
-
-
+    <string name="bind_phone">绑定手机：</string>
+    <string name="bind_email">绑定邮箱：</string>
+    <string name="bind_phone_2">绑定手机</string>
+    <string name="hint_bindphone">请输入您的手机号</string>
+    <string name="hint_bindemail">请输入您的邮箱号</string>
+    <string name="bt_tijiao">提交</string>
+    <string name="empty_msg">信息填写不完整，请检查</string>
+    <string name="diffrent_psw">两次输入的新密码不一样！</string>
+    <string name="login_makesure_psw">确认密码</string>
+    <string name="input_account_name">用户名</string>
+    <string name="input_password">密码</string>
+    <string name="have_account">已有账户</string>
+    <string name="input_pic_number">请输入验证码</string>
 
 
     <string name="mainpage">首页</string>
@@ -74,9 +84,9 @@
     <string name="winning_amount">最近中奖金额</string>
     <string name="title_activity_login">Sign in</string>
     <string name="id_not_login">手机无法登录?</string>
-    <string name="input_password">请输入密码</string>
+
     <string name="btn_auth_code">获取验证码</string>
-    <string name="input_account_name">请输入账户名</string>
+
     <string name="regist">注册账户</string>
     <string name="regist_agent">推荐代理</string>
     <string name="regist_agent_account">推荐代码账号</string>

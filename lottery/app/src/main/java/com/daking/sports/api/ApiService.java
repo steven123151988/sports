@@ -7,13 +7,16 @@ import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
+import com.daking.sports.json.BindphoneRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
+import com.daking.sports.json.getPicVerificationCodeRsp;
 
 import okhttp3.RequestBody;
 
@@ -27,6 +30,13 @@ public interface ApiService {
      */
     @POST("service")
     Call<LoginRsps> login(@Body RequestBody body);
+
+    /**
+     * 注册
+     */
+    @POST("service?action=Register&terminal_id=1")
+    Call<RegistRsp> regist(@Body RequestBody body);
+
 
     /**
      * 获取热门赛事信息
@@ -47,7 +57,7 @@ public interface ApiService {
     Call<GamePlaywaysRsp> getPlayWays(@Body RequestBody body);
 
     /**
-     *  银行列表
+     * 银行列表
      */
     @POST("service?action=GetBankList&terminal_id=1")
     Call<BankcardList> GetBankList(@Body RequestBody body);
@@ -58,17 +68,30 @@ public interface ApiService {
     @POST("service?action=GetBankCardList&terminal_id=1")
     Call<BankcardList> getBankCardList(@Body RequestBody body);
 
+    /**
+     * 获取验证码
+     */
+    @POST("service?action=Sendnote&terminal_id=1")
+    Call<BindphoneRsp> getVerificationCode(@Body RequestBody body);
 
+    /**
+     * 获取图片验证码
+     */
+    @POST("service?action=GetImgCaptcha&terminal_id=1")
+    Call<getPicVerificationCodeRsp> getPicVerificationCode(@Body RequestBody body);
 
+    /**
+     * 绑定手机号码
+     */
 
+    @POST("service?action=BindMobile&terminal_id=1&token=22441c03ade39bac8a561005edfe56be4f2d48f9")
+    Call<BindphoneRsp> bindPhone(@Body RequestBody body);
 
-
-
-
-
-
-
-
+    /**
+     * 修改登陆密码
+     */
+    @POST("service?action=ChangeLoginPwd&terminal_id=1")
+    Call<BindphoneRsp> changeLoginpsw(@Body RequestBody body);
 
 
 

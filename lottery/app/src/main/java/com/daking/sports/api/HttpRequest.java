@@ -1,5 +1,6 @@
 package com.daking.sports.api;
 
+import android.content.Context;
 import android.support.v4.util.ArrayMap;
 
 import com.daking.sports.base.SportsAPI;
@@ -9,14 +10,18 @@ import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
+import com.daking.sports.json.BindphoneRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
+import com.daking.sports.json.getPicVerificationCodeRsp;
 import com.daking.sports.util.JsonUtil;
+import com.daking.sports.util.SharePreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,6 +102,12 @@ public class HttpRequest {
     }
 
 
+    public String getToken(Context context) {
+        return SharePreferencesUtil.getString(context, SportsKey.TOKEN, "");
+
+    }
+
+
     /**
      * 登陆
      *
@@ -115,6 +126,25 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 注册
+     *
+     * @param tag
+     * @param account
+     * @param psw
+     * @param captcha
+     * @param callback
+     */
+    public void regist(Object tag, String account, String psw, String captcha, HttpCallback<RegistRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.USER_NAME, account)
+                .addParam(SportsKey.PASSWORD, psw)
+                .addParam(SportsKey.CAPTCHA, captcha)
+                .build();
+        Call<RegistRsp> call = mService.regist(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
     /**
      * 获取首页热门赛事信息
@@ -194,22 +224,78 @@ public class HttpRequest {
     }
 
 
+    /**
+     * 获取验证码
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getVerificationCode(Object tag, String token, String mobile, String type, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam(SportsKey.MOBILE, mobile)
+                .addParam(SportsKey.TYPE, type)
+                .build();
+        Call<BindphoneRsp> call = mService.getVerificationCode(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
+    /**
+     * 获取图片验证码
+     *  @param tag
+     * @param callback
+     */
+    public void getPicVerificationCode(Object tag, HttpCallback<getPicVerificationCodeRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .build();
+        Call<getPicVerificationCodeRsp> call = mService.getPicVerificationCode(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 绑定手机号
+     *
+     * @param tag
+     * @param token
+     * @param mobile
+     * @param captcha
+     * @param callback
+     */
+    public void bindPhone(Object tag, String token, String mobile, String captcha, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam(SportsKey.MOBILE, mobile)
+                .addParam(SportsKey.CAPTCHA, captcha)
+                .build();
+        Call<BindphoneRsp> call = mService.bindPhone(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 修改登陆密码
+     *
+     * @param tag
+     * @param token
+     * @param current_password
+     * @param new_password
+     * @param callback
+     */
+    public void changeLoginPsw(Object tag, String token, String current_password, String new_password, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam(SportsKey.CURRENT_PASSWORD, current_password)
+                .addParam(SportsKey.NEW_PASSWORD, new_password)
+                .build();
+        Call<BindphoneRsp> call = mService.changeLoginpsw(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
     /**

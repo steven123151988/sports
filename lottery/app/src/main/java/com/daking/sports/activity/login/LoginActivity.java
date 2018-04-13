@@ -9,37 +9,41 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ShareActionProvider;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
 import com.daking.sports.activity.BetMainActivity;
-import com.daking.sports.activity.mine.PswManagerActivity;
+import com.daking.sports.activity.personalset.ChangePswActivtiy;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.LoginRsps;
+import com.daking.sports.json.RegistRsp;
+import com.daking.sports.json.getPicVerificationCodeRsp;
 import com.daking.sports.util.CustomVideoView;
 import com.daking.sports.util.Md5Util;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
 import com.daking.sports.util.SystemUtil;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
  * 登陆页
  */
-public class LoginActivity extends NewBaseActivity implements OnClickListener {
+public class LoginActivity extends NewBaseActivity {
     @BindView(R.id.videoview)
     CustomVideoView videoview;
     @BindView(R.id.iv_iphone)
@@ -50,8 +54,7 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
     ImageView ivMoneyPsw1;
     @BindView(R.id.et_psw)
     EditText etPsw;
-    @BindView(R.id.tv_error_hint)
-    TextView tvErrorHint;
+
     @BindView(R.id.checkbox)
     CheckBox checkbox;
     @BindView(R.id.btn_login)
@@ -60,10 +63,29 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
     Button btnRegister;
     @BindView(R.id.btn_forgetPsw)
     Button btnForgetPsw;
+    @BindView(R.id.iv_money_psw2)
+    ImageView ivMoneyPsw2;
+    @BindView(R.id.ed_makesure_psw)
+    EditText edMakesurePsw;
+    @BindView(R.id.make_sure_psw)
+    RelativeLayout makeSurePsw;
+    @BindView(R.id.ll_bottom_loginview)
+    LinearLayout llBottomLoginview;
+    @BindView(R.id.btn_have_account)
+    Button btnHaveAccount;
+    @BindView(R.id.iv_pic_VerificationCode)
+    ImageView ivPicVerificationCode;
+    @BindView(R.id.ed_pic_VerificationCode)
+    EditText edPicVerificationCode;
+    @BindView(R.id.rl_pic_VerificationCode)
+    RelativeLayout rlPicVerificationCode;
+    @BindView(R.id.iv_numbercode)
+    ImageView ivNumbercode;
     private EditText et_account, et_psw;
     private String account, psw;
     private Handler handler;
     private boolean isChecked = false;
+    private int position = 0;
 
 
     @Override
@@ -88,10 +110,6 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
                 return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
             }
         });
-        findViewById(R.id.btn_forgetPsw).setOnClickListener(this);
-        findViewById(R.id.btn_register).setOnClickListener(this);
-        findViewById(R.id.btn_login).setOnClickListener(this);
-
 
 
         /*
@@ -104,9 +122,9 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
             public void onCheckedChanged(CompoundButton buttonView, boolean checked) {
                 isChecked = checked;
                 if (checked) {
-                    SharePreferencesUtil.addBoolean(getApplicationContext(),  SportsKey.IF_REMEMBER_PSW, true);
+                    SharePreferencesUtil.addBoolean(getApplicationContext(), SportsKey.IF_REMEMBER_PSW, true);
                 } else {
-                    SharePreferencesUtil.addBoolean(getApplicationContext(),  SportsKey.IF_REMEMBER_PSW, false);
+                    SharePreferencesUtil.addBoolean(getApplicationContext(), SportsKey.IF_REMEMBER_PSW, false);
                 }
             }
         });
@@ -118,6 +136,10 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
             etPsw.setText("");
         }
 
+
+        showView(position);
+
+        getPicVerificationCode();
 
 
     }
@@ -139,20 +161,85 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
         });
     }
 
+
     @Override
-    public void onClick(View view) {
+    protected void onResume() {
+        super.onResume();
+        //初始化音频
+        starVideoview();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ShowDialogUtil.dismissDialogs();
+        if (null != videoview) {
+            videoview.stopPlayback();
+        }
+        if (null != handler) {
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+
+    @OnClick({R.id.checkbox, R.id.btn_login, R.id.btn_register, R.id.btn_forgetPsw, R.id.btn_have_account, R.id.iv_numbercode})
+    public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn_register:
-                startActivity(new Intent(LoginActivity.this, RegistActivity.class));
-                break;
             case R.id.btn_login:
-                login();
+                if (position == 0) {
+                    login();
+                } else {
+                    regist();
+                }
+                break;
+            case R.id.btn_register:
+                position = 1;
+                showView(position);
                 break;
             case R.id.btn_forgetPsw:
-                startActivity(new Intent(LoginActivity.this, PswManagerActivity.class));
+                startActivity(new Intent(LoginActivity.this, ChangePswActivtiy.class));
+                break;
+            case R.id.btn_have_account:
+                position = 0;
+                showView(position);
+                break;
+            case R.id.iv_numbercode:
+                getPicVerificationCode();
                 break;
 
 
+        }
+    }
+
+    private void showView(int position) {
+        if (position == 0) {
+            makeSurePsw.setVisibility(View.GONE);
+            checkbox.setVisibility(View.VISIBLE);
+            llBottomLoginview.setVisibility(View.VISIBLE);
+            btnHaveAccount.setVisibility(View.GONE);
+            btnLogin.setText("登陆");
+            rlPicVerificationCode.setVisibility(View.GONE);
+        } else {
+            makeSurePsw.setVisibility(View.VISIBLE);
+            checkbox.setVisibility(View.GONE);
+            llBottomLoginview.setVisibility(View.GONE);
+            btnHaveAccount.setVisibility(View.VISIBLE);
+            btnLogin.setText("注册");
+            rlPicVerificationCode.setVisibility(View.VISIBLE);
         }
     }
 
@@ -200,44 +287,71 @@ public class LoginActivity extends NewBaseActivity implements OnClickListener {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //初始化音频
-        starVideoview();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
-            super.onBackPressed();
+    private void regist() {
+        account = etAccount.getText().toString().replace(" ", "");
+        SharePreferencesUtil.addString(LoginActivity.this, SportsKey.LOGIN_ACCOUNT, account);
+        psw = etPsw.getText().toString().replace(" ", "");
+        SharePreferencesUtil.addString(LoginActivity.this, SportsKey.LOGIN_PSW, psw);
+        String MakesurePsw = edMakesurePsw.getText().toString().replace(" ", "");
+        String PicVerificationCode = edPicVerificationCode.getText().toString().replace(" ", "");
+        if (TextUtils.isEmpty(account) || TextUtils.isEmpty(psw) || TextUtils.isEmpty(MakesurePsw) || TextUtils.isEmpty(PicVerificationCode)) {
+            ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.sorry), getString(R.string.empty_msg));
+            return;
         }
-    }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ShowDialogUtil.dismissDialogs();
-        if (null != videoview) {
-            videoview.stopPlayback();
+        if (!psw.equals(MakesurePsw)) {
+            ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.sorry), getString(R.string.diffrent_psw));
+            return;
         }
-        if (null != handler) {
-            handler.removeCallbacksAndMessages(null);
-        }
+
+        psw = Md5Util.HEXAndMd5(Md5Util.HEXAndMd5(Md5Util.HEXAndMd5(account.toLowerCase() + psw)));
+
+
+        HttpRequest.getInstance().regist(LoginActivity.this, account, psw, PicVerificationCode, new HttpCallback<RegistRsp>() {
+            @Override
+            public void onSuccess(RegistRsp data) {
+                SharePreferencesUtil.addString(LoginActivity.this, SportsKey.USER_NAME, account);
+//                    //展示成功的对话框
+//                    ShowDialogUtil.showSuccessDialog(LoginActivity.this, getString(R.string.sucess_congratulations), "登陆成功。");
+//                    //延迟5秒关闭
+//                    handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ShowDialogUtil.dismissDialogs();
+//                            startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
+//                            finish();
+//                        }
+//                    }, 2500);
+                startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.loginerr), errorMsg);
+            }
+        });
+
+
+    }
+
+    private void getPicVerificationCode() {
+        HttpRequest.getInstance().getPicVerificationCode(LoginActivity.this, new HttpCallback<getPicVerificationCodeRsp>() {
+            @Override
+            public void onSuccess(getPicVerificationCodeRsp data) {
+                Picasso.with(LoginActivity.this).load(data.getData().get(0)).fit().into(ivNumbercode);
+
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.loginerr), errorMsg);
+            }
+        });
+
+
     }
 
 
-    @Override
-    protected void initData() {
-
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

@@ -53,6 +53,8 @@ public class BankcardsControlActivity extends NewBaseActivity {
     protected void initView(@Nullable Bundle savedInstanceState) {
         tvCenter.setText(getString(R.string.bankcard_control));
 
+
+
     }
 
     @Override

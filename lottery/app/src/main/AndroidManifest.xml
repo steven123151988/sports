@@ -54,12 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <!--<activity-->
-        <!--android:name="com.daking.sports.activity.login.SplashActivity"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:screenOrientation="portrait" />-->
         <activity
             android:name="com.daking.sports.activity.betting.BetDetailActivity"
             android:launchMode="singleTask"
@@ -96,7 +90,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.daking.sports.activity.personalset.BindPhoneActivtiy"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.daking.sports.activity.personalset.BindEmailActivtiy"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 
