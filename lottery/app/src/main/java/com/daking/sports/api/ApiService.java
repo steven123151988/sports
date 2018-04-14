@@ -3,6 +3,7 @@ package com.daking.sports.api;
 
 import com.daking.sports.base.SportsAPI;
 import com.daking.sports.json.AccountHistoryRsp;
+import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
@@ -92,6 +93,26 @@ public interface ApiService {
      */
     @POST("service?action=ChangeLoginPwd&terminal_id=1")
     Call<BindphoneRsp> changeLoginpsw(@Body RequestBody body);
+
+
+    /**
+     * 充值接口
+     */
+    @POST("service?action= DoPay&terminal_id=1")
+    Call<BindphoneRsp> getPayincome(@Body RequestBody body);
+
+    /**
+     * 绑定银行卡
+     */
+    @POST("service?action=BindBankCard&terminal_id=1")
+    Call<BindphoneRsp> bindBankcard(@Body RequestBody body);
+
+
+    /**
+     * 获取地区
+     */
+    @POST("service?action=GetDistrict&terminal_id=1")
+    Call<AreaRsp> getDistrict(@Body RequestBody body);
 
 
 

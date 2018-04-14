@@ -1,6 +1,7 @@
 package com.daking.sports.activity.money;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -13,14 +14,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.personalset.BindPhoneActivtiy;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.BankcardList;
+import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.util.CloseSoftInputFromWindowUtil;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
+import com.daking.sports.util.ToastUtil;
 import com.mingle.entity.MenuEntity;
 import com.mingle.sweetpick.BlurEffect;
 import com.mingle.sweetpick.RecyclerViewDelegate;
@@ -77,6 +82,9 @@ public class IncomeActivity extends NewBaseActivity {
     private SweetSheet mSweetSheet;
     private int choose_position = 9999;
     private BankcardList bankcardList;
+    private Handler handler;
+    private long mClickTime2;
+    private String token, bid;
 
     @Override
     protected int getLayoutId() {
@@ -85,7 +93,7 @@ public class IncomeActivity extends NewBaseActivity {
 
     @Override
     protected void initData() {
-        String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
+        token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
         HttpRequest.getInstance().getBankList(IncomeActivity.this, token, new HttpCallback<BankcardList>() {
             @Override
             public void onSuccess(final BankcardList data) {
@@ -139,10 +147,50 @@ public class IncomeActivity extends NewBaseActivity {
                 finish();
                 break;
             case R.id.btn_payok:
+                String account = edMoney.getText().toString().replaceAll(" ", "");
+                if (account.equals("")) {
+                    ShowDialogUtil.showFailDialog(IncomeActivity.this, getString(R.string.sucess_congratulations), getString(R.string.empty_msg));
+                    return;
+                }
+                token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
+                HttpRequest.getInstance().getPayincome(IncomeActivity.this, token, bid, account, "", new HttpCallback<BindphoneRsp>() {
+                    @Override
+                    public void onSuccess(final BindphoneRsp data) {
+
+
+                    }
+
+                    @Override
+                    public void onFailure(String msgCode, String errorMsg) {
+                        ShowDialogUtil.showFailDialog(IncomeActivity.this, getString(R.string.sorry), errorMsg);
+                    }
+                });
 
                 break;
             case R.id.rl_select_bank://选择银行卡
-                selectBank();
+                //避免多次请求
+                long time = System.currentTimeMillis();
+                if (time - mClickTime2 <= 3000) {
+                    return;
+                } else {
+                    mClickTime2 = time;
+                    if (ifopen) {
+                        CloseSoftInputFromWindowUtil.closeSoftInputFromWindow();
+                        if (null == handler) {
+                            handler = new Handler();
+                        }
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                selectBank();
+                            }
+                        }, 150);
+                    } else {
+                        selectBank();
+                    }
+
+                }
+
                 break;
 
 
@@ -187,6 +235,7 @@ public class IncomeActivity extends NewBaseActivity {
                     ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
                     tvBankname.setText(bankcardList.getData().get(choose_position).getName());
                     ivBank.setImageResource(R.mipmap.abc);
+                    bid = bankcardList.getData().get(choose_position).getBid();
                 }
 
                 //根据返回值, true 会关闭 SweetSheet ,false 则不会.

@@ -6,6 +6,7 @@ import android.support.v4.util.ArrayMap;
 import com.daking.sports.base.SportsAPI;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.AccountHistoryRsp;
+import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BettingDetailRsp;
@@ -245,7 +246,8 @@ public class HttpRequest {
 
     /**
      * 获取图片验证码
-     *  @param tag
+     *
+     * @param tag
      * @param callback
      */
     public void getPicVerificationCode(Object tag, HttpCallback<getPicVerificationCodeRsp> callback) {
@@ -296,6 +298,83 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     * 充值接口
+     *
+     * @param tag
+     * @param token
+     * @param identifier
+     * @param amount
+     * @param mark
+     * @param callback
+     */
+    public void getPayincome(Object tag, String token, String identifier, String amount, String mark, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("identifier", identifier)
+                .addParam("amount", amount)
+                .addParam("mark", mark)
+                .build();
+        Call<BindphoneRsp> call = mService.getPayincome(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 绑定银行卡
+     *
+     * @param tag
+     * @param token
+     * @param bank_id
+     * @param account_name
+     * @param account
+     * @param province_id
+     * @param city_id
+     * @param branch
+     * @param callback
+     */
+    public void bindBankCard(Object tag, String token, String bank_id, String account_name, String account
+            , String province_id, String city_id, String branch,
+                             HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("bank_id", bank_id)
+                .addParam("account_name", account_name)
+                .addParam("account", account)
+                .addParam("province_id", province_id)
+                .addParam("city_id", city_id)
+                .addParam("branch", branch)
+                .build();
+        Call<BindphoneRsp> call = mService.bindBankcard(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 获取地区
+     *
+     * @param tag
+     * @param token
+     * @param province_id
+     * @param callback
+     */
+    public void getDistrict(Object tag, String token, String province_id, HttpCallback<AreaRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("province_id", province_id)
+                .build();
+        Call<AreaRsp> call = mService.getDistrict(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+
+
 
 
     /**

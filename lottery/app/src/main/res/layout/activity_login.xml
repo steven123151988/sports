@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dimen_20"
-                    android:src="@mipmap/login_psw" />
+                    android:src="@mipmap/personal_email" />
 
                 <EditText
                     android:id="@+id/ed_pic_VerificationCode"

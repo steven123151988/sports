@@ -100,7 +100,7 @@
             android:layout_marginRight="@dimen/dimen_15"
             android:background="@drawable/bet_button_small"
             android:src="@mipmap/personal_phone"
-            android:text="发送"
+            android:text="获取"
             android:textColor="@color/blue_00ffff" />
 
 
