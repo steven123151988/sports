@@ -93,6 +93,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.dhh:websocket2:1.5.0'
     compile 'io.objectbox:objectbox-android:1.4.4'
+    compile 'com.contrarywind:Android-PickerView:4.1.3'
 
 
 }

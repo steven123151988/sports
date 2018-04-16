@@ -82,12 +82,10 @@ public class LoginActivity extends NewBaseActivity {
     RelativeLayout rlPicVerificationCode;
     @BindView(R.id.iv_numbercode)
     ImageView ivNumbercode;
-    private EditText et_account, et_psw;
     private String account, psw;
     private Handler handler;
     private boolean isChecked = false;
     private int position = 0;
-    private getUserInfo.DataBean data1;
 
 
     @Override
@@ -138,12 +136,9 @@ public class LoginActivity extends NewBaseActivity {
             etPsw.setText("");
         }
 
-
         showView(position);
 
         getPicVerificationCode();
-
-
     }
 
 
@@ -256,6 +251,7 @@ public class LoginActivity extends NewBaseActivity {
                     }
 
                     SharePreferencesUtil.addString(LoginActivity.this, SportsKey.USER_NAME, account);
+
                     getUserinfo();
 
                 }
@@ -279,6 +275,8 @@ public class LoginActivity extends NewBaseActivity {
             @Override
             public void onSuccess(getUserInfo data) {
                 SharePreferencesUtil.addString(LoginActivity.this, SportsKey.FUND_PWD, data.getData().getFund_pwd());
+                SharePreferencesUtil.addString(LoginActivity.this, SportsKey.TELEPHONE, data.getData().getMobile());
+                SharePreferencesUtil.addString(LoginActivity.this, SportsKey.BALANCE, data.getData().getAbalance());
                 startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
                 finish();
 
@@ -363,13 +361,6 @@ public class LoginActivity extends NewBaseActivity {
         });
 
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
-            super.onBackPressed();
-        }
     }
 
 

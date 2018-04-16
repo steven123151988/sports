@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -49,7 +50,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     private Toolbar mToolbar;
     private NavigationView mNavigationView;//侧边菜单项
     private int sdk_version = Build.VERSION.SDK_INT;  // 进入之前获取手机的SDK版本号
-    private TextView tv_username;
+    private TextView tv_username, tv_balance;
     private MenuItem mPreMenuItem;
     private GamedataFragment gamedataFragment;
     private ImageView iv_refresh;
@@ -62,7 +63,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
         initTitlebar();
         initview();
     }
-
 
 
     /**
@@ -99,7 +99,9 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             mNavigationView.setItemIconTintList(mContext.getResources().getColorStateList(R.color.navigationview_color, null));
         }
         tv_username = (TextView) navigation_header.findViewById(R.id.tv_username);
-        tv_username.setText(SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
+        tv_username.setText("欢迎回来："+SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
+        tv_balance = (TextView) navigation_header.findViewById(R.id.tv_balance);
+        tv_balance.setText("账户余额："+SharePreferencesUtil.getString(mContext, SportsKey.BALANCE,"0.00"));
         mToolbar.setTitle("");
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
         setSupportActionBar(mToolbar);
@@ -183,7 +185,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
 
                         break;
                     case R.id.navigation_personal_set:
-
                         startActivity(new Intent(BetMainActivity.this, PersonalCenterActivity.class));
                         break;
 
@@ -213,14 +214,6 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             animator.start();
         }
 
-    }
-
-
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
 

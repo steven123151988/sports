@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.activity.personalset.BindPhoneActivtiy;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
@@ -25,7 +24,6 @@ import com.daking.sports.util.CloseSoftInputFromWindowUtil;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
-import com.daking.sports.util.ToastUtil;
 import com.mingle.entity.MenuEntity;
 import com.mingle.sweetpick.BlurEffect;
 import com.mingle.sweetpick.RecyclerViewDelegate;
@@ -71,11 +69,6 @@ public class IncomeActivity extends NewBaseActivity {
     RelativeLayout rlSelectBank;
     @BindView(R.id.rl)
     RelativeLayout rl;
-
-    //屏幕高度
-    private int screenHeight = 0;
-    //软件盘弹起后所占高度阀值
-    private int keyHeight = 0;
     private boolean ifopen = false;
     private List list_name;
     private MenuEntity menuEntity;

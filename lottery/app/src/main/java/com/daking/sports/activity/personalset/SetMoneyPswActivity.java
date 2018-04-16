@@ -12,18 +12,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.activity.login.LoginActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.BindphoneRsp;
-import com.daking.sports.json.getPicVerificationCodeRsp;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -44,8 +42,6 @@ public class SetMoneyPswActivity extends NewBaseActivity {
     Button btnOk;
     @BindView(R.id.tv_bindphone)
     TextView tvBindphone;
-    @BindView(R.id.ed_phone)
-    EditText edPhone;
     @BindView(R.id.tv_rightcode)
     TextView tvRightcode;
     @BindView(R.id.ed_rightcode)
@@ -66,6 +62,8 @@ public class SetMoneyPswActivity extends NewBaseActivity {
     View view3;
     @BindView(R.id.view4)
     View view4;
+    @BindView(R.id.tv_phone)
+    TextView tvPhone;
     private String psw1, psw2, phone, rightcode;
 
     @Override
@@ -76,12 +74,16 @@ public class SetMoneyPswActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        tvCenter.setText("设置资金密码");
+
         if (!SharePreferencesUtil.getString(SetMoneyPswActivity.this, SportsKey.FUND_PWD, "").equals("1")) {
             setMoneyview();
+            tvCenter.setText("设置资金密码");
         } else {
             changeMoneyview();
+            tvCenter.setText("修改资金密码");
         }
+        phone = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TELEPHONE, "");
+        tvPhone.setText(phone);
 
     }
 
@@ -125,11 +127,11 @@ public class SetMoneyPswActivity extends NewBaseActivity {
 
                 break;
             case R.id.bt_code:
-                phone = edPhone.getText().toString().replace(" ", "");
+
                 String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
                 HttpRequest.getInstance().getVerificationCode(SetMoneyPswActivity.this, token, phone, "5", new HttpCallback<BindphoneRsp>() {
                     @Override
-                    public void onSuccess( BindphoneRsp data) {
+                    public void onSuccess(BindphoneRsp data) {
                         ShowDialogUtil.showSuccessDialog(SetMoneyPswActivity.this, getString(R.string.sucess_congratulations), "发送成功");
                         //延迟5秒关闭
                         Handler handler = new Handler();
@@ -159,14 +161,13 @@ public class SetMoneyPswActivity extends NewBaseActivity {
      */
     private void changemoneypsw() {
         psw1 = edPswNew.getText().toString().replace(" ", "");
-        phone = edPhone.getText().toString().replace(" ", "");
         rightcode = edRightcode.getText().toString().replace(" ", "");
         if (psw1.equals("") || phone.equals("") || rightcode.equals("")) {
             ShowDialogUtil.showFailDialog(SetMoneyPswActivity.this, getString(R.string.sorry), getString(R.string.empty_msg));
             return;
         }
         String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
-        HttpRequest.getInstance().changeMoneyPsw(SetMoneyPswActivity.this, token, "", psw1, new HttpCallback<BindphoneRsp>() {
+        HttpRequest.getInstance().changeMoneyPsw(SetMoneyPswActivity.this, token, rightcode, psw1, new HttpCallback<BindphoneRsp>() {
             @Override
             public void onSuccess(BindphoneRsp data) {
                 ShowDialogUtil.showSuccessDialog(SetMoneyPswActivity.this, getString(R.string.sucess_congratulations), "修改成功");

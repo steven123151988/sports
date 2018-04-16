@@ -30,7 +30,7 @@ public class TimeSelectUtil {
     /**
      * 选取汇款时间
      */
-    public void selectTime(final Context context, final TextView textView) {
+    public  void selectTime(Context context, final TextView textView) {
         initTimePiker();
         View view = ((LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.time_picker, null);
         Calendar calendar = Calendar.getInstance();
@@ -96,7 +96,7 @@ public class TimeSelectUtil {
                         .append(":").append(minuteWheel.getCurrentItemValue())
                         .append(":").append(secondWheel.getCurrentItemValue());
                 textView.setText(sb.toString());
-                SharePreferencesUtil.addString(context, SportsKey.PAY_TIME,sb.toString());
+//                SharePreferencesUtil.addString(context, SportsKey.PAY_TIME,sb.toString());
                 dialog.cancel();
 
             }
