@@ -125,15 +125,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
                 android:padding="@dimen/dimen_10"
-                android:text="选择银行"
+                android:text="选择线路"
                 android:textColor="@color/white_ffffff"
                 android:textSize="@dimen/sp_15" />
 
             <RelativeLayout
-                android:id="@+id/rl_select_bank"
+                android:id="@+id/rl_select_ways"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="@dimen/dimen_10"
                 android:alpha="0.7"
                 android:background="@color/black_212121"
@@ -141,23 +142,57 @@
                 android:padding="@dimen/dimen_5"
                 android:paddingLeft="@dimen/dimen_10">
 
-                <ImageView
-                    android:id="@+id/iv_bank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dimen_10"
-                    android:padding="@dimen/dimen_5"
-                    android:src="@mipmap/abc" />
-
 
                 <TextView
-                    android:id="@+id/tv_bankname"
+                    android:id="@+id/tv_platform"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dimen_20"
-                    android:layout_toRightOf="@+id/iv_bank"
+                    android:text="请选择线路"
+                    android:textColor="@color/white_ffffff"
+                    android:textSize="@dimen/sp_16" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dimen_20"
+                    android:src="@mipmap/arrow_right" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:padding="@dimen/dimen_10"
+                android:text="支付平台"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_15" />
+
+            <RelativeLayout
+                android:id="@+id/rl_select_bank"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:alpha="0.7"
+                android:background="@color/black_212121"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_5"
+                android:paddingLeft="@dimen/dimen_10">
+
+
+                <TextView
+                    android:id="@+id/tv_payway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dimen_20"
+                    android:text="请选择支付方式"
                     android:textColor="@color/white_ffffff"
                     android:textSize="@dimen/sp_16" />
 

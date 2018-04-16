@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_48"
-    android:background="@color/red_84201e">
+    android:background="@mipmap/bet_bg">
 
     <ImageView
         android:id="@+id/iv_back"

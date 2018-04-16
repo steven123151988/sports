@@ -24,13 +24,12 @@
             android:textSize="@dimen/sp_16" />
 
         <EditText
-            android:id="@+id/ed_money"
+            android:id="@+id/ed_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_10"
             android:background="@null"
-            android:maxLength="7"
-            android:minEms="5"
+            android:inputType="text"
             android:padding="@dimen/dimen_10"
             android:textColor="@color/white_ffffff"
             android:textColorHint="@color/white_ffffff"
@@ -48,30 +47,50 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
+        android:layout_marginLeft="@dimen/dimen_10"
         android:orientation="horizontal"
-        android:padding="@dimen/dimen_10">
+        android:padding="@dimen/dimen_5">
 
         <TextView
-            android:id="@+id/tv_bank"
+            android:id="@+id/tv_rightcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="生日日期："
+            android:layout_centerVertical="true"
+            android:text="@string/right_code"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
 
-
-        <ImageView
+        <EditText
+            android:id="@+id/ed_rightcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_toRightOf="@+id/tv_rightcode"
+            android:background="@null"
+            android:inputType="number"
+            android:maxLength="6"
+            android:minEms="5"
+            android:padding="@dimen/dimen_10"
+            android:textColor="@color/white_ffffff"
+            android:textColorHint="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
+
+        <Button
+            android:id="@+id/bt_code"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/arrow_right" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_15"
+            android:background="@drawable/bet_button_small"
+            android:src="@mipmap/personal_phone"
+            android:text="获取"
+            android:textColor="@color/blue_00ffff" />
 
 
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1"

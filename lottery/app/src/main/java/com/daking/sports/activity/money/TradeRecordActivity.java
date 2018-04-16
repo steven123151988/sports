@@ -1,35 +1,29 @@
-package com.daking.sports.activity.personalset;
+package com.daking.sports.activity.money;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.daking.sports.R;
 import com.daking.sports.base.NewBaseActivity;
-import butterknife.ButterKnife;
 
 /**
- * Description:
- * Data：2018/4/11-14:18
+ * Description: 交易记录
+ * Data：2018/4/16-17:41
  * steven
  */
-public class PersonActivity extends NewBaseActivity {
-
-
+public class TradeRecordActivity extends NewBaseActivity {
     @Override
     protected int getLayoutId() {
-        return R.layout.activtiy_personset;
+        return R.layout.activity_traderecord;
     }
 
     @Override
     protected void initData() {
+
     }
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
 
-
-
-
     }
-
-
 }

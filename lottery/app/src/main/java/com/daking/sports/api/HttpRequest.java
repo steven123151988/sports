@@ -18,8 +18,11 @@ import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.Pay;
+import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
+import com.daking.sports.json.getPayPlatformRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
 import com.daking.sports.json.getUserInfo;
 import com.daking.sports.util.JsonUtil;
@@ -325,14 +328,14 @@ public class HttpRequest {
      * @param mark
      * @param callback
      */
-    public void getPayincome(Object tag, String token, String identifier, String amount, String mark, HttpCallback<BindphoneRsp> callback) {
+    public void getPayincome(Object tag, String token, String identifier, String amount, String mark, HttpCallback<Pay> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .addParam("identifier", identifier)
                 .addParam("amount", amount)
                 .addParam("mark", mark)
                 .build();
-        Call<BindphoneRsp> call = mService.getPayincome(body);
+        Call<Pay> call = mService.getPayincome(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
@@ -424,6 +427,43 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     * 获取充值渠道
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getPayPlatform(Object tag, String token, HttpCallback<getPayPlatformRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("type", "1")
+                .build();
+        Call<getPayPlatformRsp> call = mService.getPayPlatform(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 获取充值平台下的充值方式
+     * @param tag
+     * @param token
+     * @param identifier
+     * @param callback
+     */
+    public void getPayways(Object tag, String token,String identifier, HttpCallback<PaywaysRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("identifier", identifier)
+                .addParam("type", "2")
+                .build();
+        Call<PaywaysRsp> call = mService.getPayways(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
 
 
     /**

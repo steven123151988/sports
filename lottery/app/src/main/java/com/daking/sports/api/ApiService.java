@@ -15,8 +15,11 @@ import com.daking.sports.json.LoginRsp;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
+import com.daking.sports.json.Pay;
+import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
+import com.daking.sports.json.getPayPlatformRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
 import com.daking.sports.json.getUserInfo;
 
@@ -101,11 +104,7 @@ public interface ApiService {
     Call<BindphoneRsp> changeLoginpsw(@Body RequestBody body);
 
 
-    /**
-     * 充值接口
-     */
-    @POST("service?action= DoPay&terminal_id=1")
-    Call<BindphoneRsp> getPayincome(@Body RequestBody body);
+
 
     /**
      * 绑定银行卡
@@ -132,6 +131,27 @@ public interface ApiService {
      */
     @POST("service?action=ChangeFundPwd&terminal_id=1&token=22441c03ade39bac8a561005edfe56be4f2d48f9")
     Call<BindphoneRsp> changeMoneypsw(@Body RequestBody body);
+
+    /**
+     * 选择充值平台
+     */
+    @POST("/service?action=GetAvailablePaymentType&terminal_id=1")
+    Call<getPayPlatformRsp> getPayPlatform(@Body RequestBody body);
+
+    /**
+     * 获取该平台下的充值渠道
+     */
+
+    @POST("service?action=GetAvailablePaymentType&terminal_id=1")
+    Call<PaywaysRsp> getPayways(@Body RequestBody body);
+
+    /**
+     * 充值接口
+     */
+    @POST("service?action= DoPay&terminal_id=1")
+    Call<Pay> getPayincome(@Body RequestBody body);
+
+
 
 
 
