@@ -100,8 +100,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-
-
+        <activity
+            android:name="com.daking.sports.activity.personalset.SetMoneyPswActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 

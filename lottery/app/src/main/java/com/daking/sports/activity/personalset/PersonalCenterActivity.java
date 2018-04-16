@@ -35,6 +35,8 @@ public class PersonalCenterActivity extends NewBaseActivity {
     RelativeLayout rlBindbankcard;
     @BindView(R.id.rl_changepsw)
     RelativeLayout rlChangepsw;
+    @BindView(R.id.rl_changepsw_money)
+    RelativeLayout rlChangepswMoney;
 
     @Override
     protected int getLayoutId() {
@@ -48,10 +50,11 @@ public class PersonalCenterActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-
+        tvCenter.setText("个人设置");
     }
 
-    @OnClick({R.id.iv_back, R.id.rl_person, R.id.rl_bindphone, R.id.rl_bindemail, R.id.rl_bindbankcard, R.id.rl_changepsw})
+    @OnClick({R.id.iv_back, R.id.rl_person, R.id.rl_bindphone, R.id.rl_bindemail, R.id.rl_bindbankcard, R.id.rl_changepsw
+            , R.id.rl_changepsw_money})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -71,6 +74,9 @@ public class PersonalCenterActivity extends NewBaseActivity {
                 break;
             case R.id.rl_changepsw:
                 startActivity(new Intent(PersonalCenterActivity.this, ChangePswActivtiy.class));
+                break;
+            case R.id.rl_changepsw_money:
+                startActivity(new Intent(PersonalCenterActivity.this, SetMoneyPswActivity.class));
                 break;
 
 

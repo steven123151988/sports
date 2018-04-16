@@ -34,12 +34,12 @@
                 android:layout_marginLeft="@dimen/dimen_10"
                 android:background="@null"
                 android:hint="@string/income_money_notice"
+                android:inputType="number"
                 android:maxLength="7"
                 android:minEms="5"
-                android:numeric="integer"
                 android:padding="@dimen/dimen_10"
                 android:textColor="@color/white_ffffff"
-                android:textColorHint="@color/white_ffffff"
+                android:textColorHint="@color/gray_cccccc"
                 android:textSize="@dimen/sp_16" />
 
             <TextView

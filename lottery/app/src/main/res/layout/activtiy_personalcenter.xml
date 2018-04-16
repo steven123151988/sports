@@ -10,15 +10,15 @@
     <RelativeLayout
         android:id="@+id/rl_person"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/personal_realname"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/personal_person" />
 
     </RelativeLayout>
@@ -41,15 +42,15 @@
     <RelativeLayout
         android:id="@+id/rl_bindphone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/personal_bindphone"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/personal_phone" />
 
     </RelativeLayout>
@@ -72,15 +74,15 @@
     <RelativeLayout
         android:id="@+id/rl_bindemail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/personal_bindemail"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
@@ -89,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/personal_email" />
 
     </RelativeLayout>
@@ -103,15 +106,15 @@
     <RelativeLayout
         android:id="@+id/rl_bindbankcard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/personal_bindbankcard"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
@@ -120,6 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/personal_bankcard" />
 
     </RelativeLayout>
@@ -134,15 +138,15 @@
     <RelativeLayout
         android:id="@+id/rl_changepsw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:layout_marginRight="@dimen/dimen_5"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/personal_changemoney"
             android:textColor="@color/white_ffffff"
             android:textSize="@dimen/sp_16" />
@@ -151,6 +155,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/login_psw" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:background="@color/gray_cccccc" />
+
+    <RelativeLayout
+        android:id="@+id/rl_changepsw_money"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="修改资金密码"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/login_psw" />
 
     </RelativeLayout>

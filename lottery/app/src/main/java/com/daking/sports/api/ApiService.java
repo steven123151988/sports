@@ -18,6 +18,7 @@ import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
+import com.daking.sports.json.getUserInfo;
 
 import okhttp3.RequestBody;
 
@@ -38,6 +39,11 @@ public interface ApiService {
     @POST("service?action=Register&terminal_id=1")
     Call<RegistRsp> regist(@Body RequestBody body);
 
+    /**
+     * 获取当前用户详情
+     */
+    @POST("service")
+    Call<getUserInfo> getUserInfo(@Body RequestBody body);
 
     /**
      * 获取热门赛事信息
@@ -113,6 +119,20 @@ public interface ApiService {
      */
     @POST("service?action=GetDistrict&terminal_id=1")
     Call<AreaRsp> getDistrict(@Body RequestBody body);
+
+    /**
+     * 设置资金密码
+     */
+    @POST("service?action=SetFundPwd&terminal_id=1")
+    Call<BindphoneRsp> setMoneypsw(@Body RequestBody body);
+
+
+    /**
+     * 修改资金密码
+     */
+    @POST("service?action=ChangeFundPwd&terminal_id=1&token=22441c03ade39bac8a561005edfe56be4f2d48f9")
+    Call<BindphoneRsp> changeMoneypsw(@Body RequestBody body);
+
 
 
 

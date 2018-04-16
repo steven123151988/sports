@@ -87,7 +87,7 @@ public class BindPhoneActivtiy extends NewBaseActivity {
                                 ShowDialogUtil.dismissDialogs();
 
                             }
-                        }, 800);
+                        }, 1000);
 
                     }
 
@@ -106,7 +106,7 @@ public class BindPhoneActivtiy extends NewBaseActivity {
                     ShowDialogUtil.showFailDialog(BindPhoneActivtiy.this, getString(R.string.sorry), getString(R.string.empty_msg));
                     return;
                 }
-                HttpRequest.getInstance().getVerificationCode(BindPhoneActivtiy.this, token, phone, rightcode, new HttpCallback<BindphoneRsp>() {
+                HttpRequest.getInstance().bindPhone(BindPhoneActivtiy.this, token, phone, rightcode, new HttpCallback<BindphoneRsp>() {
                     @Override
                     public void onSuccess(final BindphoneRsp data) {
                         ShowDialogUtil.showSuccessDialog(BindPhoneActivtiy.this, getString(R.string.sucess_congratulations), "绑定成功");
@@ -119,7 +119,7 @@ public class BindPhoneActivtiy extends NewBaseActivity {
                                 finish();
 
                             }
-                        }, 800);
+                        }, 1200);
 
                     }
 

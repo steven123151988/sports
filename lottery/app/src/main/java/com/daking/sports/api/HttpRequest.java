@@ -21,6 +21,7 @@ import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
+import com.daking.sports.json.getUserInfo;
 import com.daking.sports.util.JsonUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 
@@ -108,6 +109,19 @@ public class HttpRequest {
 
     }
 
+
+    /**
+     * 获取用户信息
+     */
+    public void getUserinfo(Object tag, String token, String action, HttpCallback<getUserInfo> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("action", action)
+                .build();
+        Call<getUserInfo> call = mService.getUserInfo(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
     /**
      * 登陆
@@ -231,6 +245,7 @@ public class HttpRequest {
      * @param tag
      * @param token
      * @param callback
+     * 0注册 1修改密码 2绑定手机 3绑定银行卡 4换银行卡 5更改资金密码
      */
     public void getVerificationCode(Object tag, String token, String mobile, String type, HttpCallback<BindphoneRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -372,9 +387,43 @@ public class HttpRequest {
     }
 
 
+    /**
+     * 设置资金密码
+     *
+     * @param tag
+     * @param token
+     * @param fund_pwd
+     * @param callback
+     */
+    public void setMoneyPsw(Object tag, String token, String fund_pwd, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("fund_pwd", fund_pwd)
+                .build();
+        Call<BindphoneRsp> call = mService.setMoneypsw(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
-
-
+    /**
+     * 修改资金密码
+     *
+     * @param tag
+     * @param token
+     * @param captcha
+     * @param new_password
+     * @param callback
+     */
+    public void changeMoneyPsw(Object tag, String token, String captcha, String new_password, HttpCallback<BindphoneRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("captcha", captcha)
+                .addParam("new_password", new_password)
+                .build();
+        Call<BindphoneRsp> call = mService.changeMoneypsw(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
     /**

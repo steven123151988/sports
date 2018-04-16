@@ -28,6 +28,7 @@ import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
+import com.daking.sports.json.getUserInfo;
 import com.daking.sports.util.CustomVideoView;
 import com.daking.sports.util.Md5Util;
 import com.daking.sports.util.SharePreferencesUtil;
@@ -86,6 +87,7 @@ public class LoginActivity extends NewBaseActivity {
     private Handler handler;
     private boolean isChecked = false;
     private int position = 0;
+    private getUserInfo.DataBean data1;
 
 
     @Override
@@ -167,13 +169,6 @@ public class LoginActivity extends NewBaseActivity {
         super.onResume();
         //初始化音频
         starVideoview();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
-            super.onBackPressed();
-        }
     }
 
 
@@ -261,20 +256,8 @@ public class LoginActivity extends NewBaseActivity {
                     }
 
                     SharePreferencesUtil.addString(LoginActivity.this, SportsKey.USER_NAME, account);
-//                    //展示成功的对话框
-//                    ShowDialogUtil.showSuccessDialog(LoginActivity.this, getString(R.string.sucess_congratulations), "登陆成功。");
-//                    //延迟5秒关闭
-//                    handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            ShowDialogUtil.dismissDialogs();
-//                            startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
-//                            finish();
-//                        }
-//                    }, 2500);
-                    startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
-                    finish();
+                    getUserinfo();
+
                 }
 
                 @Override
@@ -287,6 +270,32 @@ public class LoginActivity extends NewBaseActivity {
 
     }
 
+    /**
+     * 获取该用户的资料详情
+     */
+    private void getUserinfo() {
+        String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
+        HttpRequest.getInstance().getUserinfo(LoginActivity.this, token, "GetCurrentUserInfo", new HttpCallback<getUserInfo>() {
+            @Override
+            public void onSuccess(getUserInfo data) {
+                SharePreferencesUtil.addString(LoginActivity.this, SportsKey.FUND_PWD, data.getData().getFund_pwd());
+                startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
+                finish();
+
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                ShowDialogUtil.showFailDialog(LoginActivity.this, getString(R.string.loginerr), errorMsg);
+            }
+        });
+
+
+    }
+
+    /**
+     * 注册
+     */
     private void regist() {
         account = etAccount.getText().toString().replace(" ", "");
         SharePreferencesUtil.addString(LoginActivity.this, SportsKey.LOGIN_ACCOUNT, account);
@@ -336,6 +345,9 @@ public class LoginActivity extends NewBaseActivity {
 
     }
 
+    /**
+     * 获取图片验证码
+     */
     private void getPicVerificationCode() {
         HttpRequest.getInstance().getPicVerificationCode(LoginActivity.this, new HttpCallback<getPicVerificationCodeRsp>() {
             @Override
@@ -351,6 +363,13 @@ public class LoginActivity extends NewBaseActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!SharePreferencesUtil.getString(LoginActivity.this, SportsKey.UID, "0").equals("0")) {
+            super.onBackPressed();
+        }
     }
 
 

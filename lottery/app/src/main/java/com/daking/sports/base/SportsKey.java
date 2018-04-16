@@ -19,6 +19,7 @@ public class SportsKey {
     public static final String CAPTCHA = "captcha";
     public static final String CURRENT_PASSWORD = "current_password";
     public static final String NEW_PASSWORD = "new_password";
+    public static final String FUND_PWD = "fund_pwd";
 
 
 

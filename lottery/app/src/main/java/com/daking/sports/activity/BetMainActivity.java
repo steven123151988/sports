@@ -63,6 +63,8 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
         initview();
     }
 
+
+
     /**
      * 初始化界面
      */
@@ -212,6 +214,8 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
         }
 
     }
+
+
 
 
     @Override

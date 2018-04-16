@@ -1,5 +1,6 @@
 package com.daking.sports.activity.personalset;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -12,9 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.login.SplashActivity;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseActivity;
+import com.daking.sports.base.SportsAPI;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BankcardList;
@@ -35,6 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Description: 添加银行卡
@@ -94,6 +98,7 @@ public class BankcardsControlActivity extends NewBaseActivity {
     private List<AreaRsp.DataBean> dataBeans;
     private List<AreaRsp.DataBean.ChildrenBean> children;
     private String bank_id, account_name, account, province_id, city_id, branch;
+    private SweetAlertDialog SweetAlertDialog;
 
     @Override
     protected int getLayoutId() {
@@ -102,18 +107,24 @@ public class BankcardsControlActivity extends NewBaseActivity {
 
     @Override
     protected void initData() {
-        String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
-        HttpRequest.getInstance().getBankList(BankcardsControlActivity.this, token, new HttpCallback<BankcardList>() {
-            @Override
-            public void onSuccess(final BankcardList data) {
-                bankcardList = data;
-            }
+        if (!SharePreferencesUtil.getString(BankcardsControlActivity.this, SportsKey.FUND_PWD, "").equals("1")) {
+            SweetAlertDialog = new SweetAlertDialog(BankcardsControlActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE);
+            SweetAlertDialog.setTitleText("请先设置取款密码！")
+                    .setCustomImage(R.mipmap.update)
+                    .setContentText("")
+                    .setConfirmText("确认")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            SweetAlertDialog.dismiss();
+                            startActivity(new Intent(BankcardsControlActivity.this, SetMoneyPswActivity.class));
+                            finish();
 
-            @Override
-            public void onFailure(String msgCode, String errorMsg) {
+                        }
+                    })
+                    .show();
+        }
 
-            }
-        });
     }
 
     @Override
@@ -372,54 +383,68 @@ public class BankcardsControlActivity extends NewBaseActivity {
 
     private void selectBank() {
         CloseSoftInputFromWindowUtil.closeSoftInputFromWindow();
-        list = new ArrayList<>();
-        int banksize = bankcardList.getData().size();
-        if (null == bankcardList || banksize == 0) {
-            ShowDialogUtil.showSuccessDialog(BankcardsControlActivity.this, getString(R.string.sorry), getString(R.string.do_not_have_type));
-            return;
-        }
-
-        for (int i = 0; i < banksize; i++) {
-            list.add(bankcardList.getData().get(i).getName());
-        }
-        final ArrayList<MenuEntity> list = new ArrayList<>();
-        for (int i = 0; i < banksize; i++) {
-            menuEntity = new MenuEntity();
-            menuEntity.iconId = R.mipmap.company_income;
-            menuEntity.titleColor = 0xff000000;
-            menuEntity.title = (CharSequence) this.list.get(i);
-            list.add(menuEntity);
-        }
-        // SweetSheet 控件,根据 rl 确认位置
-        mSweetSheet = new SweetSheet(rl);
-        //设置数据源 (数据源支持设置 list 数组,也支持从菜单中获取)
-        mSweetSheet.setMenuList(list);
-        //根据设置不同的 Delegate 来显示不同的风格.
-        mSweetSheet.setDelegate(new RecyclerViewDelegate(true));
-        //根据设置不同Effect 来显示背景效果BlurEffect:模糊效果.DimEffect 变暗效果
-        mSweetSheet.setBackgroundEffect(new BlurEffect(8));
-        //设置点击事件
-        mSweetSheet.setOnMenuItemClickListener(new SweetSheet.OnMenuItemClickListener() {
+        String token = SharePreferencesUtil.getString(getApplicationContext(), SportsKey.TOKEN, "");
+        HttpRequest.getInstance().getBankList(BankcardsControlActivity.this, token, new HttpCallback<BankcardList>() {
             @Override
-            public boolean onItemClick(int position, MenuEntity menuEntity) {
-                choose_position = position;
-                if (choose_position != 9999) {
-                    //即时改变当前项的颜色
-                    list.get(position).titleColor = 0xff00ffff;
-                    ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
-                    select_bank = bankcardList.getData().get(choose_position).getName();
-                    tvBank.setText(select_bank);
-                    bank_id = bankcardList.getData().get(choose_position).getBid();
+            public void onSuccess(final BankcardList data) {
+                bankcardList = data;
+                list = new ArrayList<>();
+                int banksize = bankcardList.getData().size();
+                if (null == bankcardList || banksize == 0) {
+                    ShowDialogUtil.showSuccessDialog(BankcardsControlActivity.this, getString(R.string.sorry), getString(R.string.do_not_have_type));
+                    return;
                 }
 
-                //根据返回值, true 会关闭 SweetSheet ,false 则不会.
-                return true;
+                for (int i = 0; i < banksize; i++) {
+                    list.add(bankcardList.getData().get(i).getName());
+                }
+                final ArrayList<MenuEntity> list_menu = new ArrayList<>();
+                for (int i = 0; i < banksize; i++) {
+                    menuEntity = new MenuEntity();
+                    menuEntity.iconId = R.mipmap.company_income;
+                    menuEntity.titleColor = 0xff000000;
+                    menuEntity.title = (CharSequence) list.get(i);
+                    list_menu.add(menuEntity);
+                }
+                // SweetSheet 控件,根据 rl 确认位置
+                mSweetSheet = new SweetSheet(rl);
+                //设置数据源 (数据源支持设置 list_menu 数组,也支持从菜单中获取)
+                mSweetSheet.setMenuList(list_menu);
+                //根据设置不同的 Delegate 来显示不同的风格.
+                mSweetSheet.setDelegate(new RecyclerViewDelegate(true));
+                //根据设置不同Effect 来显示背景效果BlurEffect:模糊效果.DimEffect 变暗效果
+                mSweetSheet.setBackgroundEffect(new BlurEffect(8));
+                //设置点击事件
+                mSweetSheet.setOnMenuItemClickListener(new SweetSheet.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onItemClick(int position, MenuEntity menuEntity) {
+                        choose_position = position;
+                        if (choose_position != 9999) {
+                            //即时改变当前项的颜色
+                            list_menu.get(position).titleColor = 0xff00ffff;
+                            ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
+                            select_bank = bankcardList.getData().get(choose_position).getName();
+                            tvBank.setText(select_bank);
+                            bank_id = bankcardList.getData().get(choose_position).getBid();
+                        }
+
+                        //根据返回值, true 会关闭 SweetSheet ,false 则不会.
+                        return true;
+                    }
+                });
+
+                if (!mSweetSheet.isShow()) {
+                    mSweetSheet.toggle();
+                }
+            }
+
+            @Override
+            public void onFailure(String msgCode, String errorMsg) {
+                ShowDialogUtil.showFailDialog(BankcardsControlActivity.this, getString(R.string.sorry), errorMsg);
             }
         });
 
-        if (!mSweetSheet.isShow()) {
-            mSweetSheet.toggle();
-        }
+
     }
 
 
