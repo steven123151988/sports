@@ -99,10 +99,8 @@ public class BankcardsControlActivity extends NewBaseActivity {
     private BankcardList bankcardList;
     private Handler handler;
     private long mClickTime2;
-    private String token, phone, rightcode;
+    private String token, phone;
     private String select_bank;
-    private List<AreaRsp.DataBean> dataBeans;
-    private List<AreaRsp.DataBean.ChildrenBean> children;
     private String bank_id, account_name, account, province_id, city_id, branch;
     private SweetAlertDialog SweetAlertDialog;
 
@@ -236,8 +234,6 @@ public class BankcardsControlActivity extends NewBaseActivity {
         HttpRequest.getInstance().getDistrict(BankcardsControlActivity.this, token, province_id, new HttpCallback<AreaRsp>() {
             @Override
             public void onSuccess(AreaRsp data) {
-                dataBeans = data.getData();
-//                showProvince();
                 initOptionPicker(data);
             }
 

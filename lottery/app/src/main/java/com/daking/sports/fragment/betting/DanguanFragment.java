@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
+import android.widget.ListView;
 
 import com.daking.sports.R;
 import com.daking.sports.activity.betting.BetDetailActivity;
-import com.daking.sports.adapter.DanguanExpandableListAdapter;
+import com.daking.sports.adapter.BetdetailAdapter;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseFragment;
@@ -26,10 +26,10 @@ import butterknife.Unbinder;
  * steven
  */
 public class DanguanFragment extends NewBaseFragment {
-    @BindView(R.id.lv_bet_expandableListView)
-    ExpandableListView lvBetExpandableListView;
+    @BindView(R.id.lv_betdetail)
+    ListView lvBetdetail;
     Unbinder unbinder;
-    private DanguanExpandableListAdapter expandableListAdapter;
+
     private String lid;
 
     @Override
@@ -42,15 +42,11 @@ public class DanguanFragment extends NewBaseFragment {
         HttpRequest.getInstance().getPlayWays(DanguanFragment.this, lid, new HttpCallback<GamePlaywaysRsp>() {
             @Override
             public void onSuccess(final GamePlaywaysRsp data) {
-//                lvBetExpandableListView.setAdapter(new DanguanExpandableListAdapter(getActivity(),data));
-//                lvBetExpandableListView.setGroupIndicator(null);
-//                lvBetExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//                    @Override
-//                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//
-//                        return true;
-//                    }
-//                });
+
+                BetdetailAdapter betdetailAdapter = new BetdetailAdapter(getActivity(),data);
+                lvBetdetail.setAdapter(betdetailAdapter);
+                betdetailAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -66,19 +62,22 @@ public class DanguanFragment extends NewBaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         lid = ((BetDetailActivity) context).getLid();
+
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // TODO: inflate a fragment view
-//        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-//        unbinder = ButterKnife.bind(this, rootView);
-//        return rootView;
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        unbinder.unbind();
-//    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+
 }

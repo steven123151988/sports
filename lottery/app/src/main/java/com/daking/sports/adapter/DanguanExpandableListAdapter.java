@@ -6,30 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daking.sports.R;
-import com.daking.sports.json.BettingDetailRsp;
-
-import java.util.List;
+import com.daking.sports.json.GamePlaywaysRsp;
 
 
 /**
- * Created by 18 on 2017/5/14. 体育投注面页（扩展性的listview）
+ * 单关  扩展性的listview
  */
 
 public class DanguanExpandableListAdapter implements ExpandableListAdapter {
     private LayoutInflater mInflater;
     private Context mContext;
-    private BettingDetailRsp bettingDetailRsp;
-    private List<BettingDetailRsp.IfoBean.BetmsgBean> betmsg;
-    private List<BettingDetailRsp.IfoBean.BetmsgBean.DataBean> dataBeen;
+    GamePlaywaysRsp gamePlaywaysRsp;
 
-    public DanguanExpandableListAdapter(Context context, BettingDetailRsp bettingDetailRsp) {
+    public DanguanExpandableListAdapter(Context context, GamePlaywaysRsp gamePlaywaysRsp) {
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
-        this.bettingDetailRsp = bettingDetailRsp;
+        this.gamePlaywaysRsp=gamePlaywaysRsp;
     }
 
     @Override
@@ -44,13 +39,13 @@ public class DanguanExpandableListAdapter implements ExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return null == bettingDetailRsp.getIfo().getBetmsg() ? 0 : bettingDetailRsp.getIfo().getBetmsg().size();
+        return null ==gamePlaywaysRsp?0:gamePlaywaysRsp.getData().size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return null == bettingDetailRsp.getIfo().getBetmsg().get(groupPosition).getData() ?
-                0 : bettingDetailRsp.getIfo().getBetmsg().get(groupPosition).getData().size();
+        return null == gamePlaywaysRsp.getData().get(groupPosition) ?
+                0 :gamePlaywaysRsp.getData().get(groupPosition).getDetail().size();
     }
 
     @Override
@@ -83,20 +78,15 @@ public class DanguanExpandableListAdapter implements ExpandableListAdapter {
         TitleViewHolder viewHolder = null;
         if (view == null) {
             viewHolder = new TitleViewHolder();
-            view = mInflater.inflate(R.layout.adapter_betting_title, null);
-            viewHolder.iv_arrow = (ImageView) view.findViewById(R.id.iv_arrow);
-            viewHolder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+            view = mInflater.inflate(R.layout.adapter_button1, null);
+//            viewHolder.game_title = (TextView) view.findViewById(R.id.game_title);
             view.setTag(viewHolder);
         } else {
             viewHolder = (TitleViewHolder) view.getTag();
         }
-        betmsg = bettingDetailRsp.getIfo().getBetmsg();
-        viewHolder.tv_title.setText(betmsg.get(groupPosition).getTitle());
-        if (isExpanded) {
-            viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_up);
-        } else {
-            viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_down);
-        }
+
+        viewHolder.game_title.setText(gamePlaywaysRsp.getData().get(groupPosition).getAlias());
+
         return view;
     }
 
@@ -114,10 +104,10 @@ public class DanguanExpandableListAdapter implements ExpandableListAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        dataBeen= bettingDetailRsp.getIfo().getBetmsg().get(groupPosition).getData();
-        viewHolder.tv_1.setText(dataBeen.get(childPosition).getTeam());
-        viewHolder.tv_2.setText(dataBeen.get(childPosition).getMid());
-        viewHolder.tv_3.setText(dataBeen.get(childPosition).getRate());
+//        dataBeen = bettingDetailRsp.getIfo().getBetmsg().get(groupPosition).getData();
+//        viewHolder.tv_1.setText(dataBeen.get(childPosition).getTeam());
+//        viewHolder.tv_2.setText(dataBeen.get(childPosition).getMid());
+//        viewHolder.tv_3.setText(dataBeen.get(childPosition).getRate());
         return view;
     }
 
@@ -160,8 +150,7 @@ public class DanguanExpandableListAdapter implements ExpandableListAdapter {
     }
 
     private class TitleViewHolder {
-        TextView tv_title;
-        ImageView iv_arrow;
+        TextView game_title;
     }
 
     private class ViewHolder {
