@@ -488,6 +488,45 @@ public class HttpRequest {
 
 
     /**
+     * 充值记录
+     * @param tag
+     * @param token
+     * @param begin_time
+     * @param end_time
+     * @param page
+     * @param pagesize
+     * @param callback
+     */
+    public void payRecord(Object tag, String token, String begin_time, String end_time, String page, String pagesize,HttpCallback<BankcardRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("begin_time", begin_time)
+                .addParam("end_time", end_time)
+                .addParam("page", page)
+                .addParam("pagesize", pagesize)
+                .build();
+        Call<BankcardRsp> call = mService.payRecord(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+    public void getMoneyRecord(Object tag, String token, String bankcard_id, String amount, String fund_password, HttpCallback<BankcardRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("bankcard_id", bankcard_id)
+                .addParam("amount", amount)
+                .addParam("fund_password", fund_password)
+                .build();
+        Call<BankcardRsp> call = mService.takeOutMoney(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
+    /**
      * 检查用户名是否已经被占用
      *
      * @param tag

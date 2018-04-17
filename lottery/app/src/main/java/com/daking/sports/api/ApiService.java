@@ -158,10 +158,17 @@ public interface ApiService {
     Call<BankcardRsp> takeOutMoney(@Body RequestBody body);
 
 
+    /**
+     *获得资金明细列表
+     */
+    @POST("service?action=GetTransactionList&terminal_id=1")
+    Call<BankcardRsp> getMoneyRecord(@Body RequestBody body);
 
-
-
-
+    /**
+     *  充值记录
+     */
+    @POST("service?action=GetDepositList&terminal_id=1")
+    Call<BankcardRsp> payRecord(@Body RequestBody body);
 
 
 

@@ -1,6 +1,7 @@
 package com.daking.sports.activity.personalset;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -12,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectChangeListener;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.daking.sports.R;
 import com.daking.sports.activity.login.SplashActivity;
 import com.daking.sports.api.HttpCallback;
@@ -22,6 +27,7 @@ import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BankcardList;
 import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.util.CloseSoftInputFromWindowUtil;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.LogUtil;
@@ -99,6 +105,10 @@ public class BankcardsControlActivity extends NewBaseActivity {
     private List<AreaRsp.DataBean.ChildrenBean> children;
     private String bank_id, account_name, account, province_id, city_id, branch;
     private SweetAlertDialog SweetAlertDialog;
+
+    private static final List<String> options1Items = new ArrayList<>();
+    private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
+    private OptionsPickerView pvOptions;
 
     @Override
     protected int getLayoutId() {
@@ -227,7 +237,8 @@ public class BankcardsControlActivity extends NewBaseActivity {
             @Override
             public void onSuccess(AreaRsp data) {
                 dataBeans = data.getData();
-                showProvince();
+//                showProvince();
+                initOptionPicker(data);
             }
 
             @Override
@@ -235,115 +246,6 @@ public class BankcardsControlActivity extends NewBaseActivity {
                 ShowDialogUtil.showFailDialog(BankcardsControlActivity.this, getString(R.string.sorry), errorMsg);
             }
         });
-    }
-
-
-    /**
-     * 展示省区的对话栏
-     */
-    private void showProvince() {
-        list = new ArrayList<>();
-        int size = dataBeans.size();
-        if (null == dataBeans || size == 0) {
-            ShowDialogUtil.showSuccessDialog(BankcardsControlActivity.this, getString(R.string.sorry), getString(R.string.do_not_have_type));
-            return;
-        }
-
-        for (int i = 0; i < size; i++) {
-            list.add(dataBeans.get(i).getName());
-        }
-        final ArrayList<MenuEntity> list = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            menuEntity = new MenuEntity();
-            menuEntity.iconId = R.mipmap.company_income;
-            menuEntity.titleColor = 0xff000000;
-            menuEntity.title = (CharSequence) this.list.get(i);
-            list.add(menuEntity);
-        }
-        // SweetSheet 控件,根据 rl 确认位置
-        mSweetSheet = new SweetSheet(rl);
-        //设置数据源 (数据源支持设置 list 数组,也支持从菜单中获取)
-        mSweetSheet.setMenuList(list);
-        //根据设置不同的 Delegate 来显示不同的风格.
-        mSweetSheet.setDelegate(new RecyclerViewDelegate(true));
-        //根据设置不同Effect 来显示背景效果BlurEffect:模糊效果.DimEffect 变暗效果
-        mSweetSheet.setBackgroundEffect(new BlurEffect(8));
-        //设置点击事件
-        mSweetSheet.setOnMenuItemClickListener(new SweetSheet.OnMenuItemClickListener() {
-            @Override
-            public boolean onItemClick(int position, MenuEntity menuEntity) {
-                choose_position = position;
-                if (choose_position != 9999) {
-                    //即时改变当前项的颜色
-                    list.get(position).titleColor = 0xff00ffff;
-                    ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
-                    select_bank = dataBeans.get(choose_position).getName();
-                    tvProvince.setText(select_bank);
-                    children = dataBeans.get(choose_position).getChildren();
-                    province_id = dataBeans.get(choose_position).getProvince_id();
-                    showCity();
-                }
-
-                //根据返回值, true 会关闭 SweetSheet ,false 则不会.
-                return true;
-            }
-        });
-
-        if (!mSweetSheet.isShow()) {
-            mSweetSheet.toggle();
-        }
-    }
-
-    private void showCity() {
-        CloseSoftInputFromWindowUtil.closeSoftInputFromWindow();
-        list = new ArrayList<>();
-        int size = children.size();
-        if (null == children || size == 0) {
-            ShowDialogUtil.showSuccessDialog(BankcardsControlActivity.this, getString(R.string.sorry), getString(R.string.do_not_have_type));
-            return;
-        }
-
-        for (int i = 0; i < size; i++) {
-            list.add(children.get(i).getName());
-        }
-        final ArrayList<MenuEntity> list = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            menuEntity = new MenuEntity();
-            menuEntity.iconId = R.mipmap.company_income;
-            menuEntity.titleColor = 0xff000000;
-            menuEntity.title = (CharSequence) this.list.get(i);
-            list.add(menuEntity);
-        }
-        // SweetSheet 控件,根据 rl 确认位置
-        mSweetSheet = new SweetSheet(rl);
-        //设置数据源 (数据源支持设置 list 数组,也支持从菜单中获取)
-        mSweetSheet.setMenuList(list);
-        //根据设置不同的 Delegate 来显示不同的风格.
-        mSweetSheet.setDelegate(new RecyclerViewDelegate(true));
-        //根据设置不同Effect 来显示背景效果BlurEffect:模糊效果.DimEffect 变暗效果
-        mSweetSheet.setBackgroundEffect(new BlurEffect(8));
-        //设置点击事件
-        mSweetSheet.setOnMenuItemClickListener(new SweetSheet.OnMenuItemClickListener() {
-            @Override
-            public boolean onItemClick(int position, MenuEntity menuEntity) {
-                choose_position = position;
-                if (choose_position != 9999) {
-                    //即时改变当前项的颜色
-                    list.get(position).titleColor = 0xff00ffff;
-                    ((RecyclerViewDelegate) mSweetSheet.getDelegate()).notifyDataSetChanged();
-                    select_bank = children.get(choose_position).getName();
-                    city_id = children.get(choose_position).getId();
-                    tvCity.setText(select_bank);
-                }
-
-                //根据返回值, true 会关闭 SweetSheet ,false 则不会.
-                return true;
-            }
-        });
-
-        if (!mSweetSheet.isShow()) {
-            mSweetSheet.toggle();
-        }
     }
 
 
@@ -445,6 +347,72 @@ public class BankcardsControlActivity extends NewBaseActivity {
         });
 
 
+    }
+
+    private void initOptionPicker(final AreaRsp data) {
+        //条件选择器初始化
+        ArrayList<String> options2Items_01;
+        //选项1
+        int size = data.getData().size();
+        options1Items.clear();
+        options2Items.clear();
+        for (int i = 0; i < size; i++) {
+            options1Items.add(data.getData().get(i).getName());
+            options2Items_01 = new ArrayList<>();
+            //选项2
+            int size2 = data.getData().get(i).getChildren().size();
+            for (int m = 0; m < size2; m++) {
+                options2Items_01.add(data.getData().get(i).getChildren().get(m).getName());
+            }
+
+            options2Items.add(options2Items_01);
+        }
+
+
+        /**
+         * 注意 ：如果是三级联动的数据(省市区等)，请参照 JsonDataActivity 类里面的写法。
+         */
+
+        pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+
+                tvProvince.setText(data.getData().get(options1).getName());
+                tvCity.setText(data.getData().get(options1).getChildren().get(options2).getName());
+                province_id = data.getData().get(options1).getProvince_id();
+                city_id = data.getData().get(options1).getChildren().get(options2).getId();
+            }
+        })
+                .setTitleText("选择地区")
+                .setContentTextSize(18)//设置滚轮文字大小
+                .setDividerColor(Color.LTGRAY)//设置分割线的颜色
+                .setSelectOptions(0, 1)//默认选中项
+                .setBgColor(Color.WHITE)
+                .setTitleBgColor(Color.WHITE)
+                .setTitleColor(Color.LTGRAY)
+                .setCancelColor(Color.BLACK)
+                .setSubmitColor(Color.BLACK)
+                .setTextColorCenter(Color.LTGRAY)
+                .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setLabels("", "", "")
+                .setBackgroundId(0x00000000) //设置外部遮罩颜色
+                .setOptionsSelectChangeListener(new OnOptionsSelectChangeListener() {
+                    @Override
+                    public void onOptionsSelectChanged(int options1, int options2, int options3) {
+                        String str = "options1: " + options1 + "\noptions2: " + options2 + "\noptions3: " + options3;
+                        LogUtil.e("======" + str);
+
+                    }
+                })
+                .build();
+
+//        pvOptions.setSelectOptions(1,1);
+        /*pvOptions.setPicker(options1Items);//一级选择器*/
+        pvOptions.setPicker(options1Items, options2Items);//二级选择器
+        pvOptions.show();
+        /*pvOptions.setPicker(options1Items, options2Items,options3Items);//三级选择器*/
     }
 
 
