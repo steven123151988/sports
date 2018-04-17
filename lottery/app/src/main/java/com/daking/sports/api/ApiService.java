@@ -6,6 +6,7 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
+import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
@@ -72,11 +73,6 @@ public interface ApiService {
     @POST("service?action=GetBankList&terminal_id=1")
     Call<BankcardList> GetBankList(@Body RequestBody body);
 
-    /**
-     * 获取绑定的银行卡
-     */
-    @POST("service?action=GetBankCardList&terminal_id=1")
-    Call<BankcardList> getBankCardList(@Body RequestBody body);
 
     /**
      * 获取验证码
@@ -102,8 +98,6 @@ public interface ApiService {
      */
     @POST("service?action=ChangeLoginPwd&terminal_id=1")
     Call<BindphoneRsp> changeLoginpsw(@Body RequestBody body);
-
-
 
 
     /**
@@ -150,6 +144,19 @@ public interface ApiService {
      */
     @POST("service?action= DoPay&terminal_id=1")
     Call<Pay> getPayincome(@Body RequestBody body);
+
+    /**
+     * 获取已经绑定的银行卡
+     */
+    @POST("service?action=GetBankCardList&terminal_id=1")
+    Call<BankcardRsp> getBindBanklist(@Body RequestBody body);
+
+    /**
+     * 提现
+     */
+    @POST("service?action=Withdraw&terminal_id=1")
+    Call<BankcardRsp> takeOutMoney(@Body RequestBody body);
+
 
 
 

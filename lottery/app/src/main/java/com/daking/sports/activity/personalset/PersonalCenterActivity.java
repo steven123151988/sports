@@ -70,7 +70,7 @@ public class PersonalCenterActivity extends NewBaseActivity {
                 startActivity(new Intent(PersonalCenterActivity.this, BindEmailActivtiy.class));
                 break;
             case R.id.rl_bindbankcard:
-                startActivity(new Intent(PersonalCenterActivity.this, BankcardsControlActivity.class));
+                startActivity(new Intent(PersonalCenterActivity.this, BankcardActivity.class));
                 break;
             case R.id.rl_changepsw:
                 startActivity(new Intent(PersonalCenterActivity.this, ChangePswActivtiy.class));

@@ -17,7 +17,7 @@
     <string name="danguan">单关</string>
     <string name="chuanguan">串关</string>
     <string name="income_money">存款金额(元)</string>
-    <string name="income_money_notice">请输入充值金额！最小10，最大5000</string>
+    <string name="income_money_notice">请输入充值金额,最少10元。</string>
     <string name="income_money_notice_2">(存款金额个位和十位不能同时为0，如101.00)</string>
     <string name="pay_ok">立即存款</string>
     <string name="take_out">立即提现</string>

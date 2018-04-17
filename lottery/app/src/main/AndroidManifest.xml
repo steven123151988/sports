@@ -68,6 +68,11 @@
             android:name="com.daking.sports.activity.money.IncomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.daking.sports.activity.personalset.BankcardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name="com.daking.sports.activity.money.TakeoutMoneyActivity"
@@ -104,10 +109,6 @@
             android:name="com.daking.sports.activity.personalset.SetMoneyPswActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
-
-
-
 
 
         <activity

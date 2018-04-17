@@ -211,7 +211,6 @@ public class LoginActivity extends NewBaseActivity {
                 getPicVerificationCode();
                 break;
 
-
         }
     }
 
@@ -277,6 +276,7 @@ public class LoginActivity extends NewBaseActivity {
                 SharePreferencesUtil.addString(LoginActivity.this, SportsKey.FUND_PWD, data.getData().getFund_pwd());
                 SharePreferencesUtil.addString(LoginActivity.this, SportsKey.TELEPHONE, data.getData().getMobile());
                 SharePreferencesUtil.addString(LoginActivity.this, SportsKey.BALANCE, data.getData().getAbalance());
+                SharePreferencesUtil.addString(LoginActivity.this, SportsKey.BANKNUM, data.getData().getBank_num());
                 startActivity(new Intent(LoginActivity.this, BetMainActivity.class));
                 finish();
 

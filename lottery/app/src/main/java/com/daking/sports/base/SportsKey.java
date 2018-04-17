@@ -22,6 +22,7 @@ public class SportsKey {
     public static final String FUND_PWD = "fund_pwd";
     public static final String TELEPHONE = "telephone";
     public static final String BALANCE = "abalance";
+    public static final String BANKNUM = "banknum";
 
 
 

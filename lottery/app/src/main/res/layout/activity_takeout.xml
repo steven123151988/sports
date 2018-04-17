@@ -14,7 +14,6 @@
         android:padding="@dimen/dimen_15">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -23,6 +22,7 @@
             android:textSize="@dimen/sp_16" />
 
         <TextView
+            android:id="@+id/tv_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -32,18 +32,33 @@
 
     </RelativeLayout>
 
+
     <EditText
         android:id="@+id/ed_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="@string/income_money_notice"
+        android:inputType="number"
         android:maxLength="7"
         android:minEms="5"
-        android:numeric="integer"
         android:padding="@dimen/dimen_15"
         android:textColor="@color/white_ffffff"
-        android:textColorHint="@color/white_ffffff"
+        android:textColorHint="@color/gray_cccccc"
+        android:textSize="@dimen/sp_16" />
+
+    <EditText
+        android:id="@+id/ed_money_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入资金密码"
+        android:inputType="numberPassword"
+        android:maxLength="6"
+        android:minEms="5"
+        android:padding="@dimen/dimen_15"
+        android:textColor="@color/white_ffffff"
+        android:textColorHint="@color/gray_cccccc"
         android:textSize="@dimen/sp_16" />
 
 
@@ -58,7 +73,7 @@
     <ListView
         android:id="@+id/lv_select_takeout_bankcard"
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        android:layout_height="wrap_content" />
 
 
     <Button

@@ -129,7 +129,7 @@ public class BankcardsControlActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
-        tvCenter.setText(getString(R.string.bankcard_control));
+        tvCenter.setText("添加银行卡");
 
     }
 

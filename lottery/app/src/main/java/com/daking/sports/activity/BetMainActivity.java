@@ -23,12 +23,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import com.daking.sports.R;
 import com.daking.sports.activity.personalset.PersonalCenterActivity;
 import com.daking.sports.activity.money.IncomeActivity;
 import com.daking.sports.activity.money.TakeoutMoneyActivity;
+import com.daking.sports.activity.personalset.SetMoneyPswActivity;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
@@ -99,9 +101,9 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             mNavigationView.setItemIconTintList(mContext.getResources().getColorStateList(R.color.navigationview_color, null));
         }
         tv_username = (TextView) navigation_header.findViewById(R.id.tv_username);
-        tv_username.setText("欢迎回来："+SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
+        tv_username.setText("欢迎回来：" + SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
         tv_balance = (TextView) navigation_header.findViewById(R.id.tv_balance);
-        tv_balance.setText("账户余额："+SharePreferencesUtil.getString(mContext, SportsKey.BALANCE,"0.00"));
+        tv_balance.setText("账户余额：" + SharePreferencesUtil.getString(mContext, SportsKey.BALANCE, "0.00"));
         mToolbar.setTitle("");
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
         setSupportActionBar(mToolbar);
@@ -170,7 +172,12 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                         startActivity(new Intent(BetMainActivity.this, IncomeActivity.class));
                         break;
                     case R.id.navigation_take_out_money:
-                        startActivity(new Intent(BetMainActivity.this, TakeoutMoneyActivity.class));
+                        if (SharePreferencesUtil.getString(BetMainActivity.this, SportsKey.FUND_PWD, "0").equals("1")) {
+                            startActivity(new Intent(BetMainActivity.this, TakeoutMoneyActivity.class));
+                        } else {
+                            startActivity(new Intent(BetMainActivity.this, SetMoneyPswActivity.class));
+                        }
+
                         break;
                     case R.id.navigation_trade_record:
 

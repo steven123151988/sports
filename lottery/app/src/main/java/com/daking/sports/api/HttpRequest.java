@@ -9,6 +9,7 @@ import com.daking.sports.json.AccountHistoryRsp;
 import com.daking.sports.json.AreaRsp;
 import com.daking.sports.json.BallGQRsp;
 import com.daking.sports.json.BankcardList;
+import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
@@ -226,29 +227,11 @@ public class HttpRequest {
 
 
     /**
-     * 获取已经绑定的银行卡
-     *
-     * @param tag
-     * @param token
-     * @param callback
-     */
-    public void getBankCardList(Object tag, String token, HttpCallback<BankcardList> callback) {
-        RequestBody body = new RequestBodyBuilder()
-                .addParam(SportsKey.TOKEN, token)
-                .build();
-        Call<BankcardList> call = mService.getBankCardList(body);
-        putCall(tag, call);
-        call.enqueue(callback);
-    }
-
-
-    /**
      * 获取验证码
      *
      * @param tag
      * @param token
-     * @param callback
-     * 0注册 1修改密码 2绑定手机 3绑定银行卡 4换银行卡 5更改资金密码
+     * @param callback 0注册 1修改密码 2绑定手机 3绑定银行卡 4换银行卡 5更改资金密码
      */
     public void getVerificationCode(Object tag, String token, String mobile, String type, HttpCallback<BindphoneRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
@@ -340,6 +323,21 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 获取绑定的银行卡
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getBindBankcard(Object tag, String token, HttpCallback<BankcardRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .build();
+        Call<BankcardRsp> call = mService.getBindBanklist(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
     /**
      * 绑定银行卡
@@ -431,6 +429,7 @@ public class HttpRequest {
 
     /**
      * 获取充值渠道
+     *
      * @param tag
      * @param token
      * @param callback
@@ -448,12 +447,13 @@ public class HttpRequest {
 
     /**
      * 获取充值平台下的充值方式
+     *
      * @param tag
      * @param token
      * @param identifier
      * @param callback
      */
-    public void getPayways(Object tag, String token,String identifier, HttpCallback<PaywaysRsp> callback) {
+    public void getPayways(Object tag, String token, String identifier, HttpCallback<PaywaysRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .addParam("identifier", identifier)
@@ -464,6 +464,27 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 提现
+     *
+     * @param tag
+     * @param token
+     * @param bankcard_id
+     * @param amount
+     * @param fund_password
+     * @param callback
+     */
+    public void takeOutMoney(Object tag, String token, String bankcard_id, String amount, String fund_password, HttpCallback<BankcardRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("bankcard_id", bankcard_id)
+                .addParam("amount", amount)
+                .addParam("fund_password", fund_password)
+                .build();
+        Call<BankcardRsp> call = mService.takeOutMoney(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
     /**
