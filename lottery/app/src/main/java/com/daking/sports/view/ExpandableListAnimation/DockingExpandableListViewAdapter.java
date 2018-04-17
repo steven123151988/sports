@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.daking.sports.R;
 import com.daking.sports.activity.betting.BetDetailActivity;
 import com.daking.sports.base.SportsKey;
+import com.daking.sports.json.TeamDate;
 import com.daking.sports.json.getGameDataRsp;
+import com.daking.sports.util.LogUtil;
 
 
 /**
@@ -119,8 +121,14 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
             @Override
             public void onClick(View v) {
                 if (null!=dataBean.getLid()){
+                    TeamDate date=new TeamDate();
+                    date.setA_cn(dataBean.getA_cn());
+                    date.setDate(dataBean.getDate());
+                    date.setH_cn(dataBean.getH_cn());
+                    date.setTime(dataBean.getTime());
+                    date.setLid(dataBean.getLid());
                     Intent intent=new Intent(mContext, BetDetailActivity.class);
-                    intent.putExtra(SportsKey.LID,dataBean.getLid());
+                    intent.putExtra("dataBean",date);
                     mContext.startActivity(intent);
                 }
             }

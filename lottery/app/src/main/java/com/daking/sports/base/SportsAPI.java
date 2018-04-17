@@ -6,12 +6,6 @@ public class SportsAPI {
     public static final String LOGIN = "login";//登陆
 
 
-
-
-
-
-
-
     public static final String REGIST = "/member/register/check_reg";//注册
     public static final String CHECK_USER = "/member/register/chk_user";//检查用户名称
     public static final String LOGIN_OUT = "/login/loginout";//登出
@@ -179,7 +173,7 @@ public class SportsAPI {
                 break;
             case "10011":
                 needErrorCode = true;
-                info = "返回数据类型解析错误{JSONException}.";
+                info = "返回数据类型解析错误{JasonException}.";
                 break;
             case "10012":
                 needErrorCode = true;

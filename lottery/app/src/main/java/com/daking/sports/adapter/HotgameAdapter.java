@@ -14,6 +14,7 @@ import com.daking.sports.activity.BetMainActivity;
 import com.daking.sports.activity.betting.BetDetailActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.json.HotgameRsp;
+import com.daking.sports.json.TeamDate;
 
 import java.util.List;
 
@@ -72,8 +73,15 @@ public class HotgameAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (null != hotdata.get(position).getLid()) {
+                    TeamDate date=new TeamDate();
+                    date.setA_cn(hotdata.get(position).getA_cn());
+                    date.setDate(hotdata.get(position).getDate());
+                    date.setH_cn(hotdata.get(position).getH_cn());
+                    date.setTime(hotdata.get(position).getTime());
+                    date.setLid(hotdata.get(position).getLid());
+
                     Intent intent = new Intent(mcontext, BetDetailActivity.class);
-                    intent.putExtra(SportsKey.LID, hotdata.get(position).getLid());
+                    intent.putExtra("dataBean",date);
                     mcontext.startActivity(intent);
                 }
             }

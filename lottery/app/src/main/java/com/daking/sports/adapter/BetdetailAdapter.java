@@ -69,15 +69,14 @@ public class BetdetailAdapter extends BaseAdapter {
 
         if (gamePlaywaysRsp.getData().get(position).getType().equals("had")
                 || gamePlaywaysRsp.getData().get(position).getType().equals("hhad")
-                || gamePlaywaysRsp.getData().get(position).getType().equals("hafu")) {
+                || gamePlaywaysRsp.getData().get(position).getType().equals("hafu")
+                || gamePlaywaysRsp.getData().get(position).getType().equals("crs")) {
             viewHolder.gv_bet.setNumColumns(3);
         }
         if (gamePlaywaysRsp.getData().get(position).getType().equals("ttg")) {
             viewHolder.gv_bet.setNumColumns(4);
         }
-        if (gamePlaywaysRsp.getData().get(position).getType().equals("crs")) {
-            viewHolder.gv_bet.setNumColumns(5);
-        }
+
 
         adapter.notifyDataSetChanged();
         return view;

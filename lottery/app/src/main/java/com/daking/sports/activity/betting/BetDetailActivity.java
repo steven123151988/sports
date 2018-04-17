@@ -2,8 +2,11 @@ package com.daking.sports.activity.betting;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,10 +14,10 @@ import android.widget.TextView;
 
 import com.daking.sports.R;
 import com.daking.sports.adapter.FragmentAdapter;
-import com.daking.sports.base.BaseActivity;
-import com.daking.sports.base.SportsKey;
+import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.fragment.betting.ChuanguanFragment;
 import com.daking.sports.fragment.betting.DanguanFragment;
+import com.daking.sports.json.TeamDate;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.SystemUtil;
 
@@ -23,13 +26,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Description:
  * Data：2018/4/9-13:39
  * steven
  */
-public class BetDetailActivity extends BaseActivity {
+public class BetDetailActivity extends NewBaseActivity {
 
     @BindView(R.id.tv_date)
     TextView tvDate;
@@ -45,19 +49,39 @@ public class BetDetailActivity extends BaseActivity {
     RadioGroup radioGroup;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.tv_teamname_1)
+    TextView tvTeamname1;
+    @BindView(R.id.tv_teamname_2)
+    TextView tvTeamname2;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
     private List<Fragment> mFragments = new ArrayList<>();
     private int position = 0;
     private DanguanFragment danguanFragment;
     private ChuanguanFragment chuanguanFragment;
     private String lid;
+    private TeamDate dataBean;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_betdetails);
-        ButterKnife.bind(this);
+    protected int getLayoutId() {
+        return R.layout.fragment_betdetails;
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         SystemUtil.setfullScreen(this);
-        lid = getIntent().getStringExtra(SportsKey.LID);
+        dataBean = (TeamDate) getIntent().getSerializableExtra("dataBean");
+        tvTeamname1.setText(dataBean.getH_cn());
+        tvTeamname2.setText(dataBean.getA_cn());
+        tvDate.setText(dataBean.getDate());
+        tvTime.setText(dataBean.getTime());
+        lid = dataBean.getLid();
 
         if (null == danguanFragment)
             danguanFragment = new DanguanFragment();
@@ -125,11 +149,28 @@ public class BetDetailActivity extends BaseActivity {
 
 
     /**
-     *  fragment获取赛事id
+     * fragment获取赛事id
+     *
      * @return
      */
-    public String getLid(){
+    public String getLid() {
         return lid;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+        }
     }
 }
 

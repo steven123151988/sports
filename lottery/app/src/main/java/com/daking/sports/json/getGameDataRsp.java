@@ -1,5 +1,6 @@
 package com.daking.sports.json;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class getGameDataRsp extends BaseModel {
@@ -50,7 +51,7 @@ public class getGameDataRsp extends BaseModel {
             this.data = data;
         }
 
-        public static class DataBean {
+        public static class DataBean implements Serializable {
             /**
              * lid : 20180305YX001
              * date : 03-05

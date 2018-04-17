@@ -67,6 +67,15 @@ public class GamePlaywaysRsp extends BaseModel {
             private String mp;
             private int up;
             private String px;
+            private String sc;
+
+            public String getSc() {
+                return sc;
+            }
+
+            public void setSc(String sc) {
+                this.sc = sc;
+            }
 
             public String getPre() {
                 return pre;

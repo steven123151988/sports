@@ -1,6 +1,12 @@
 package com.daking.sports.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,19 +57,34 @@ public class BetdetailButtonAdapter extends BaseAdapter {
         if (view == null) {
             view = mInflater.inflate(R.layout.adapter_button1, null);
             viewHolder = new ViewHolder();
-            viewHolder.bt_bet = (Button) view.findViewById(R.id.bt_bet);
+//            viewHolder.tv_1 = (TextView) view.findViewById(R.id.tv_1);
+//            viewHolder.tv_2 = (TextView) view.findViewById(R.id.tv_2);
+            viewHolder.bt_1 = (Button) view.findViewById(R.id.bt_1);
+
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.bt_bet.setText(detail.get(position).getMp());
+        if (null == detail.get(position).getSc()) {
+            viewHolder.bt_1.setText(detail.get(position).getMp());
+        } else {
+            String t1 = detail.get(position).getSc();
+            String t2 = detail.get(position).getMp();
+            String t = t1 + t2;
+            Spannable span = new SpannableString(t1 + "  " + t2);
+            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.gray_e6e6e6)), 0, t1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.blue_00ffff)), t1.length() + 1, t.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            viewHolder.bt_1.setText(span);
+            viewHolder.bt_1.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         return view;
     }
 
 
     private class ViewHolder {
-        Button bt_bet;
+        TextView tv_2, tv_1;
+        Button bt_1;
 
     }
 }
