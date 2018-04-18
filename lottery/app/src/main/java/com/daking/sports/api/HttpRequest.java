@@ -20,6 +20,7 @@ import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.json.Pay;
+import com.daking.sports.json.PayrecordRsp;
 import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
@@ -497,7 +498,7 @@ public class HttpRequest {
      * @param pagesize
      * @param callback
      */
-    public void payRecord(Object tag, String token, String begin_time, String end_time, String page, String pagesize,HttpCallback<BankcardRsp> callback) {
+    public void payRecord(Object tag, String token, String begin_time, String end_time, String page, String pagesize,HttpCallback<PayrecordRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .addParam("begin_time", begin_time)
@@ -505,7 +506,7 @@ public class HttpRequest {
                 .addParam("page", page)
                 .addParam("pagesize", pagesize)
                 .build();
-        Call<BankcardRsp> call = mService.payRecord(body);
+        Call<PayrecordRsp> call = mService.payRecord(body);
         putCall(tag, call);
         call.enqueue(callback);
     }

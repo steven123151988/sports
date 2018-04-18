@@ -64,7 +64,7 @@ public class BetdetailAdapter extends BaseAdapter {
         }
         viewHolder.tv_game_title.setText(gamePlaywaysRsp.getData().get(position).getAlias());
         detail = gamePlaywaysRsp.getData().get(position).getDetail();
-        BetdetailButtonAdapter adapter = new BetdetailButtonAdapter(mcontext, detail);
+        BetdetailButtonAdapter adapter = new BetdetailButtonAdapter(mcontext, detail,gamePlaywaysRsp.getData().get(position).getType());
         viewHolder.gv_bet.setAdapter(adapter);
 
         if (gamePlaywaysRsp.getData().get(position).getType().equals("had")

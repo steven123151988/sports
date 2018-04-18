@@ -17,6 +17,7 @@ import com.daking.sports.json.LoginRsps;
 import com.daking.sports.json.LotteryVersion;
 import com.daking.sports.json.MemOnlineRsp;
 import com.daking.sports.json.Pay;
+import com.daking.sports.json.PayrecordRsp;
 import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
 import com.daking.sports.json.getGameDataRsp;
@@ -168,7 +169,7 @@ public interface ApiService {
      *  充值记录
      */
     @POST("service?action=GetDepositList&terminal_id=1")
-    Call<BankcardRsp> payRecord(@Body RequestBody body);
+    Call<PayrecordRsp> payRecord(@Body RequestBody body);
 
 
 

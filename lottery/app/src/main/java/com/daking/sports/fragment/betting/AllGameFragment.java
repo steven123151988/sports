@@ -73,4 +73,12 @@ public class AllGameFragment extends NewBaseFragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+
+
 }

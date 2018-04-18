@@ -1,9 +1,11 @@
 package com.daking.sports.activity.money;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,10 +42,10 @@ public class TradeRecordActivity extends NewBaseActivity {
     TextView tvSelectTime;
     @BindView(R.id.rl_select_time)
     RelativeLayout rlSelectTime;
-
-    private static final List<String> options1Items = new ArrayList<>();
+    @BindView(R.id.btn_ok)
+    Button btnOk;
     private OptionsPickerView pvOptions;
-
+    private static final List<String> options1Items = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -57,11 +59,12 @@ public class TradeRecordActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
+        tvCenter.setText("交易记录");
 
     }
 
 
-    @OnClick({R.id.iv_back, R.id.rl_select_tradetype, R.id.rl_select_time})
+    @OnClick({R.id.iv_back, R.id.rl_select_tradetype, R.id.rl_select_time, R.id.btn_ok})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -165,6 +168,21 @@ public class TradeRecordActivity extends NewBaseActivity {
                 /*pvOptions.setPicker(options1Items, options2Items,options3Items);//三级选择器*/
 
                 break;
+            case R.id.btn_ok:
+                Intent intent=new Intent(TradeRecordActivity.this,PayRecordActivity.class);
+                intent.putExtra("","");
+                intent.putExtra("","");
+                startActivity(intent);
+                break;
         }
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+
 }
