@@ -13,6 +13,7 @@ import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.json.GameNoticeRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
@@ -23,6 +24,7 @@ import com.daking.sports.json.Pay;
 import com.daking.sports.json.PayrecordRsp;
 import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
+import com.daking.sports.json.WeijiemingxiRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.json.getPayPlatformRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
@@ -490,6 +492,7 @@ public class HttpRequest {
 
     /**
      * 充值记录
+     *
      * @param tag
      * @param token
      * @param begin_time
@@ -498,7 +501,7 @@ public class HttpRequest {
      * @param pagesize
      * @param callback
      */
-    public void payRecord(Object tag, String token, String begin_time, String end_time, String page, String pagesize,HttpCallback<PayrecordRsp> callback) {
+    public void payRecord(Object tag, String token, String begin_time, String end_time, String page, String pagesize, HttpCallback<PayrecordRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .addParam("begin_time", begin_time)
@@ -510,7 +513,6 @@ public class HttpRequest {
         putCall(tag, call);
         call.enqueue(callback);
     }
-
 
 
     public void getMoneyRecord(Object tag, String token, String bankcard_id, String amount, String fund_password, HttpCallback<BankcardRsp> callback) {
@@ -525,6 +527,61 @@ public class HttpRequest {
         call.enqueue(callback);
     }
 
+    /**
+     * 获取已开奖和未开奖
+     *
+     * @param tag
+     * @param token
+     * @param status
+     * @param page
+     * @param pagesize
+     * @param callback
+     */
+    public void getBetResults(Object tag, String token, String status, String page, String pagesize, HttpCallback<WeijiemingxiRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("status", status)
+                .addParam("page", page)
+                .addParam("pagesize", pagesize)
+                .build();
+        Call<WeijiemingxiRsp> call = mService.getBetResult(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 获取赛事公告
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getGameNotice(Object tag, String token, HttpCallback<GameNoticeRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .build();
+        Call<GameNoticeRsp> call = mService.getGameNotice(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+    /**
+     * 获取赛事详情
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void getGameNoticeDetail(Object tag, String token, String lid, HttpCallback<WeijiemingxiRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("lid", lid)
+                .build();
+        Call<WeijiemingxiRsp> call = mService.getGameNoticeDetail(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
 
 
     /**

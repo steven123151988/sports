@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.daking.sports.R;
 import com.daking.sports.activity.betting.BetRecordActivity;
 import com.daking.sports.activity.money.TradeRecordActivity;
+import com.daking.sports.activity.personalset.GameNoticeActivity;
 import com.daking.sports.activity.personalset.PersonalCenterActivity;
 import com.daking.sports.activity.money.IncomeActivity;
 import com.daking.sports.activity.money.TakeoutMoneyActivity;
@@ -200,7 +201,7 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                         startActivity(intent);
                         break;
                     case R.id.navigation_gage_notice:
-
+                        startActivity(new Intent(BetMainActivity.this, GameNoticeActivity.class));
                         break;
                     case R.id.navigation_personal_set:
                         startActivity(new Intent(BetMainActivity.this, PersonalCenterActivity.class));

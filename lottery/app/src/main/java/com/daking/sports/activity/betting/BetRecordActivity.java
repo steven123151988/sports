@@ -17,6 +17,7 @@ import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.fragment.betting.WeijiesuanFragment;
 import com.daking.sports.fragment.betting.YijiesuanFragment;
 import com.daking.sports.util.KeyBoardUtils;
+import com.daking.sports.util.SystemUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,7 @@ public class BetRecordActivity extends NewBaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
+        SystemUtil.setfullScreen(this);
         tvCenter.setText("投注记录");
         position = getIntent().getIntExtra("position", 0);
         if (null == weijiesuanFragment)

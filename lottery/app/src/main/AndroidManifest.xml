@@ -110,6 +110,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.daking.sports.activity.personalset.GameNoticeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.daking.sports.activity.money.TradeRecordActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
@@ -121,6 +125,8 @@
             android:name="com.daking.sports.activity.betting.BetRecordActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+
 
 
         <activity

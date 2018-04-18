@@ -10,6 +10,7 @@ import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.json.GameNoticeRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
 import com.daking.sports.json.LoginRsp;
@@ -20,6 +21,7 @@ import com.daking.sports.json.Pay;
 import com.daking.sports.json.PayrecordRsp;
 import com.daking.sports.json.PaywaysRsp;
 import com.daking.sports.json.RegistRsp;
+import com.daking.sports.json.WeijiemingxiRsp;
 import com.daking.sports.json.getGameDataRsp;
 import com.daking.sports.json.getPayPlatformRsp;
 import com.daking.sports.json.getPicVerificationCodeRsp;
@@ -170,6 +172,35 @@ public interface ApiService {
      */
     @POST("service?action=GetDepositList&terminal_id=1")
     Call<PayrecordRsp> payRecord(@Body RequestBody body);
+
+    /**
+     * 已开奖未开奖
+     */
+
+    @POST("service?action=bill&terminal_id=1")
+    Call<WeijiemingxiRsp> getBetResult(@Body RequestBody body);
+
+    /**
+     *  获取赛事公告
+     */
+
+    @POST("service?action=GetNoticeList&terminal_id=1")
+    Call<GameNoticeRsp> getGameNotice(@Body RequestBody body);
+
+    /**
+     * 获取公告详情
+     */
+    @POST("/service?action=GetNoticeDetail&terminal_id=1")
+    Call<WeijiemingxiRsp> getGameNoticeDetail(@Body RequestBody body);
+
+
+
+
+
+
+
+
+
 
 
 
