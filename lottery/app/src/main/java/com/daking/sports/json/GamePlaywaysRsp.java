@@ -1,5 +1,6 @@
 package com.daking.sports.json;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class GamePlaywaysRsp extends BaseModel {
             this.detail = detail;
         }
 
-        public static class DetailBean {
+        public static class DetailBean  implements Serializable {
             /**
              * pre : h
              * mp : 3.35
@@ -68,6 +69,7 @@ public class GamePlaywaysRsp extends BaseModel {
             private int up;
             private String px;
             private String sc;
+            private boolean selected;
 
             public String getSc() {
                 return sc;
@@ -107,6 +109,14 @@ public class GamePlaywaysRsp extends BaseModel {
 
             public void setPx(String px) {
                 this.px = px;
+            }
+
+            public boolean isSelected() {
+                return selected;
+            }
+
+            public void setSelected(boolean selected) {
+                this.selected = selected;
             }
         }
     }

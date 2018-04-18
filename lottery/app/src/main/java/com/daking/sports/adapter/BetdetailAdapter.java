@@ -79,7 +79,7 @@ public class BetdetailAdapter extends BaseAdapter {
         detail = gamePlaywaysRsp.getData().get(position).getDetail();
         adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType());
         viewHolder.gv_bet.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
         if (gamePlaywaysRsp.getData().get(position).getType().equals("had")) {
             viewHolder.gv_bet.setNumColumns(3);
             viewHolder.ll_list.setVisibility(View.GONE);
@@ -107,7 +107,8 @@ public class BetdetailAdapter extends BaseAdapter {
             lv_1 = new ArrayList();
             lv_2 = new ArrayList();
             lv_3 = new ArrayList();
-            for (int m = 0; m < gamePlaywaysRsp.getData().get(position).getDetail().size(); m++) {
+            int size = gamePlaywaysRsp.getData().get(position).getDetail().size();
+            for (int m = 0; m < size; m++) {
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("h")) {
                     lv_1.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
 
@@ -123,7 +124,7 @@ public class BetdetailAdapter extends BaseAdapter {
             }
             adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs");
             adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs");
-            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3,"crs");
+            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs");
             viewHolder.lv_1.setAdapter(adapter1);
             viewHolder.lv_2.setAdapter(adapter2);
             viewHolder.lv_3.setAdapter(adapter3);
@@ -132,18 +133,14 @@ public class BetdetailAdapter extends BaseAdapter {
             adapter3.notifyDataSetChanged();
         }
 
-
-        adapter.notifyDataSetChanged();
         return view;
     }
 
 
-    static
-
     private class ViewHolder {
         TextView tv_game_title;
         Mygradview gv_bet;
-        LinearLayout ll_list,ll_all;
+        LinearLayout ll_list, ll_all;
         ListView lv_1, lv_2, lv_3;
     }
 

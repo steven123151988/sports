@@ -42,9 +42,9 @@ public class DanguanFragment extends NewBaseFragment {
         HttpRequest.getInstance().getPlayWays(DanguanFragment.this, lid, new HttpCallback<GamePlaywaysRsp>() {
             @Override
             public void onSuccess(final GamePlaywaysRsp data) {
-                BetdetailAdapter betdetailAdapter = new BetdetailAdapter(getActivity(),data);
-                lvBetdetail.setAdapter(betdetailAdapter);
-                betdetailAdapter.notifyDataSetChanged();
+                BetdetailAdapter adapter = new BetdetailAdapter(getActivity(),data);
+                lvBetdetail.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

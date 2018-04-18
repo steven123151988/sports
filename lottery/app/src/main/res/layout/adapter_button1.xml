@@ -5,7 +5,9 @@
     android:orientation="vertical">
 
 
-    <Button
+    <CheckBox
+      android:gravity="center"
+        android:button="@null"
         android:id="@+id/bt_1"
         android:layout_width="match_parent"
         android:layout_height="35dp"
