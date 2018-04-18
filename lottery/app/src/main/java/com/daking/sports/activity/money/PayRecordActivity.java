@@ -31,10 +31,6 @@ public class PayRecordActivity extends NewBaseActivity implements SwipeRefreshLa
     ImageView ivBack;
     @BindView(R.id.tv_center)
     TextView tvCenter;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected int getLayoutId() {

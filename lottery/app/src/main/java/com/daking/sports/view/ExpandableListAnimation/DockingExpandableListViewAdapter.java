@@ -112,6 +112,8 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
+
+        viewHolder.ll_all.getBackground().setAlpha(75);
         dataBean = mData.getData().get(groupPosition).getData().get(childPosition);
         viewHolder.tv_time_1.setText(dataBean.getDate());
         viewHolder.tv_time_2.setText(dataBean.getTime());
@@ -120,15 +122,15 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         viewHolder.ll_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null!=dataBean.getLid()){
-                    TeamDate date=new TeamDate();
+                if (null != dataBean.getLid()) {
+                    TeamDate date = new TeamDate();
                     date.setA_cn(dataBean.getA_cn());
                     date.setDate(dataBean.getDate());
                     date.setH_cn(dataBean.getH_cn());
                     date.setTime(dataBean.getTime());
                     date.setLid(dataBean.getLid());
-                    Intent intent=new Intent(mContext, BetDetailActivity.class);
-                    intent.putExtra("dataBean",date);
+                    Intent intent = new Intent(mContext, BetDetailActivity.class);
+                    intent.putExtra("dataBean", date);
                     mContext.startActivity(intent);
                 }
             }

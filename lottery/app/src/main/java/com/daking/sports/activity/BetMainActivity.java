@@ -25,8 +25,10 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.betting.BetRecordActivity;
 import com.daking.sports.activity.money.TradeRecordActivity;
 import com.daking.sports.activity.personalset.PersonalCenterActivity;
 import com.daking.sports.activity.money.IncomeActivity;
@@ -57,6 +59,8 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
     private MenuItem mPreMenuItem;
     private GamedataFragment gamedataFragment;
     private ImageView iv_refresh;
+    private Intent intent;
+    private long mClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,13 +144,16 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
 
                 break;
             case R.id.ll_weijiesuan:
+                intent = new Intent(BetMainActivity.this, BetRecordActivity.class);
+                intent.putExtra("position", 0);
+                startActivity(intent);
 
                 break;
             case R.id.ll_yijiesuan:
-
+                intent = new Intent(BetMainActivity.this, BetRecordActivity.class);
+                intent.putExtra("position", 1);
+                startActivity(intent);
                 break;
-
-
         }
 
     }
@@ -178,16 +185,19 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
                         } else {
                             startActivity(new Intent(BetMainActivity.this, SetMoneyPswActivity.class));
                         }
-
                         break;
                     case R.id.navigation_trade_record:
                         startActivity(new Intent(BetMainActivity.this, TradeRecordActivity.class));
                         break;
                     case R.id.navigation_weijiesuan_zhudan:
-
+                        intent = new Intent(BetMainActivity.this, BetRecordActivity.class);
+                        intent.putExtra("position", 0);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_yijiesuan_zhudan:
-
+                        intent = new Intent(BetMainActivity.this, BetRecordActivity.class);
+                        intent.putExtra("position", 1);
+                        startActivity(intent);
                         break;
                     case R.id.navigation_gage_notice:
 
@@ -222,6 +232,18 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             animator.start();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long time = System.currentTimeMillis();
+        if (time - mClickTime <= 2000) {
+            super.onBackPressed();
+            System.exit(0);
+        } else {
+            mClickTime = time;
+            Toast.makeText(this, "再次点击关闭app", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

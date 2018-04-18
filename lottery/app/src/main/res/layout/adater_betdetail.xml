@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_all"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:alpha="0.7"
     android:background="@drawable/bet_item_bg"
     android:orientation="vertical">
 
@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/dimen_10"
+        android:padding="@dimen/dimen_5"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_16" />
+        android:textSize="@dimen/sp_15" />
 
     <com.daking.sports.view.Mygradview
         android:id="@+id/gv_bet"
@@ -24,5 +24,32 @@
         android:numColumns="3"
         android:verticalSpacing="1dp" />
 
+    <LinearLayout
+        android:layout_margin="@dimen/dimen_5"
+        android:id="@+id/ll_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
+        <com.daking.sports.view.ChildListview
+            android:id="@+id/lv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.daking.sports.view.ChildListview
+            android:id="@+id/lv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_1"
+            android:layout_weight="1" />
+
+        <com.daking.sports.view.ChildListview
+            android:id="@+id/lv_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 </LinearLayout>

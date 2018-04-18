@@ -64,7 +64,7 @@ public class HotgameAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
+        viewHolder.ll_all.getBackground().setAlpha(75);
         viewHolder.tv_time_1.setText(hotdata.get(position).getDate());
         viewHolder.tv_time_2.setText(hotdata.get(position).getTime());
         viewHolder.tv_teamname_1.setText(hotdata.get(position).getH_cn());
@@ -73,7 +73,7 @@ public class HotgameAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (null != hotdata.get(position).getLid()) {
-                    TeamDate date=new TeamDate();
+                    TeamDate date = new TeamDate();
                     date.setA_cn(hotdata.get(position).getA_cn());
                     date.setDate(hotdata.get(position).getDate());
                     date.setH_cn(hotdata.get(position).getH_cn());
@@ -81,7 +81,7 @@ public class HotgameAdapter extends BaseAdapter {
                     date.setLid(hotdata.get(position).getLid());
 
                     Intent intent = new Intent(mcontext, BetDetailActivity.class);
-                    intent.putExtra("dataBean",date);
+                    intent.putExtra("dataBean", date);
                     mcontext.startActivity(intent);
                 }
             }

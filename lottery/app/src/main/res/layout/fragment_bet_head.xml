@@ -40,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="time1"
-                android:textColor="@color/white_ffffff"
-                android:textSize="@dimen/sp_13" />
+                android:textColor="@color/gray_cccccc"
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,8 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="time2"
-                android:textColor="@color/white_ffffff"
-                android:textSize="@dimen/sp_16" />
+                android:textColor="@color/gray_cccccc"
+                android:textSize="@dimen/sp_14" />
 
         </LinearLayout>
 
@@ -70,6 +70,7 @@
             android:layout_marginLeft="@dimen/dimen_30"
             android:layout_toRightOf="@+id/ll_center"
             android:text="team2"
-            android:textColor="@color/blue_00ffff" />
+            android:textColor="@color/blue_00ffff"
+            android:textSize="@dimen/sp_16" />
     </LinearLayout>
 </RelativeLayout>
