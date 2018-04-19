@@ -14,7 +14,7 @@
         android:layout_marginRight="@dimen/dimen_5"
         android:childDivider="@color/white"
         android:divider="@null"
-        android:dividerHeight="5dp" />
+        android:dividerHeight="6dp" />
 
 
 </LinearLayout>

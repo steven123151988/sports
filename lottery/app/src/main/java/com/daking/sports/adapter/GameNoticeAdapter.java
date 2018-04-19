@@ -1,6 +1,7 @@
 package com.daking.sports.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.personalset.GameNoticeDetailActivity;
 import com.daking.sports.json.GameNoticeRsp;
 
 /**
@@ -43,7 +45,7 @@ public class GameNoticeAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
 
         final ViewHolder viewHolder;
         mInflater = LayoutInflater.from(mcontext);
@@ -56,6 +58,14 @@ public class GameNoticeAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.tv_game_title.setText(gameNoticeRsp.getData().get(position).getTitle());
+        viewHolder.tv_game_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mcontext, GameNoticeDetailActivity.class);
+                intent.putExtra("lid",gameNoticeRsp.getData().get(position).getLid());
+                mcontext.startActivity(intent);
+            }
+        });
         return view;
     }
 

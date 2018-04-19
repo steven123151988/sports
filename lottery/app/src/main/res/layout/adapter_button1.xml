@@ -6,12 +6,12 @@
 
 
     <CheckBox
-      android:gravity="center"
-        android:button="@null"
         android:id="@+id/bt_1"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@drawable/bet_item_button_bg"
+        android:button="@null"
+        android:gravity="center"
         android:textSize="@dimen/sp_14" />
 
 </LinearLayout>

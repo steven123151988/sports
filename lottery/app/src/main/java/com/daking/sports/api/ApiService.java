@@ -10,6 +10,7 @@ import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.json.GameNoticeDetailRsp;
 import com.daking.sports.json.GameNoticeRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
@@ -190,16 +191,28 @@ public interface ApiService {
     /**
      * 获取公告详情
      */
-    @POST("/service?action=GetNoticeDetail&terminal_id=1")
-    Call<WeijiemingxiRsp> getGameNoticeDetail(@Body RequestBody body);
+    @POST("service?action=GetNoticeDetail&terminal_id=1")
+    Call<GameNoticeDetailRsp> getGameNoticeDetail(@Body RequestBody body);
+
+    /**
+     * 投注接口
+     */
+    @POST("service?action=UserProgram&terminal_id=1")
+    Call<GameNoticeDetailRsp> bet(@Body RequestBody body);
+
+    /**
+     * 获得注数
+     */
+    @POST("service?action=CheckBet&terminal_id=1")
+    Call<GameNoticeDetailRsp> getBetNum(@Body RequestBody body);
 
 
-
-
-
-
-
-
+    /**
+     *  串关
+     * @return
+     */
+    @POST("/service?action=WayOadds&terminal_id=1")
+    Call<GameNoticeDetailRsp> chuanguan(@Body RequestBody body);
 
 
 

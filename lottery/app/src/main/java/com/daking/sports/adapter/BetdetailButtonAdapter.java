@@ -79,14 +79,15 @@ public class BetdetailButtonAdapter extends BaseAdapter {
 
 
         viewHolder.checkBox.getBackground().setAlpha(55);
-        //比分玩法
-        if (null != gametype && gametype.equals("crs")) {
-            String t1 = detail.get(position).getSc();
+        if (null != gametype && gametype.equals("had") || null != gametype && gametype.equals("hhad")) {
+            viewHolder.checkBox.setText(detail.get(position).getMp());
+            viewHolder.checkBox.setTextColor(mcontext.getResources().getColor(R.color.blue_00ffff));
+        } else if (null != gametype && gametype.equals("ttg")) {//总进球数
+            String t1 = detail.get(position).getPre();
             String t2 = detail.get(position).getMp();
-            String t = t1 + t2;
-            Spannable span = new SpannableString(t1 + "  " + t2);
+            Spannable span = new SpannableString(t1 + "\n" + t2);
             span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.gray_e6e6e6)), 0, t1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.blue_00ffff)), t1.length(), (t1 + "  " + t2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.blue_00ffff)), t1.length(), (t1 + "\n" + t2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             viewHolder.checkBox.setText(span);
         } else if (null != gametype && gametype.equals("hafu")) {  //半场全场
             String t1 = detail.get(position).getPre();
@@ -95,9 +96,13 @@ public class BetdetailButtonAdapter extends BaseAdapter {
             span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.gray_e6e6e6)), 0, t1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.blue_00ffff)), t1.length(), (t1 + "  " + t2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             viewHolder.checkBox.setText(span);
-        } else {//其他场次
-            viewHolder.checkBox.setText(detail.get(position).getMp());
-            viewHolder.checkBox.setTextColor(mcontext.getResources().getColor(R.color.blue_00ffff));
+        } else if (null != gametype && gametype.equals("crs")) {  //比分玩法
+            String t1 = detail.get(position).getSc();
+            String t2 = detail.get(position).getMp();
+            Spannable span = new SpannableString(t1 + "  " + t2);
+            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.gray_e6e6e6)), 0, t1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            span.setSpan(new ForegroundColorSpan(mcontext.getResources().getColor(R.color.blue_00ffff)), t1.length(), (t1 + "  " + t2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            viewHolder.checkBox.setText(span);
         }
 
         viewHolder.checkBox.setChecked(detailBean.isSelected());

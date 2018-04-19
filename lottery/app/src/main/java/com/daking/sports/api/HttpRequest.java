@@ -13,6 +13,7 @@ import com.daking.sports.json.BankcardRsp;
 import com.daking.sports.json.BettingDetailRsp;
 import com.daking.sports.json.BettingRecordRsp;
 import com.daking.sports.json.BindphoneRsp;
+import com.daking.sports.json.GameNoticeDetailRsp;
 import com.daking.sports.json.GameNoticeRsp;
 import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.HotgameRsp;
@@ -573,15 +574,83 @@ public class HttpRequest {
      * @param token
      * @param callback
      */
-    public void getGameNoticeDetail(Object tag, String token, String lid, HttpCallback<WeijiemingxiRsp> callback) {
+    public void getGameNoticeDetail(Object tag, String token, String lid, HttpCallback<GameNoticeDetailRsp> callback) {
         RequestBody body = new RequestBodyBuilder()
                 .addParam(SportsKey.TOKEN, token)
                 .addParam("lid", lid)
                 .build();
-        Call<WeijiemingxiRsp> call = mService.getGameNoticeDetail(body);
+        Call<GameNoticeDetailRsp> call = mService.getGameNoticeDetail(body);
         putCall(tag, call);
         call.enqueue(callback);
     }
+
+
+    /**
+     * 投注接口
+     *
+     * @param tag
+     * @param token
+     * @param amount
+     * @param gate
+     * @param multiple
+     * @param bet_num
+     * @param max_gate
+     * @param games
+     * @param callback
+     */
+    public void bet(Object tag, String token, String amount, String gate, String multiple, String bet_num, String max_gate, String games, HttpCallback<GameNoticeDetailRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("amount", amount)
+                .addParam("gate", gate)
+                .addParam("multiple", multiple)
+                .addParam("bet_num", bet_num)
+                .addParam("max_gate", max_gate)
+                .addParam("games", games)
+                .build();
+        Call<GameNoticeDetailRsp> call = mService.bet(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 获得下注注数
+     *
+     * @param tag
+     * @param token
+     * @param gate
+     * @param game
+     * @param callback
+     */
+    public void getBetNum(Object tag, String token, String gate, String game, HttpCallback<GameNoticeDetailRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .addParam("game", game)
+                .addParam("gate", gate)
+                .build();
+        Call<GameNoticeDetailRsp> call = mService.getBetNum(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 串关
+     *
+     * @param tag
+     * @param token
+     * @param callback
+     */
+    public void chuanguan(Object tag, String token, HttpCallback<GameNoticeDetailRsp> callback) {
+        RequestBody body = new RequestBodyBuilder()
+                .addParam(SportsKey.TOKEN, token)
+                .build();
+        Call<GameNoticeDetailRsp> call = mService.getBetNum(body);
+        putCall(tag, call);
+        call.enqueue(callback);
+    }
+
+
+
 
 
     /**

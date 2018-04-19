@@ -32,7 +32,6 @@ public class BetdetailAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Context mcontext;
     private GamePlaywaysRsp gamePlaywaysRsp;
-    private List<GamePlaywaysRsp.DataBean.DetailBean> lv_1, lv_2, lv_3;
     private BetdetailButtonAdapter adapter, adapter1, adapter2, adapter3;
 
     public BetdetailAdapter(Context mcontext, GamePlaywaysRsp data) {
@@ -104,9 +103,10 @@ public class BetdetailAdapter extends BaseAdapter {
             viewHolder.gv_bet.setNumColumns(3);
             viewHolder.ll_list.setVisibility(View.VISIBLE);
             viewHolder.gv_bet.setVisibility(View.GONE);
-            lv_1 = new ArrayList();
-            lv_2 = new ArrayList();
-            lv_3 = new ArrayList();
+
+            List lv_1 = new ArrayList();
+            List lv_2 = new ArrayList();
+            List lv_3 = new ArrayList();
             int size = gamePlaywaysRsp.getData().get(position).getDetail().size();
             for (int m = 0; m < size; m++) {
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("h")) {
