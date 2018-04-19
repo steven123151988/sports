@@ -1,19 +1,24 @@
 package com.daking.sports.fragment.betting;
 
-import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.daking.sports.R;
-import com.daking.sports.activity.BetMainActivity;
-import com.daking.sports.activity.login.LoginActivity;
+import com.daking.sports.adapter.BetRecordAdapter;
 import com.daking.sports.api.HttpCallback;
 import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.base.SportsKey;
-import com.daking.sports.json.PayrecordRsp;
 import com.daking.sports.json.WeijiemingxiRsp;
-import com.daking.sports.json.getUserInfo;
 import com.daking.sports.util.SharePreferencesUtil;
 import com.daking.sports.util.ShowDialogUtil;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Description:
@@ -21,6 +26,10 @@ import com.daking.sports.util.ShowDialogUtil;
  * steven
  */
 public class WeijiesuanFragment extends NewBaseFragment {
+    @BindView(R.id.lv_jiesuan)
+    ListView lvJiesuan;
+    Unbinder unbinder;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_weijiesuan;
@@ -28,6 +37,11 @@ public class WeijiesuanFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getBetResult(1);
     }
 
@@ -36,6 +50,9 @@ public class WeijiesuanFragment extends NewBaseFragment {
         HttpRequest.getInstance().getBetResults(getActivity(), token, "0", page + "", "20", new HttpCallback<WeijiemingxiRsp>() {
             @Override
             public void onSuccess(WeijiemingxiRsp data) {
+                BetRecordAdapter adapter = new BetRecordAdapter(WeijiesuanFragment.this.getActivity(), data);
+                lvJiesuan.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -46,4 +63,17 @@ public class WeijiesuanFragment extends NewBaseFragment {
         });
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

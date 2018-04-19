@@ -53,7 +53,7 @@ public class BetdetailButtonAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder viewHolder;
         mInflater = LayoutInflater.from(mcontext);
-        GamePlaywaysRsp.DataBean.DetailBean detailBean = detail.get(position);
+        final GamePlaywaysRsp.DataBean.DetailBean detailBean = detail.get(position);
         if (view == null) {
             view = mInflater.inflate(R.layout.adapter_button1, null);
             viewHolder = new ViewHolder();
@@ -61,6 +61,9 @@ public class BetdetailButtonAdapter extends BaseAdapter {
             viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    LogUtil.e("===getPx======="+detailBean.getPx());
+                    LogUtil.e("=====getSc====="+detailBean.getSc());
+
                     if (viewHolder.checkBox.isChecked()) {
                         viewHolder.checkBox.getBackground().setAlpha(102);
                     } else {

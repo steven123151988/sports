@@ -68,8 +68,6 @@ public class IncomeActivity extends NewBaseActivity {
 
     @BindView(R.id.rl_select_bank)
     RelativeLayout rlSelectBank;
-    @BindView(R.id.rl)
-    RelativeLayout rl;
     @BindView(R.id.rl_select_ways)
     RelativeLayout rlSelectWays;
     @BindView(R.id.tv_platform)

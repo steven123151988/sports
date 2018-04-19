@@ -21,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
-    private String msgCode,errormsg="error";
+    private String msgCode, errormsg = "error";
 
     @Override
     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -30,7 +30,7 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
         }
         if (response.isSuccessful()) {
             T model = response.body();
-            if (null==model) {
+            if (null == model) {
                 return;
             }
             /**
@@ -47,11 +47,12 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
     }
 
     private void onApiFailure(T model) {
-         msgCode = String.valueOf(model.getErrnum()) ;
-        if (null!=model.getError()){
-             errormsg =String.valueOf(model.getError()) ;
+        msgCode = String.valueOf(model.getErrnum());
+        if (null != model.getError()) {
+            errormsg = String.valueOf(model.getError());
         }
-        onFailure(msgCode,errormsg);
+
+        onFailure(msgCode, errormsg);
     }
 
     @Override

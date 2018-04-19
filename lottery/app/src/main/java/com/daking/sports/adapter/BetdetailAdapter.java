@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -79,6 +80,7 @@ public class BetdetailAdapter extends BaseAdapter {
         adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType());
         viewHolder.gv_bet.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
         if (gamePlaywaysRsp.getData().get(position).getType().equals("had")) {
             viewHolder.gv_bet.setNumColumns(3);
             viewHolder.ll_list.setVisibility(View.GONE);

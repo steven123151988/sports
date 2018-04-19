@@ -30,6 +30,12 @@ public class HotGameFragment extends NewBaseFragment {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         HttpRequest.getInstance().getHotGameData(mActivity + "hot", new HttpCallback<HotgameRsp>() {
             @Override
             public void onSuccess(final HotgameRsp data) {
@@ -42,5 +48,4 @@ public class HotGameFragment extends NewBaseFragment {
             }
         });
     }
-
 }

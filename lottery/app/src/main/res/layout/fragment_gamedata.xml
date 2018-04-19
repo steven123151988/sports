@@ -10,7 +10,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50"
-        android:alpha="0.6"
+        android:alpha="0.8"
         android:background="@color/black_212121"
         android:orientation="horizontal">
 
