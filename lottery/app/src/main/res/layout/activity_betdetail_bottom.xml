@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/betdetail_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_weight="1"
+    android:background="@color/black_212121">
+
+
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/sp_15"
+        android:text="已添加\n连串过关"
+        android:textColor="@color/white_ffffff"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_toRightOf="@+id/tv_notice"
+        android:text="0 注"
+        android:textColor="@color/white_ffffff"
+        android:textSize="25sp"
+
+        />
+
+    <Button
+        android:id="@+id/bt_bet"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:background="@drawable/bet_button_small"
+        android:text="投注"
+        android:textColor="@color/blue_00ffff"
+        android:textSize="@dimen/sp_18" />
+
+
+</RelativeLayout>

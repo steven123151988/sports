@@ -34,10 +34,12 @@ public class BetdetailAdapter extends BaseAdapter {
     private Context mcontext;
     private GamePlaywaysRsp gamePlaywaysRsp;
     private BetdetailButtonAdapter adapter, adapter1, adapter2, adapter3;
+    private String lid;
 
-    public BetdetailAdapter(Context mcontext, GamePlaywaysRsp data) {
+    public BetdetailAdapter(Context mcontext, GamePlaywaysRsp data, String lid) {
         this.mcontext = mcontext;
         this.gamePlaywaysRsp = data;
+        this.lid = lid;
     }
 
     @Override
@@ -77,7 +79,7 @@ public class BetdetailAdapter extends BaseAdapter {
         viewHolder.ll_all.getBackground().setAlpha(70);
         viewHolder.tv_game_title.setText(gamePlaywaysRsp.getData().get(position).getAlias());
         detail = gamePlaywaysRsp.getData().get(position).getDetail();
-        adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType());
+        adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType(), lid);
         viewHolder.gv_bet.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -124,9 +126,9 @@ public class BetdetailAdapter extends BaseAdapter {
 
                 }
             }
-            adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs");
-            adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs");
-            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs");
+            adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs", lid);
+            adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs", lid);
+            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs", lid);
             viewHolder.lv_1.setAdapter(adapter1);
             viewHolder.lv_2.setAdapter(adapter2);
             viewHolder.lv_3.setAdapter(adapter3);

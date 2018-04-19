@@ -56,7 +56,7 @@ public class BetDetailActivity extends NewBaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     private List<Fragment> mFragments = new ArrayList<>();
-    private int position = 0;
+    private int position = 1;
     private DanguanFragment danguanFragment;
     private ChuanguanFragment chuanguanFragment;
     private String lid;
@@ -89,8 +89,8 @@ public class BetDetailActivity extends NewBaseActivity {
             chuanguanFragment = new ChuanguanFragment();
 
         mFragments.clear();
-        mFragments.add(danguanFragment);
         mFragments.add(chuanguanFragment);
+        mFragments.add(danguanFragment);
 
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         viewPager = (ViewPager) findViewById(R.id.view_pager);

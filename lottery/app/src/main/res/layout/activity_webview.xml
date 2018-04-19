@@ -6,6 +6,7 @@
     android:orientation="vertical" >
 
     <include
+        android:fitsSystemWindows="true"
         layout="@layout/title_image_text_text"/>
     
     <WebView 

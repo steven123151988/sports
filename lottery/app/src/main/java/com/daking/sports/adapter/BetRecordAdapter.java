@@ -64,7 +64,6 @@ public class BetRecordAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.ll_bertrecord.getBackground().setAlpha(135);
         viewHolder.tv_position.setText(String.valueOf(position+1));
         viewHolder.tv_team1.setText("");
         viewHolder.tv_team2.setText("");

@@ -33,4 +33,12 @@ public class Betdata {
     public void setData(List<String> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "Betdata{" +
+                "lid='" + lid + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

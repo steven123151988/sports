@@ -1,7 +1,10 @@
 package com.daking.sports.api;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.daking.sports.activity.login.LoginActivity;
+import com.daking.sports.application.ActivityManager;
 import com.daking.sports.base.SportsAPI;
 import com.daking.sports.json.BaseModel;
 import com.google.gson.JsonParseException;
@@ -39,7 +42,14 @@ public abstract class HttpCallback<T extends BaseModel> implements Callback<T> {
             if (model.getErrnum() == 0) {
                 onSuccess(model);
             } else {
-                onApiFailure(model);
+                if (model.getErrnum() == -100) {
+                    ActivityManager.getInstance().getCurrentActivity().
+                            startActivity(new Intent(ActivityManager.getInstance().getCurrentActivity(), LoginActivity.class));
+                } else {
+                    onApiFailure(model);
+                }
+
+
             }
         } else {
             onFailure(call, new IOException("Unexpected code " + response.code()));
