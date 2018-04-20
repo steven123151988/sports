@@ -13,6 +13,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -38,6 +41,7 @@ import com.daking.sports.activity.personalset.SetMoneyPswActivity;
 import com.daking.sports.base.BaseActivity;
 import com.daking.sports.base.SportsKey;
 import com.daking.sports.fragment.betting.GamedataFragment;
+import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SharePreferencesUtil;
 
 import butterknife.BindView;
@@ -106,10 +110,23 @@ public class BetMainActivity extends BaseActivity implements View.OnClickListene
             mNavigationView.setItemTextColor(mContext.getResources().getColorStateList(R.color.navigationview_color, null));
             mNavigationView.setItemIconTintList(mContext.getResources().getColorStateList(R.color.navigationview_color, null));
         }
+
         tv_username = (TextView) navigation_header.findViewById(R.id.tv_username);
-        tv_username.setText("欢迎回来：" + SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name)));
+        String t1 = "欢迎回来：";
+        String t2 = SharePreferencesUtil.getString(mContext, SportsKey.USER_NAME, getString(R.string.app_name));
+        Spannable span = new SpannableString(t1 + t2);
+        span.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.gray_e6e6e6)), 0, t1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue_00ffff)), t1.length(), (t1 + t2).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_username.setText(span);
+
         tv_balance = (TextView) navigation_header.findViewById(R.id.tv_balance);
-        tv_balance.setText("账户余额：" + SharePreferencesUtil.getString(mContext, SportsKey.BALANCE, "0.00"));
+        String t3 = "钱包余额：";
+        String t4 = SharePreferencesUtil.getString(mContext, SportsKey.BALANCE, "0.00");
+        Spannable span2 = new SpannableString(t3 + t4);
+        span2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.gray_e6e6e6)), 0, t3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        span2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.blue_00ffff)), t3.length(), (t3 + t4).length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_balance.setText(span2);
+
         mToolbar.setTitle("");
         //这句一定要在下面几句之前调用，不然就会出现点击无反应
         setSupportActionBar(mToolbar);

@@ -129,7 +129,10 @@
             android:name="com.daking.sports.activity.betting.BetRecordActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.daking.sports.activity.betting.BetListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
 
 

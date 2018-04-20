@@ -7,11 +7,11 @@
 
         <item
             android:id="@+id/navigation_item_getinmoney"
+            android:checked="true"
             android:icon="@mipmap/main_get_in_money"
             android:title="@string/get_in_money" />
         <item
             android:id="@+id/navigation_take_out_money"
-            android:checked="true"
             android:icon="@mipmap/main_take_out_money"
             android:title="@string/take_out_money2" />
         <item

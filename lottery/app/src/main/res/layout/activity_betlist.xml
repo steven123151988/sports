@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10"
+        android:background="@drawable/bet_item_bg"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lv_betlist"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_cccccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_guoguan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10"
+                android:text="过关方式"
+                android:textColor="@color/white_ffffff"
+                android:textSize="16sp" />
+
+            <com.daking.sports.view.RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_212121"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_position_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="2串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_position_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="3串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="4串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="5串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="6串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="7串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="8串1"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="@string/chuanguan"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18"
+                        android:visibility="invisible" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_50"
+                        android:layout_weight="1"
+                        android:text="@string/chuanguan"
+                        android:textColor="@color/selector_rb_text"
+                        android:textSize="@dimen/sp_18"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+            </com.daking.sports.view.RadioGroup>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_cccccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="我要投"
+                    android:textColor="@color/white_ffffff"
+                    android:textSize="@dimen/sp_16" />
+
+                <ImageView
+                    android:id="@+id/iv_reduce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/iv_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="倍"
+                    android:textColor="@color/white_ffffff"
+                    android:textSize="@dimen/sp_16"
+
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dimen_10"
+                android:text="123"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dimen_10"
+                android:text="123"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dimen_10"
+                android:text="123"
+                android:textColor="@color/white_ffffff"
+                android:textSize="@dimen/sp_16" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_30"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:background="@drawable/bet_button"
+            android:text="立即投注"
+            android:textColor="@color/blue_00ffff"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,15 +1,18 @@
 package com.daking.sports.activity.betting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
@@ -55,8 +58,14 @@ public class BetDetailActivity extends NewBaseActivity {
     TextView tvTeamname2;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.tv_notice)
+    TextView tvNotice;
+    @BindView(R.id.bt_bet)
+    Button btBet;
+    @BindView(R.id.betdetail_bottom)
+    RelativeLayout betdetailBottom;
     private List<Fragment> mFragments = new ArrayList<>();
-    private int position = 1;
+    private int position = 0;
     private DanguanFragment danguanFragment;
     private ChuanguanFragment chuanguanFragment;
     private String lid;
@@ -89,13 +98,17 @@ public class BetDetailActivity extends NewBaseActivity {
             chuanguanFragment = new ChuanguanFragment();
 
         mFragments.clear();
-        mFragments.add(chuanguanFragment);
         mFragments.add(danguanFragment);
+        mFragments.add(chuanguanFragment);
+
 
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(fragmentAdapter);
         viewPager.setCurrentItem(position);
+        if (position == 0) {
+            betdetailBottom.setVisibility(View.GONE);
+        }
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.check(radioGroup.getChildAt(position).getId());
         //注册监听
@@ -114,9 +127,11 @@ public class BetDetailActivity extends NewBaseActivity {
                 switch (position) {
                     case 0:
                         radioGroup.check(R.id.rb_position_1);
+                        betdetailBottom.setVisibility(View.GONE);
                         break;
                     case 1:
                         radioGroup.check(R.id.rb_position_2);
+                        betdetailBottom.setVisibility(View.VISIBLE);
                         break;
 
                 }
@@ -135,9 +150,11 @@ public class BetDetailActivity extends NewBaseActivity {
                 switch (checkedId) {
                     case R.id.rb_position_1:
                         viewPager.setCurrentItem(0);
+                        betdetailBottom.setVisibility(View.GONE);
                         break;
                     case R.id.rb_position_2:
                         viewPager.setCurrentItem(1);
+                        betdetailBottom.setVisibility(View.VISIBLE);
                         break;
 
                 }
@@ -157,20 +174,21 @@ public class BetDetailActivity extends NewBaseActivity {
         return lid;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
-    @OnClick(R.id.iv_back)
+    @OnClick({R.id.iv_back,R.id.bt_bet})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.bt_bet:
+                startActivity(new Intent(BetDetailActivity.this, BetListActivity.class));
+                break;
+
+
         }
     }
+
+
 }
 

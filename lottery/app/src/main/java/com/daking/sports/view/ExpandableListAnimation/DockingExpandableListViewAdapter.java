@@ -93,6 +93,7 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         } else {
             viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_right);
         }
+
         return view;
     }
 
