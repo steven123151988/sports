@@ -8,6 +8,7 @@
     <include layout="@layout/main_title" />
 
     <LinearLayout
+        android:id="@+id/ll_betlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10"
@@ -17,7 +18,7 @@
         <ListView
             android:id="@+id/lv_betlist"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="wrap_content" />
 
         <View
             android:layout_width="match_parent"
@@ -31,7 +32,6 @@
 
 
             <TextView
-                android:id="@+id/tv_guoguan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dimen_10"
@@ -43,7 +43,6 @@
                 android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/black_212121"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -72,6 +71,7 @@
                         android:textSize="@dimen/sp_18" />
 
                     <RadioButton
+                        android:id="@+id/rb_position_3"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -86,6 +86,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_position_4"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -94,6 +95,7 @@
                         android:textSize="@dimen/sp_18" />
 
                     <RadioButton
+                        android:id="@+id/rb_position_5"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -102,6 +104,7 @@
                         android:textSize="@dimen/sp_18" />
 
                     <RadioButton
+                        android:id="@+id/rb_position_6"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -117,6 +120,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_position_7"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -125,6 +129,7 @@
                         android:textSize="@dimen/sp_18" />
 
                     <RadioButton
+                        android:id="@+id/rb_position_8"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -134,6 +139,7 @@
                         android:visibility="invisible" />
 
                     <RadioButton
+                        android:id="@+id/rb_position_9"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_50"
                         android:layout_weight="1"
@@ -176,21 +182,37 @@
                     android:id="@+id/iv_reduce"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dimen_15"
+                    android:src="@mipmap/bet_reduce" />
 
                 <EditText
+                    android:id="@+id/ed_betnum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:layout_marginRight="@dimen/dimen_5"
+                    android:background="@null"
+                    android:hint="请输入投注数量"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:textColor="@color/white_ffffff"
+                    android:textColorHint="@color/white_ffffff"
+                    android:textSize="@dimen/sp_16" />
 
                 <ImageView
                     android:id="@+id/iv_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dimen_15"
+                    android:src="@mipmap/bet_plus" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:text="倍"
                     android:textColor="@color/white_ffffff"
                     android:textSize="@dimen/sp_16"

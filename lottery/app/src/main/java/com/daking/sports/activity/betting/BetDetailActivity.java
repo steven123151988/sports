@@ -133,7 +133,6 @@ public class BetDetailActivity extends NewBaseActivity {
                         radioGroup.check(R.id.rb_position_2);
                         betdetailBottom.setVisibility(View.VISIBLE);
                         break;
-
                 }
 
                 KeyBoardUtils.hideInputForce(BetDetailActivity.this);
@@ -156,7 +155,6 @@ public class BetDetailActivity extends NewBaseActivity {
                         viewPager.setCurrentItem(1);
                         betdetailBottom.setVisibility(View.VISIBLE);
                         break;
-
                 }
                 KeyBoardUtils.hideInputForce(BetDetailActivity.this);
             }
@@ -175,7 +173,7 @@ public class BetDetailActivity extends NewBaseActivity {
     }
 
 
-    @OnClick({R.id.iv_back,R.id.bt_bet})
+    @OnClick({R.id.iv_back, R.id.bt_bet})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -184,8 +182,6 @@ public class BetDetailActivity extends NewBaseActivity {
             case R.id.bt_bet:
                 startActivity(new Intent(BetDetailActivity.this, BetListActivity.class));
                 break;
-
-
         }
     }
 

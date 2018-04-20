@@ -97,7 +97,7 @@ public class DanguanFragment extends NewBaseFragment {
 //            }
 //        }
 //
-        LogUtil.e("====123====="+betdataEvent.toString());
+//        LogUtil.e("====123====="+betdataEvent.toString());
 
     }
 
