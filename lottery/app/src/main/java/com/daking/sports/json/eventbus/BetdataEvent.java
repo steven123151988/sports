@@ -5,7 +5,7 @@ package com.daking.sports.json.eventbus;
  * Data：2018/4/19-17:35
  * steven
  */
-public class BetdataEvent {
+public class BetdataEvent extends BaseEvent{
     private String lid;
     private String rate;
     private boolean add;

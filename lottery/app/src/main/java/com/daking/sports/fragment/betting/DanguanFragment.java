@@ -69,36 +69,7 @@ public class DanguanFragment extends NewBaseFragment {
     }
 
 
-    public boolean useEventBus() {
-        return true;
-    }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getBetdata(BetdataEvent betdataEvent) {
-//        if (betdatas.size()==0){
-//            betdata = new Betdata();
-//            betdata.setLid(betdataEvent.getLid());
-//            list.add(betdataEvent.getRate());
-//            betdata.setData(list);
-//            betdatas.add(betdata);
-//        }else{
-//            for (int i=0;i<betdatas.size();i++){
-//                if (betdataEvent.getLid().equals(betdatas.get(i).getLid())){
-//                    list.add(betdataEvent.getRate());
-//                    betdata.setData(list);
-//                    betdatas.add(betdata);
-//                }else{
-//                    betdata = new Betdata();
-//                    list= new ArrayList() ;
-//                    list.add(betdataEvent.getRate());
-//                    betdata.setData(list);
-//                    betdatas.add(betdata);
-//                }
-//            }
-//        }
-//
-//        LogUtil.e("====123====="+betdataEvent.toString());
 
-    }
 
 }

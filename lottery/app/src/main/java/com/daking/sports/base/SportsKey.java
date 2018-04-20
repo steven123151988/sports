@@ -1,5 +1,8 @@
 package com.daking.sports.base;
 
+
+import com.daking.sports.activity.interfaces.SendbetdataInterface;
+
 /**
  * Created by Steven on 2017/4/28.
  */
@@ -23,8 +26,6 @@ public class SportsKey {
     public static final String TELEPHONE = "telephone";
     public static final String BALANCE = "abalance";
     public static final String BANKNUM = "banknum";
-
-
 
 
     public static final int TYPE_ZERO = 0;
@@ -83,4 +84,6 @@ public class SportsKey {
     public static final String ACCOUNT_MONEY = "accountmoney";
     public static final String CONFIG = "config";
     public static final String WEB_SOCKET_URL = "config";
+
+
 }

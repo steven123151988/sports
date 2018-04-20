@@ -12,16 +12,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.interfaces.SendbetdataInterface;
 import com.daking.sports.json.Betdata;
 import com.daking.sports.json.GamePlaywaysRsp;
-import com.daking.sports.json.eventbus.BetdataEvent;
-import com.daking.sports.util.LogUtil;
-import com.daking.sports.util.SharePreferencesUtil;
+import com.daking.sports.json.smallBetdata;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Description:
@@ -34,12 +31,16 @@ public class BetdetailButtonAdapter extends BaseAdapter {
     private List<GamePlaywaysRsp.DataBean.DetailBean> detail;
     private String gametype;
     private String lid;
+    private Betdata betdata = new Betdata();
+    private smallBetdata smallBetdata = new smallBetdata();
+    private SendbetdataInterface sendbetdata;
 
-    public BetdetailButtonAdapter(Context mcontext, List<GamePlaywaysRsp.DataBean.DetailBean> detail, String type, String lid) {
+    public BetdetailButtonAdapter(Context mcontext, List<GamePlaywaysRsp.DataBean.DetailBean> detail, String type, String lid, SendbetdataInterface sendbetdata) {
         this.mcontext = mcontext;
         this.detail = detail;
         this.gametype = type;
         this.lid = lid;
+        this.sendbetdata = sendbetdata;
     }
 
     @Override
@@ -70,22 +71,22 @@ public class BetdetailButtonAdapter extends BaseAdapter {
             viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    GamePlaywaysRsp.DataBean.DetailBean detailBean = (GamePlaywaysRsp.DataBean.DetailBean) viewHolder.checkBox.getTag();
+                    detailBean.setSelected(isChecked);
 
-                    BetdataEvent betdataEvent = new BetdataEvent();
-                    betdataEvent.setRate(detailBean.getPx());
-                    betdataEvent.setLid(lid);
+                    smallBetdata.setRate(detailBean.getPx());
+                    smallBetdata.setLid(lid);
+
                     if (viewHolder.checkBox.isChecked()) {
-                        betdataEvent.setAdd(true);
+                        smallBetdata.setIfadd(true);
                         viewHolder.checkBox.getBackground().setAlpha(102);
                     } else {
                         viewHolder.checkBox.getBackground().setAlpha(55);
-                        betdataEvent.setAdd(false);
+                        smallBetdata.setIfadd(false);
                     }
+                    sendbetdata.sendBetdata(smallBetdata);
 
-                    EventBus.getDefault().post(betdataEvent);
 
-                    GamePlaywaysRsp.DataBean.DetailBean detailBean = (GamePlaywaysRsp.DataBean.DetailBean) viewHolder.checkBox.getTag();
-                    detailBean.setSelected(isChecked);
                 }
             });
             view.setTag(viewHolder);
@@ -94,6 +95,8 @@ public class BetdetailButtonAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
             viewHolder.checkBox.setTag(detailBean);
         }
+
+        betdata.setLid(lid);
 
 
         viewHolder.checkBox.getBackground().setAlpha(55);

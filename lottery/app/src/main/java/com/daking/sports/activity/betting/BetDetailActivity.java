@@ -16,19 +16,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.interfaces.SendbetdataInterface;
 import com.daking.sports.adapter.FragmentAdapter;
 import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.fragment.betting.ChuanguanFragment;
 import com.daking.sports.fragment.betting.DanguanFragment;
+import com.daking.sports.json.Betdata;
 import com.daking.sports.json.TeamDate;
+import com.daking.sports.json.smallBetdata;
 import com.daking.sports.util.KeyBoardUtils;
+import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SystemUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -36,7 +39,7 @@ import butterknife.OnClick;
  * Data：2018/4/9-13:39
  * steven
  */
-public class BetDetailActivity extends NewBaseActivity {
+public class BetDetailActivity extends NewBaseActivity implements SendbetdataInterface {
 
     @BindView(R.id.tv_date)
     TextView tvDate;
@@ -68,8 +71,15 @@ public class BetDetailActivity extends NewBaseActivity {
     private int position = 0;
     private DanguanFragment danguanFragment;
     private ChuanguanFragment chuanguanFragment;
+
     private String lid;
     private TeamDate dataBean;
+
+    private static List<Betdata> betdatas = new ArrayList<>();
+    private Betdata betdata = new Betdata();
+    private List list = new ArrayList();
+    private int same = 888;
+    private int same2 = 888;
 
 
     @Override
@@ -186,5 +196,61 @@ public class BetDetailActivity extends NewBaseActivity {
     }
 
 
+    @Override
+    public void sendBetdata(smallBetdata smallBetdata) {
+        int size = betdatas.size();
+        if (size == 0) {
+            betdata = new Betdata();
+            betdata.setLid(smallBetdata.getLid());
+            list = new ArrayList();
+            list.add(smallBetdata.getRate());
+            betdata.setData(list);
+            betdatas.add(betdata);
+
+        } else {
+            if (smallBetdata.isIfadd()) {
+                for (int i = 0; i < size; i++) {
+                    if (smallBetdata.getLid().equals(betdatas.get(i).getLid())) {
+                        int ratesize = betdatas.get(i).getData().size();
+                        for (int m = 0; m < ratesize; m++) {
+                            if (!smallBetdata.getRate().equals(betdatas.get(i).getData().get(m))) {
+                                betdatas.get(same).getData().add(smallBetdata.getRate());
+                            }
+                        }
+
+
+                    } else {
+                        betdata = new Betdata();
+                        betdata.setLid(smallBetdata.getLid());
+                        list = new ArrayList();
+                        list.add(smallBetdata.getRate());
+                        betdata.setData(list);
+                        betdatas.add(betdata);
+                    }
+
+                }
+
+
+            } else {
+                for (int i = 0; i < size; i++) {
+                    if (smallBetdata.getLid().equals(betdatas.get(i).getLid())) {
+                        betdatas.get(i).getData().remove(smallBetdata.getRate());
+                        if (betdatas.get(i).getData().size() == 0) {
+                            betdatas.remove(betdatas.get(i));
+                        }
+                    }
+                }
+            }
+
+            LogUtil.e("=========2=====betdatas=========" + betdatas.toString());
+        }
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
 

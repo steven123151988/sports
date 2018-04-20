@@ -4,24 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daking.sports.R;
+import com.daking.sports.activity.interfaces.SendbetdataInterface;
 import com.daking.sports.json.GamePlaywaysRsp;
-import com.daking.sports.util.LogUtil;
 import com.daking.sports.view.Mygradview;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Description:
@@ -79,7 +73,7 @@ public class BetdetailAdapter extends BaseAdapter {
         viewHolder.ll_all.getBackground().setAlpha(70);
         viewHolder.tv_game_title.setText(gamePlaywaysRsp.getData().get(position).getAlias());
         detail = gamePlaywaysRsp.getData().get(position).getDetail();
-        adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType(), lid);
+        adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType(), lid, (SendbetdataInterface) mcontext);
         viewHolder.gv_bet.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -109,8 +103,11 @@ public class BetdetailAdapter extends BaseAdapter {
             viewHolder.gv_bet.setVisibility(View.GONE);
 
             List lv_1 = new ArrayList();
+            lv_1.clear();
             List lv_2 = new ArrayList();
+            lv_2.clear();
             List lv_3 = new ArrayList();
+            lv_3.clear();
             int size = gamePlaywaysRsp.getData().get(position).getDetail().size();
             for (int m = 0; m < size; m++) {
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("h")) {
@@ -126,9 +123,9 @@ public class BetdetailAdapter extends BaseAdapter {
 
                 }
             }
-            adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs", lid);
-            adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs", lid);
-            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs", lid);
+            adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs", lid,(SendbetdataInterface) mcontext);
+            adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs", lid,(SendbetdataInterface) mcontext);
+            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs", lid,(SendbetdataInterface) mcontext);
             viewHolder.lv_1.setAdapter(adapter1);
             viewHolder.lv_2.setAdapter(adapter2);
             viewHolder.lv_3.setAdapter(adapter3);

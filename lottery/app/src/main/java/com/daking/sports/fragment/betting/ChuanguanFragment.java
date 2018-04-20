@@ -11,8 +11,6 @@ import com.daking.sports.api.HttpRequest;
 import com.daking.sports.base.NewBaseFragment;
 import com.daking.sports.json.Betdata;
 import com.daking.sports.json.GamePlaywaysRsp;
-import com.daking.sports.json.eventbus.BetdataEvent;
-import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.ShowDialogUtil;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -49,6 +47,7 @@ public class ChuanguanFragment extends NewBaseFragment {
                 BetdetailAdapter adapter = new BetdetailAdapter(getActivity(), data, lid);
                 lvBetdetail.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -68,36 +67,7 @@ public class ChuanguanFragment extends NewBaseFragment {
     }
 
 
-    public boolean useEventBus() {
-        return true;
-    }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getBetdata(BetdataEvent betdataEvent) {
-//        if (betdatas.size()==0){
-//            betdata = new Betdata();
-//            betdata.setLid(betdataEvent.getLid());
-//            list.add(betdataEvent.getRate());
-//            betdata.setData(list);
-//            betdatas.add(betdata);
-//        }else{
-//            for (int i=0;i<betdatas.size();i++){
-//                if (betdataEvent.getLid().equals(betdatas.get(i).getLid())){
-//                    list.add(betdataEvent.getRate());
-//                    betdata.setData(list);
-//                    betdatas.add(betdata);
-//                }else{
-//                    betdata = new Betdata();
-//                    list= new ArrayList() ;
-//                    list.add(betdataEvent.getRate());
-//                    betdata.setData(list);
-//                    betdatas.add(betdata);
-//                }
-//            }
-//        }
-//
-        LogUtil.e("====123=====" + betdataEvent.toString());
 
-    }
 
 }

@@ -1,5 +1,6 @@
 package com.daking.sports.json;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Data：2018/4/19-10:09
  * steven
  */
-public class Betdata {
+public class Betdata implements Serializable{
 
 
     /**
