@@ -79,7 +79,6 @@ public class HotgameAdapter extends BaseAdapter {
                     date.setH_cn(hotdata.get(position).getH_cn());
                     date.setTime(hotdata.get(position).getTime());
                     date.setLid(hotdata.get(position).getLid());
-
                     Intent intent = new Intent(mcontext, BetDetailActivity.class);
                     intent.putExtra("dataBean", date);
                     mcontext.startActivity(intent);

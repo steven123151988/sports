@@ -1,5 +1,6 @@
 package com.daking.sports.activity.interfaces;
 
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.smallBetdata;
 
 /**
@@ -9,4 +10,6 @@ import com.daking.sports.json.smallBetdata;
  */
 public interface SendbetdataInterface {
     void sendBetdata(smallBetdata smallBetdata);
+
+    void sendBetdatas(GamePlaywaysRsp.DataBean.DetailBean smallBetdata);
 }

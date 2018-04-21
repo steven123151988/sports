@@ -72,6 +72,7 @@ public class getGameDataRsp extends BaseModel {
             private String a_cn;
             private int show;
 
+
             public String getLid() {
                 return lid;
             }
@@ -135,6 +136,7 @@ public class getGameDataRsp extends BaseModel {
             public void setShow(int show) {
                 this.show = show;
             }
+
         }
     }
 }

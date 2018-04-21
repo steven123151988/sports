@@ -23,6 +23,7 @@ import com.daking.sports.base.NewBaseActivity;
 import com.daking.sports.fragment.betting.ChuanguanFragment;
 import com.daking.sports.fragment.betting.DanguanFragment;
 import com.daking.sports.json.Betdata;
+import com.daking.sports.json.GamePlaywaysRsp;
 import com.daking.sports.json.TeamDate;
 import com.daking.sports.json.smallBetdata;
 import com.daking.sports.util.KeyBoardUtils;
@@ -84,6 +85,7 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
     private List list_lid = new ArrayList<>();
     private List list_rate = new ArrayList<>();
     private Gson gson = new Gson();
+    private List<GamePlaywaysRsp.DataBean.DetailBean> listberdate = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -253,6 +255,11 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
 
 
         LogUtil.e("=========1=====betdatas=========" + gson.toJson(betdatas));
+    }
+
+    @Override
+    public void sendBetdatas(GamePlaywaysRsp.DataBean.DetailBean detailBean) {
+        listberdate.add(detailBean);
     }
 
 }
