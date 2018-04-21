@@ -110,15 +110,15 @@ public class BetdetailAdapter extends BaseAdapter {
             lv_3.clear();
             int size = gamePlaywaysRsp.getData().get(position).getDetail().size();
             for (int m = 0; m < size; m++) {
-                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("h")) {
+                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分胜")) {
                     lv_1.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
 
                 }
-                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("d")) {
+                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分平")) {
                     lv_2.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
 
                 }
-                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("a")) {
+                if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分负")) {
                     lv_3.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
 
                 }

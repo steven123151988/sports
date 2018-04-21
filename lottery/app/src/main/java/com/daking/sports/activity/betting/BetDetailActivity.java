@@ -27,6 +27,7 @@ import com.daking.sports.json.smallBetdata;
 import com.daking.sports.util.KeyBoardUtils;
 import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SystemUtil;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,9 +79,9 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
     private static List<Betdata> betdatas = new ArrayList<>();
     private Betdata betdata = new Betdata();
     private List list = new ArrayList();
-    private int same = 888;
-    private int same2 = 888;
-
+    private List list_lid = new ArrayList();
+    private List list_rate = new ArrayList();
+    private Gson gson = new Gson();
 
     @Override
     protected int getLayoutId() {
@@ -199,6 +200,10 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
     @Override
     public void sendBetdata(smallBetdata smallBetdata) {
         int size = betdatas.size();
+        for (int i = 0; i < size; i++) {
+            list_lid.clear();
+            list_lid.add(betdatas.get(i).getLid());
+        }
         if (size == 0) {
             betdata = new Betdata();
             betdata.setLid(smallBetdata.getLid());
@@ -206,31 +211,30 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
             list.add(smallBetdata.getRate());
             betdata.setData(list);
             betdatas.add(betdata);
-
         } else {
             if (smallBetdata.isIfadd()) {
-                for (int i = 0; i < size; i++) {
-                    if (smallBetdata.getLid().equals(betdatas.get(i).getLid())) {
-                        int ratesize = betdatas.get(i).getData().size();
-                        for (int m = 0; m < ratesize; m++) {
-                            if (!smallBetdata.getRate().equals(betdatas.get(i).getData().get(m))) {
-                                betdatas.get(same).getData().add(smallBetdata.getRate());
+
+                if (list_lid.indexOf(smallBetdata.getLid()) == 0) {
+
+                    for (int j = 0; j < betdatas.size(); j++) {
+                        if (betdatas.get(j).getLid().equals(smallBetdata.getLid())) {
+                            for (int k = 0; k < betdatas.get(j).getData().size(); k++) {
+                                list_rate.clear();
+                                list_lid.add(betdatas.get(j).getData().get(k));
+                            }
+                            if (list_lid.indexOf(smallBetdata.getRate()) == -1) {
+                                betdatas.get(j).getData().add(smallBetdata.getRate());
                             }
                         }
-
-
-                    } else {
-                        betdata = new Betdata();
-                        betdata.setLid(smallBetdata.getLid());
-                        list = new ArrayList();
-                        list.add(smallBetdata.getRate());
-                        betdata.setData(list);
-                        betdatas.add(betdata);
                     }
-
+                } else {
+                    betdata = new Betdata();
+                    betdata.setLid(smallBetdata.getLid());
+                    list = new ArrayList();
+                    list.add(smallBetdata.getRate());
+                    betdata.setData(list);
+                    betdatas.add(betdata);
                 }
-
-
             } else {
                 for (int i = 0; i < size; i++) {
                     if (smallBetdata.getLid().equals(betdatas.get(i).getLid())) {
@@ -241,16 +245,11 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
                     }
                 }
             }
-
-            LogUtil.e("=========2=====betdatas=========" + betdatas.toString());
         }
 
 
+        LogUtil.e("=========1=====betdatas=========" + gson.toJson(betdatas));
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
 
