@@ -127,6 +127,7 @@ public class BetdetailButtonAdapter extends BaseAdapter {
         }
 
         viewHolder.checkBox.setChecked(detailBean.isSelected());
+
         if (viewHolder.checkBox.isChecked()) {
             viewHolder.checkBox.getBackground().setAlpha(102);
         } else {

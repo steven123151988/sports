@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+
+    <ExpandableListView
+        android:id="@+id/lv_betlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5"
+        android:background="@drawable/bet_item_bg"
+        android:childDivider="#00000000"
+        android:divider="@null"
+        android:dividerHeight="5dp" />
+
+</LinearLayout>

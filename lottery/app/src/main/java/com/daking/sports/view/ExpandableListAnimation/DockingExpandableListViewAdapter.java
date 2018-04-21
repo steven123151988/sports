@@ -81,6 +81,8 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
             view = mInflater.inflate(R.layout.adapter_betting_title, null);
             viewHolder.iv_arrow = (ImageView) view.findViewById(R.id.iv_arrow);
             viewHolder.tv_title = (TextView) view.findViewById(R.id.tv_title);
+            viewHolder.ll_exlistview = (LinearLayout) view.findViewById(R.id.ll_exlistview);
+
             view.setTag(viewHolder);
         } else {
             viewHolder = (TitleViewHolder) view.getTag();
@@ -93,7 +95,7 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
         } else {
             viewHolder.iv_arrow.setImageResource(R.mipmap.arrow_right);
         }
-
+        viewHolder.ll_exlistview.getBackground().setAlpha(200);
         return view;
     }
 
@@ -164,6 +166,7 @@ public class DockingExpandableListViewAdapter extends BaseExpandableListAdapter 
     private class TitleViewHolder {
         TextView tv_title;
         ImageView iv_arrow;
+        LinearLayout ll_exlistview;
     }
 
     private class ViewHolder {

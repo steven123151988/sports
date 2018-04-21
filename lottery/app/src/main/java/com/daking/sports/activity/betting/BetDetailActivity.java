@@ -2,6 +2,7 @@ package com.daking.sports.activity.betting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ import com.daking.sports.util.LogUtil;
 import com.daking.sports.util.SystemUtil;
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +81,8 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
     private static List<Betdata> betdatas = new ArrayList<>();
     private Betdata betdata = new Betdata();
     private List list = new ArrayList();
-    private List list_lid = new ArrayList();
-    private List list_rate = new ArrayList();
+    private List list_lid = new ArrayList<>();
+    private List list_rate = new ArrayList<>();
     private Gson gson = new Gson();
 
     @Override
@@ -191,7 +193,9 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
                 finish();
                 break;
             case R.id.bt_bet:
-                startActivity(new Intent(BetDetailActivity.this, BetListActivity.class));
+                Intent intent = new Intent(BetDetailActivity.this, BetListActivity.class);
+                intent.putExtra("betdatas", (Serializable) betdatas);
+                startActivity(intent);
                 break;
         }
     }

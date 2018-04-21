@@ -2,42 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_exlistview"
-    android:background="@color/black_212121"
+
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/dimen_10">
+        android:layout_height="50dp">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:maxEms="15"
-            android:maxLines="1"
-            android:text="赛事名称"
+            android:layout_marginLeft="@dimen/dimen_15"
             android:textColor="@color/white_ffffff"
-            android:textSize="@dimen/sp_15" />
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white_ffffff"
+            android:textSize="@dimen/sp_16" />
 
         <ImageView
-            android:id="@+id/iv_arrow"
+            android:id="@+id/iv_reduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dimen_10"
-            android:src="@mipmap/arrow_down" />
+            android:layout_marginRight="@dimen/dimen_15"
+            android:src="@mipmap/betitem_reduce"
+            android:textColor="@color/white_ffffff" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/blue_00ffff"
-        android:visibility="gone" />
 </LinearLayout>
