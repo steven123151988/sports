@@ -27,10 +27,27 @@ public class GamePlaywaysRsp extends BaseModel {
          * type : had
          * detail : [{"pre":"h","mp":"3.35","up":-1,"px":"h_3.35"},{"pre":"d","mp":"3.15","up":-1,"px":"d_3.15"},{"pre":"a","mp":"1.95","up":-1,"px":"a_1.95"}]
          */
-
+        private String lid;
         private String alias;
         private String type;
+        private boolean add;
         private List<DetailBean> detail;
+
+        public boolean isAdd() {
+            return add;
+        }
+
+        public void setAdd(boolean add) {
+            this.add = add;
+        }
+
+        public String getLid() {
+            return lid;
+        }
+
+        public void setLid(String lid) {
+            this.lid = lid;
+        }
 
         public String getAlias() {
             return alias;

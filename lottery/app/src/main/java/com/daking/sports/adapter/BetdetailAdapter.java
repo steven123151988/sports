@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.daking.sports.R;
 import com.daking.sports.activity.interfaces.SendbetdataInterface;
 import com.daking.sports.json.GamePlaywaysRsp;
+import com.daking.sports.util.LogUtil;
 import com.daking.sports.view.Mygradview;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +25,13 @@ import java.util.List;
  * steven
  */
 public class BetdetailAdapter extends BaseAdapter {
-    private List<GamePlaywaysRsp.DataBean.DetailBean> detail;
     private LayoutInflater mInflater;
     private Context mcontext;
     private GamePlaywaysRsp gamePlaywaysRsp;
+    private GamePlaywaysRsp.DataBean dataBean;
+    private GamePlaywaysRsp.DataBean dataBean1=new GamePlaywaysRsp.DataBean();
+    private GamePlaywaysRsp.DataBean dataBean2=new GamePlaywaysRsp.DataBean();
+    private GamePlaywaysRsp.DataBean dataBean3=new GamePlaywaysRsp.DataBean();
     private BetdetailButtonAdapter adapter, adapter1, adapter2, adapter3;
     private String lid;
 
@@ -72,8 +77,9 @@ public class BetdetailAdapter extends BaseAdapter {
 
         viewHolder.ll_all.getBackground().setAlpha(70);
         viewHolder.tv_game_title.setText(gamePlaywaysRsp.getData().get(position).getAlias());
-        detail = gamePlaywaysRsp.getData().get(position).getDetail();
-        adapter = new BetdetailButtonAdapter(mcontext, detail, gamePlaywaysRsp.getData().get(position).getType(), lid, (SendbetdataInterface) mcontext);
+        dataBean = gamePlaywaysRsp.getData().get(position);
+        dataBean.setLid(lid);
+        adapter = new BetdetailButtonAdapter(mcontext, dataBean, (SendbetdataInterface) mcontext);
         viewHolder.gv_bet.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -112,20 +118,28 @@ public class BetdetailAdapter extends BaseAdapter {
             for (int m = 0; m < size; m++) {
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分胜")) {
                     lv_1.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
-
+                    dataBean1.setType(gamePlaywaysRsp.getData().get(position).getType());
+                    dataBean1.setLid(lid);
+                    dataBean1.setDetail(lv_1);
                 }
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分平")) {
                     lv_2.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
-
+                    dataBean2.setType(gamePlaywaysRsp.getData().get(position).getType());
+                    dataBean2.setLid(lid);
+                    dataBean2.setDetail(lv_2);
                 }
                 if (gamePlaywaysRsp.getData().get(position).getDetail().get(m).getPre().equals("比分负")) {
                     lv_3.add(gamePlaywaysRsp.getData().get(position).getDetail().get(m));
-
+                    dataBean3=new GamePlaywaysRsp.DataBean();
+                    dataBean3.setType(gamePlaywaysRsp.getData().get(position).getType());
+                    dataBean3.setLid(lid);
+                    dataBean3.setDetail(lv_3);
                 }
             }
-            adapter1 = new BetdetailButtonAdapter(mcontext, lv_1, "crs", lid,(SendbetdataInterface) mcontext);
-            adapter2 = new BetdetailButtonAdapter(mcontext, lv_2, "crs", lid,(SendbetdataInterface) mcontext);
-            adapter3 = new BetdetailButtonAdapter(mcontext, lv_3, "crs", lid,(SendbetdataInterface) mcontext);
+
+            adapter1 = new BetdetailButtonAdapter(mcontext, dataBean1, (SendbetdataInterface) mcontext);
+            adapter2 = new BetdetailButtonAdapter(mcontext, dataBean2, (SendbetdataInterface) mcontext);
+            adapter3 = new BetdetailButtonAdapter(mcontext, dataBean3, (SendbetdataInterface) mcontext);
             viewHolder.lv_1.setAdapter(adapter1);
             viewHolder.lv_2.setAdapter(adapter2);
             viewHolder.lv_3.setAdapter(adapter3);

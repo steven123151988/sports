@@ -11,5 +11,5 @@ import com.daking.sports.json.smallBetdata;
 public interface SendbetdataInterface {
     void sendBetdata(smallBetdata smallBetdata);
 
-    void sendBetdatas(GamePlaywaysRsp.DataBean.DetailBean smallBetdata);
+    void sendBetdatas(GamePlaywaysRsp.DataBean dataBean);
 }

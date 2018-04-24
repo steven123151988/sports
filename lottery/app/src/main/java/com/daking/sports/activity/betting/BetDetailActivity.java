@@ -85,7 +85,8 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
     private List list_lid = new ArrayList<>();
     private List list_rate = new ArrayList<>();
     private Gson gson = new Gson();
-    private List<GamePlaywaysRsp.DataBean.DetailBean> listberdate = new ArrayList<>();
+
+    private static List<GamePlaywaysRsp.DataBean> list_databean = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -254,13 +255,58 @@ public class BetDetailActivity extends NewBaseActivity implements SendbetdataInt
         }
 
 
-        LogUtil.e("=========1=====betdatas=========" + gson.toJson(betdatas));
     }
 
     @Override
-    public void sendBetdatas(GamePlaywaysRsp.DataBean.DetailBean detailBean) {
-        listberdate.add(detailBean);
+    public void sendBetdatas(GamePlaywaysRsp.DataBean dataBean) {
+
+        int size = list_databean.size();
+        for (int i = 0; i < size; i++) {
+            list_lid.clear();
+            list_lid.add(dataBean.getLid());
+        }
+        if (size == 0) {
+            list_databean.clear();
+            list_databean.add(dataBean);
+
+        } else {
+            if (dataBean.isAdd()) {
+                if (list_lid.indexOf(dataBean.getLid()) == 0) {
+                    for (int j = 0; j < list_databean.size(); j++) {
+                        if (list_databean.get(j).getLid().equals(dataBean.getLid())) {
+                            int detailsize = list_databean.get(j).getDetail().size();
+                            for (int k = 0; k < detailsize; k++) {
+                                list_rate.clear();
+                                list_rate.add(list_databean.get(j).getDetail().get(k).getPx());
+                            }
+
+                            if (list_rate.indexOf(dataBean.getDetail().get(0).getPx()) == -1) {
+                                list_databean.get(j).getDetail().add(dataBean.getDetail().get(0));
+                            }
+                        }
+                    }
+
+                } else {
+                    list_databean.add(dataBean);
+                }
+
+
+            } else {
+
+                for (int i = 0; i < size; i++) {
+
+                    if (dataBean.getLid().equals(list_databean.get(i).getLid())) {
+                        list_databean.get(i).getDetail().remove(dataBean.getDetail().get(0));
+                        if (list_databean.get(i).getDetail().size() == 0) {
+                            list_databean.remove(list_databean.get(i));
+                        }
+                    }
+                }
+            }
+        }
+        LogUtil.e("==============betdatas=========" + gson.toJson(list_databean));
     }
+
 
 }
 
